@@ -1,70 +1,87 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlaceTower : MonoBehaviour
 {
-    [SerializeField] private GameObject towerPrefab;
+    [Header("Tower Settings")]
+    [SerializeField][Range(5,30)] private float towerRange;
+    [SerializeField][Range(0,1)] private float rangeOpacity;
+    [SerializeField] private float towerGroundHight;
+    [Header("References")]
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Material towerMat;
+    [SerializeField] private Material rangeMat;
+    [SerializeField] GameObject towerRangeTransform;
+
+    private bool isSelected = false;
     private Vector3 mousePos;
     private Vector3 worldPos;
-    private GameObject tower;
-    private bool TowerSelect = false;
     private RaycastHit hit;
+    private Color rangeColor;
 
-    public void ClickedOnImage()
+    private void Start()
     {
-        mousePos = Input.mousePosition;
-        tower = Instantiate(towerPrefab, mousePos, Quaternion.identity);
-        TowerSelect = true;
+        towerRangeTransform.transform.localScale = new Vector3(towerRange,0,towerRange);
     }
 
     private void Update()
     {
-        TowerToMousePos();
         PlaceTheTower();
+        TowerToMousePos();
         ChangeObjectColor();
+    }
+    public void TowerSelected(bool selected)
+    {
+        isSelected = selected;
     }
 
     private void TowerToMousePos()
     {
-        if (TowerSelect)
+        if (isSelected)
         {
+            //Gets the tower to the mouse position
             mousePos = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            towerRangeTransform.GetComponent<MeshRenderer>().enabled = true;
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, groundLayer))
+            if (Physics.Raycast(ray,out RaycastHit hitInfo, 100f, groundLayer))
             {
                 hit = hitInfo;
                 worldPos = hitInfo.point;
             }
 
-            tower.transform.position = worldPos;
+            transform.position = new Vector3(worldPos.x,towerGroundHight,worldPos.z);
         }
     }
 
     private void PlaceTheTower()
     {
-        if (Input.GetMouseButtonDown(0) && TowerSelect && hit.transform.tag != "Path")
+        //if you can place the tower you place the tower where your mouse is
+        if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path")
         {
+            towerRangeTransform.GetComponent<MeshRenderer>().enabled = false;
             Debug.Log("Tower has been placed");
-            TowerSelect = false;
+            isSelected = false;
         }
     }
 
+
     private void ChangeObjectColor()
     {
+        //it checks if you can place the tower and change the color
         if (hit.transform == null) { return; }
 
-        if (hit.transform.tag == "Path" && TowerSelect)
+        if (hit.transform.tag == "Path" && isSelected)
         {
-            towerMat.color = Color.red;
+            rangeColor = Color.red;
+            rangeColor.a = rangeOpacity;
+            rangeMat.color = rangeColor;
         }
-        else if (hit.transform.tag != "Path" && TowerSelect)
+        else if (hit.transform.tag != "Path" && isSelected)
         {
-            towerMat.color = Color.green;
+            rangeColor = Color.grey;
+            rangeColor.a = rangeOpacity;
+            rangeMat.color = rangeColor;
         }
     }
 }
