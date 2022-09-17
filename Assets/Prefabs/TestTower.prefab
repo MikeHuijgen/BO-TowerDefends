@@ -246,7 +246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerGroundHight: 1
   towerColliderX: 2
-  towerColliderY: 1
   towerColliderZ: 2
   towerCollider: {fileID: 7428317796733494735}
   groundLayer:

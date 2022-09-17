@@ -7,19 +7,20 @@ public class PlaceTower : MonoBehaviour
     [Header("PlaceTower Settings")]
     [SerializeField] private float towerGroundHight;
     [SerializeField] private float towerColliderX;
-    [SerializeField] private float towerColliderY;
     [SerializeField] private float towerColliderZ;
     [Header("References")]
     [SerializeField] private BoxCollider towerCollider;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Material rangeMat;
 
+    private float towerColliderY = 1f;
     private float towerRange;
     private float towerRangeOpacity;
 
     private bool isSelected = false;
     private bool isInTowerCollider = false;
 
+    private List<Collider> colliderChecker = new List<Collider>();
     private GameObject towerRangeTransform;
     private Vector3 mousePos;
     private Vector3 worldPos;
@@ -48,6 +49,7 @@ public class PlaceTower : MonoBehaviour
         PlaceTheTower();
         TowerToMousePos();
         ChangeObjectColor();
+        CheckCollisonList();
     }
     public void TowerSelected(bool selected)
     {
@@ -87,6 +89,33 @@ public class PlaceTower : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("tower"))
+        {
+            colliderChecker.Add(other);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("tower"))
+        {
+            colliderChecker.Remove(other);
+        }
+    }
+
+    private void CheckCollisonList()
+    {
+        if (colliderChecker.Count > 0)
+        {
+            isInTowerCollider = true;
+        }
+        else
+        {
+            isInTowerCollider = false;
+        }
+    }
 
     private void ChangeObjectColor()
     {
@@ -99,7 +128,7 @@ public class PlaceTower : MonoBehaviour
             rangeColor.a = towerRangeOpacity;
             rangeMat.color = rangeColor;
         }
-        else if (hit.transform.tag != "Path")
+        else
         {
             rangeColor = Color.grey;
             rangeColor.a = towerRangeOpacity;
@@ -107,19 +136,4 @@ public class PlaceTower : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("tower"))
-        {
-            isInTowerCollider = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("tower"))
-        {
-            isInTowerCollider = false;
-        }
-    }
 }
