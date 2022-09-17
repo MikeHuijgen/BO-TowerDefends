@@ -4,23 +4,42 @@ using UnityEngine;
 
 public class PlaceTower : MonoBehaviour
 {
-    [Header("Tower Settings")]
-    [SerializeField][Range(5,30)] private float towerRange;
-    [SerializeField][Range(0,1)] private float rangeOpacity;
+    [Header("PlaceTower Settings")]
     [SerializeField] private float towerGroundHight;
+    [SerializeField] private float towerColliderX;
+    [SerializeField] private float towerColliderY;
+    [SerializeField] private float towerColliderZ;
     [Header("References")]
+    [SerializeField] private BoxCollider towerCollider;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Material rangeMat;
-    [SerializeField] GameObject towerRangeTransform;
+
+    private float towerRange;
+    private float towerRangeOpacity;
 
     private bool isSelected = false;
+    private bool isInTowerCollider = false;
+
+    private GameObject towerRangeTransform;
     private Vector3 mousePos;
     private Vector3 worldPos;
     private RaycastHit hit;
     private Color rangeColor;
+    private Tower tower;
+
+    private void Awake()
+    {
+        // it takes some values from the tower script and after that disable the tower script
+        tower = GetComponent<Tower>();
+        towerRangeTransform = tower.towerRangeTransform;
+        towerRange = tower.towerRange;
+        towerRangeOpacity = tower.rangeOpacity;
+        tower.enabled = false;
+    }
 
     private void Start()
     {
+        towerCollider.size = new Vector3(towerColliderX, towerColliderY, towerColliderZ);
         towerRangeTransform.transform.localScale = new Vector3(towerRange,0,towerRange);
     }
 
@@ -57,11 +76,14 @@ public class PlaceTower : MonoBehaviour
     private void PlaceTheTower()
     {
         //if you can place the tower you place the tower where your mouse is
-        if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path")
+        if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path" && !isInTowerCollider)
         {
             towerRangeTransform.GetComponent<MeshRenderer>().enabled = false;
-            Debug.Log("Tower has been placed");
             isSelected = false;
+
+            tower.enabled = true;
+            PlaceTower placeTower = this;
+            placeTower.enabled = false;
         }
     }
 
@@ -71,17 +93,33 @@ public class PlaceTower : MonoBehaviour
         //it checks if you can place the tower and change the color
         if (hit.transform == null) { return; }
 
-        if (hit.transform.tag == "Path" && isSelected)
+        if (hit.transform.tag == "Path" || isInTowerCollider)
         {
             rangeColor = Color.red;
-            rangeColor.a = rangeOpacity;
+            rangeColor.a = towerRangeOpacity;
             rangeMat.color = rangeColor;
         }
-        else if (hit.transform.tag != "Path" && isSelected)
+        else if (hit.transform.tag != "Path")
         {
             rangeColor = Color.grey;
-            rangeColor.a = rangeOpacity;
+            rangeColor.a = towerRangeOpacity;
             rangeMat.color = rangeColor;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("tower"))
+        {
+            isInTowerCollider = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("tower"))
+        {
+            isInTowerCollider = false;
         }
     }
 }
