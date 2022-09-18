@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4021703946972731550, guid: 8bd45e8af78a278489919d9205b747ab,
         type: 3}
       propertyPath: m_Name
-      value: Road_Corner
+      value: Road_Corner3
       objectReference: {fileID: 0}
     - target: {fileID: 4360652954230374948, guid: 8bd45e8af78a278489919d9205b747ab,
         type: 3}
@@ -20,17 +20,17 @@ PrefabInstance:
     - target: {fileID: 4360652954230374948, guid: 8bd45e8af78a278489919d9205b747ab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30
+      value: -13.715012
       objectReference: {fileID: 0}
     - target: {fileID: 4360652954230374948, guid: 8bd45e8af78a278489919d9205b747ab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -39.072773
       objectReference: {fileID: 0}
     - target: {fileID: 4360652954230374948, guid: 8bd45e8af78a278489919d9205b747ab,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 40.945698
       objectReference: {fileID: 0}
     - target: {fileID: 4360652954230374948, guid: 8bd45e8af78a278489919d9205b747ab,
         type: 3}
@@ -40,7 +40,7 @@ PrefabInstance:
     - target: {fileID: 4360652954230374948, guid: 8bd45e8af78a278489919d9205b747ab,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4360652954230374948, guid: 8bd45e8af78a278489919d9205b747ab,
         type: 3}
@@ -50,7 +50,7 @@ PrefabInstance:
     - target: {fileID: 4360652954230374948, guid: 8bd45e8af78a278489919d9205b747ab,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4360652954230374948, guid: 8bd45e8af78a278489919d9205b747ab,
         type: 3}
