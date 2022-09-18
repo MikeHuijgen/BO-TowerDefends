@@ -16,22 +16,25 @@ public class EnemySpawner : MonoBehaviour
 
     private bool canSpawn = true;
 
-    GameObject[] pool;
+    private Waves waves;
+    private GameObject[] pool;
 
     private void Awake()
     {
         enemyPoolSize = maxEnemysInWave;
+        waves = FindObjectOfType<Waves>();
         PopulatePool();
     }
 
     private void Update()
     {
         StartCoroutine(SpawnEnemy());
-        AllEnemysDied();
+        CheckIfEveryEnemyDied();
     }
 
     private void PopulatePool()
     {
+        //makes a pool of enemys that then can be turned on and off
         pool = new GameObject[enemyPoolSize];
 
         for (int i = 0; i < pool.Length; i++)
@@ -46,10 +49,9 @@ public class EnemySpawner : MonoBehaviour
         if (enemysHaveSpawned < maxEnemysInWave && canSpawn)
         {
             canSpawn = false;
-            EnableEnemyInPool();
-            enemysHaveSpawned++;
             enemysLeft++;
-            Debug.Log(enemysHaveSpawned);
+            enemysHaveSpawned++;
+            EnableEnemyInPool();
             yield return new WaitForSeconds(betweenSpawnTime);
             canSpawn = true;
         }
@@ -63,13 +65,26 @@ public class EnemySpawner : MonoBehaviour
             if (!pool[i].activeInHierarchy)
             {
                 pool[i].SetActive(true);
+                pool[i].GetComponent<Enemy>().enemySpawnedIn = true;
                 return;
             }
         }
     }
 
-    private void AllEnemysDied()
+    private void CheckIfEveryEnemyDied()
     {
-        
+        if(enemysLeft <= 0)
+        {
+            Debug.Log("Next wave");
+            enemysHaveSpawned = 0;
+            waves.GoToNextWave();
+        }
+    }
+
+    public void StartNextWave(int enemyIncreasement)
+    {
+        maxEnemysInWave += enemyIncreasement;
+        enemyPoolSize = maxEnemysInWave;
+        PopulatePool();
     }
 }

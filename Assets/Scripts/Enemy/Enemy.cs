@@ -6,63 +6,91 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-    [SerializeField] private GameObject pathParent;
-    [SerializeField] private List<Transform> path = new List<Transform>();
+    [SerializeField] private List<Transform> waypoints = new List<Transform>();
 
-    private NavMeshAgent agent;
+    private int amountOfWaypoints = 0;
+    private int waypointsPassed = 0;
+    private float distanceThreshold = 0.1f;
+
+    public bool enemySpawnedIn = false;
+    private bool hasFinished = false;
+
+    private Transform currentWaypoint;
+    private GameObject waypointParent;
+    private EnemySpawner enemySpawner;
 
     private void OnEnable()
     {
-        agent = GetComponent<NavMeshAgent>();
-        FindPath();
-        ReturnToStart();
-        StartCoroutine(FollowWaypoints());
+        enemySpawner = GetComponentInParent<EnemySpawner>();
+        waypointParent = GameObject.FindGameObjectWithTag("waypointParent");
+        waypointsPassed = 0;
+        FindWaypoints();
+        ResetStartPos();
     }
 
-    void ReturnToStart()
-    {
-        transform.position = path[0].transform.position;
+    private void Update()
+    {  
+        FinishedWaypoints();
+        MoveEnemy();
+        CheckEnemysPos();
     }
 
-    private void FindPath()
+    private void FindWaypoints()
     {
-        //find the path for the enemy
-        path.Clear();
+        //set all waypoints in the list
+        waypoints.Clear();
 
-        pathParent = GameObject.FindGameObjectWithTag("waypointParent");
-
-        foreach (Transform child in pathParent.transform)
+        foreach (Transform child in waypointParent.transform)
         {
-            path.Add(child);
+            waypoints.Add(child);
+        }
+
+        amountOfWaypoints = waypoints.Count;
+    }
+
+    private void ResetStartPos()
+    {
+        //it place the enemy on the first waypoint
+        transform.position = waypoints[0].position;
+        currentWaypoint = waypoints[0];
+    }
+
+    private void MoveEnemy()
+    {
+        if (enemySpawnedIn)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);
         }
     }
 
-    IEnumerator FollowWaypoints()
+    private void CheckEnemysPos()
     {
-        //follow path for path till the enemy is on the end
-        foreach (Transform waypointPos in path)
+        if (enemySpawnedIn && !hasFinished)
         {
-            Vector3 startPos = transform.position;
-            Vector3 endPos = waypointPos.transform.position;
-            float travelPercent = 0f;
-
-            transform.LookAt(endPos);
-
-            while (travelPercent < 1f)
+            if (amountOfWaypoints - 1 == waypointsPassed)
             {
-                travelPercent += moveSpeed * Time.deltaTime;
-                transform.position = Vector3.Lerp(startPos, endPos, travelPercent);
-                yield return new WaitForFixedUpdate();
+                hasFinished = true;
             }
 
+            //if the enemy is close to the waypoint then the currentwaypoint changes into the next waypoint in the list
+            if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
+            {
+                currentWaypoint = waypoints[currentWaypoint.GetSiblingIndex() + 1];
+                waypointsPassed++;
+                transform.LookAt(currentWaypoint.position);          
+            }
         }
-
-        FinishedPath();
     }
 
-    private void FinishedPath()
+    private void FinishedWaypoints()
     {
-        Debug.Log("Finished");
-        gameObject.SetActive(false);
+        if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold && hasFinished)
+        { 
+            enemySpawnedIn = false;
+            hasFinished = false;
+            Debug.Log("Finished");
+            enemySpawner.enemysLeft--;
+            gameObject.SetActive(false);
+        }
     }
 }
