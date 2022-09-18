@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlaceTower : MonoBehaviour
 {
     [Header("PlaceTower Settings")]
-    [SerializeField] private float towerGroundHight;
     [SerializeField] private float towerColliderX;
     [SerializeField] private float towerColliderZ;
     [Header("References")]
@@ -13,6 +12,7 @@ public class PlaceTower : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Material rangeMat;
 
+    private int towerCost;
     private float towerColliderY = 1f;
     private float towerRange;
     private float towerRangeOpacity;
@@ -21,6 +21,8 @@ public class PlaceTower : MonoBehaviour
     private bool isInTowerCollider = false;
 
     private List<Collider> colliderChecker = new List<Collider>();
+    private Bank bank;
+    private TowerShop towerShop;
     private GameObject towerRangeTransform;
     private Vector3 mousePos;
     private Vector3 worldPos;
@@ -40,6 +42,8 @@ public class PlaceTower : MonoBehaviour
 
     private void Start()
     {
+        towerShop = FindObjectOfType<TowerShop>();
+        bank = FindObjectOfType<Bank>();
         towerCollider.size = new Vector3(towerColliderX, towerColliderY, towerColliderZ);
         towerRangeTransform.transform.localScale = new Vector3(towerRange,0,towerRange);
     }
@@ -50,9 +54,11 @@ public class PlaceTower : MonoBehaviour
         TowerToMousePos();
         ChangeObjectColor();
         CheckCollisonList();
+        CancelTowerPlacement();
     }
-    public void TowerSelected(bool selected)
+    public void TowerSelected(bool selected, int costTower)
     {
+        towerCost = costTower;
         isSelected = selected;
     }
 
@@ -70,22 +76,33 @@ public class PlaceTower : MonoBehaviour
                 hit = hitInfo;
                 worldPos = hitInfo.point;
             }
-
-            transform.position = new Vector3(worldPos.x,towerGroundHight,worldPos.z);
+            // the y scale / 2 have the purpose to make sure that the tower always conects with the ground
+            transform.position = new Vector3(worldPos.x,worldPos.y + (transform.localScale.y / 2),worldPos.z);
         }
     }
 
     private void PlaceTheTower()
     {
         //if you can place the tower you place the tower where your mouse is
-        if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path" && !isInTowerCollider)
+        if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path" && !isInTowerCollider && bank.bankBalance > towerCost)
         {
+            bank.DecreaseBankAmount(towerCost);
+            towerShop.TowerHasBeenPlaced();
             towerRangeTransform.GetComponent<MeshRenderer>().enabled = false;
             isSelected = false;
 
             tower.enabled = true;
             PlaceTower placeTower = this;
             placeTower.enabled = false;
+        }
+    }
+
+    private void CancelTowerPlacement()
+    {
+        if (Input.GetMouseButtonDown (1))
+        {
+            towerShop.TowerHasBeenPlaced();
+            Destroy(gameObject);
         }
     }
 
