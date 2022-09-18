@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e770657cf537c794db7cc676144f1687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bankBalance: 0
+  bankBalance: 100
   timer: 2
   bankAmountText: {fileID: 0}

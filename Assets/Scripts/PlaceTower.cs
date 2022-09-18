@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlaceTower : MonoBehaviour
 {
     [Header("PlaceTower Settings")]
-    [SerializeField] private float towerGroundHight;
     [SerializeField] private float towerColliderX;
     [SerializeField] private float towerColliderZ;
     [Header("References")]
@@ -77,8 +76,8 @@ public class PlaceTower : MonoBehaviour
                 hit = hitInfo;
                 worldPos = hitInfo.point;
             }
-
-            transform.position = new Vector3(worldPos.x,towerGroundHight,worldPos.z);
+            // the y scale / 2 have the purpose to make sure that the tower always conects with the ground
+            transform.position = new Vector3(worldPos.x,worldPos.y + (transform.localScale.y / 2),worldPos.z);
         }
     }
 
