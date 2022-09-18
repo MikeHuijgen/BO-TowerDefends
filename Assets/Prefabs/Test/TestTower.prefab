@@ -244,8 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a6660192a3a9d4181db5030983e051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerColliderX: 2
-  towerColliderZ: 2
+  towerColliderX: 1
+  towerColliderZ: 1
   towerCollider: {fileID: 7428317796733494735}
   groundLayer:
     serializedVersion: 2
