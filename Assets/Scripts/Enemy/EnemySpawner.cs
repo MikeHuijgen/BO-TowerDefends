@@ -7,9 +7,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("Enemy Prefab")]
     [SerializeField] private GameObject enemyPrefab;
     [Header("Spanwer Settings")]
-    [SerializeField][Range(1,100)] private int maxEnemysInWave;
     [SerializeField][Range(0.1f, 30f)] private float betweenSpawnTime;
     
+    private int maxEnemysInWave;
     private int enemyPoolSize;
     private int enemysHaveSpawned;
     public int enemysLeft;
@@ -21,8 +21,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        enemyPoolSize = maxEnemysInWave;
         waves = FindObjectOfType<Waves>();
+        maxEnemysInWave = waves.maxEnemysInWave;
+        enemyPoolSize = maxEnemysInWave;
         PopulatePool();
     }
 

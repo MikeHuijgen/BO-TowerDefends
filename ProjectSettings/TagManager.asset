@@ -9,6 +9,7 @@ TagManager:
   - waypointParent
   - pathParent
   - enemy
+  - ui
   layers:
   - Default
   - TransparentFX

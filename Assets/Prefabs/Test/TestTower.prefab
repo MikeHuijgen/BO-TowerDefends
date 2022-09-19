@@ -250,6 +250,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  uiLayer:
+    serializedVersion: 2
+    m_Bits: 32
   rangeMat: {fileID: 2100000, guid: 936ba20cd5638474aba69d0a03d4b5d9, type: 2}
 --- !u!114 &-4484325802217507847
 MonoBehaviour:

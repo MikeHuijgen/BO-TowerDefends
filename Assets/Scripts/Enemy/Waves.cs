@@ -7,6 +7,7 @@ public class Waves : MonoBehaviour
 {
     [SerializeField] private int wave;
     [SerializeField] private int enemysIncreasement;
+    [SerializeField] [Range(1, 100)] public int maxEnemysInWave;
     private EnemySpawner EnemySpawner;
 
     private void Start()

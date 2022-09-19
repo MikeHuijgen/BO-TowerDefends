@@ -10,6 +10,7 @@ public class PlaceTower : MonoBehaviour
     [Header("References")]
     [SerializeField] private BoxCollider towerCollider;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask uiLayer;
     [SerializeField] private Material rangeMat;
 
     private int towerCost;
@@ -25,6 +26,7 @@ public class PlaceTower : MonoBehaviour
     private TowerShop towerShop;
     private GameObject towerRangeTransform;
     private Vector3 mousePos;
+    private Vector3 mousePos2D;
     private Vector3 worldPos;
     private RaycastHit hit;
     private Color rangeColor;
@@ -68,6 +70,8 @@ public class PlaceTower : MonoBehaviour
         {
             //Gets the tower to the mouse position
             mousePos = Input.mousePosition;
+            mousePos2D = Input.mousePosition;
+            mousePos2D.z = Mathf.Infinity;
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
             towerRangeTransform.GetComponent<MeshRenderer>().enabled = true;
 
