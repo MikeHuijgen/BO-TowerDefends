@@ -26,19 +26,24 @@ public class PlaceTower : MonoBehaviour
     private TowerShop towerShop;
     private GameObject towerRangeTransform;
     private Vector3 mousePos;
-    private Vector3 mousePos2D;
     private Vector3 worldPos;
     private RaycastHit hit;
     private Color rangeColor;
     private Tower tower;
+    private TowerAttack towerAttack;
+    private CheckForEnemyInRange checkForEnemyInRange;
 
     private void Awake()
     {
         // it takes some values from the tower script and after that disable the tower script
         tower = GetComponent<Tower>();
+        towerAttack = GetComponent<TowerAttack>();
+        checkForEnemyInRange = GetComponentInChildren<CheckForEnemyInRange>();
         towerRangeTransform = tower.towerRangeTransform;
         towerRange = tower.towerRange;
         towerRangeOpacity = tower.rangeOpacity;
+        checkForEnemyInRange.enabled = false;
+        towerAttack.enabled = false;
         tower.enabled = false;
     }
 
@@ -70,8 +75,6 @@ public class PlaceTower : MonoBehaviour
         {
             //Gets the tower to the mouse position
             mousePos = Input.mousePosition;
-            mousePos2D = Input.mousePosition;
-            mousePos2D.z = Mathf.Infinity;
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
             towerRangeTransform.GetComponent<MeshRenderer>().enabled = true;
 
@@ -97,6 +100,8 @@ public class PlaceTower : MonoBehaviour
 
             tower.enabled = true;
             PlaceTower placeTower = this;
+            towerAttack.enabled = true;
+            checkForEnemyInRange.enabled = true;
             placeTower.enabled = false;
         }
     }

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2687247141991033190}
   - component: {fileID: 92604879538736504}
   - component: {fileID: 5206712673303441888}
+  - component: {fileID: 3220483466735263144}
+  - component: {fileID: 8674071553034214065}
   m_Layer: 0
   m_Name: Range
   m_TagString: Untagged
@@ -83,6 +85,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3220483466735263144
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248980609916512757}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8674071553034214065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248980609916512757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8a1b28d86dde347bf1a433dfac78e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2232994232732204437
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +170,7 @@ GameObject:
   - component: {fileID: 7731137724131667949}
   - component: {fileID: 3485944331762483255}
   - component: {fileID: -4484325802217507847}
+  - component: {fileID: 6936578838262381732}
   m_Layer: 0
   m_Name: TestTower
   m_TagString: Untagged
@@ -266,6 +295,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18823fe71b77cc4a81ecffa6b6ea113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerDamage: 0
   towerRange: 10
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
+  targets: []
+--- !u!114 &6936578838262381732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5334317038526400404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5b57a7d12c8894899c1615ea6eb507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
