@@ -5899,38 +5899,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1789245285}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &815275782 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2209364175765923549, guid: 4b4b3d854be2c9c4d9e4edc78ccac8c4,
-    type: 3}
-  m_PrefabInstance: {fileID: 2209364177253286609}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &815275787
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815275782}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1001 &822311434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15118,11 +15086,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2093367022721094824, guid: 4b4b3d854be2c9c4d9e4edc78ccac8c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2209364175506087471, guid: 4b4b3d854be2c9c4d9e4edc78ccac8c4,
         type: 3}
       propertyPath: m_Name
@@ -15233,26 +15196,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2209364175765923549, guid: 4b4b3d854be2c9c4d9e4edc78ccac8c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2209364176466305355, guid: 4b4b3d854be2c9c4d9e4edc78ccac8c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2209364176703802081, guid: 4b4b3d854be2c9c4d9e4edc78ccac8c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2209364177106090087, guid: 4b4b3d854be2c9c4d9e4edc78ccac8c4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b4b3d854be2c9c4d9e4edc78ccac8c4, type: 3}
 --- !u!1001 &5797938039351509654
@@ -15319,14 +15262,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
         type: 3}
+      propertyPath: maxWave
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
+        type: 3}
       propertyPath: waveCounter
       value: 
       objectReference: {fileID: 1489734452}
-    - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
-        type: 3}
-      propertyPath: maxEnemysInFirstWave
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5797938039411722877, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
         type: 3}
       propertyPath: m_Name
@@ -15548,11 +15491,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
-        type: 3}
-      propertyPath: betweenSpawnTime
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8401781055927622661, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
         type: 3}
       propertyPath: m_Name

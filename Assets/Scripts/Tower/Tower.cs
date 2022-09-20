@@ -21,6 +21,7 @@ public class Tower : MonoBehaviour
     {
         targets.Clear();
         towerRangeTransform.GetComponent<CheckForEnemyInRange>().enabled = true;
+        towerRangeTransform.GetComponent<CapsuleCollider>().enabled = true;
         Debug.Log("Hey");
     }
 

@@ -179,6 +179,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8131915770160994844, guid: 406e3f60b543bd843a72c53dd5696914,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -161.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 8131915770160994844, guid: 406e3f60b543bd843a72c53dd5696914,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 221.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 406e3f60b543bd843a72c53dd5696914, type: 3}
 --- !u!224 &7022572718372661729 stripped

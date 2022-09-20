@@ -47,6 +47,6 @@ MonoBehaviour:
   wave: 0
   maxWave: 10
   enemysIncreasement: 3
-  maxEnemysInFirstWave: 5
+  maxEnemysInFirstWave: 10
   moneyIncreaseAmount: 10
   waveCounter: {fileID: 0}

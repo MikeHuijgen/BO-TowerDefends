@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlaceTower : MonoBehaviour
 {
@@ -31,7 +32,6 @@ public class PlaceTower : MonoBehaviour
     private Color rangeColor;
     private Tower tower;
     private TowerAttack towerAttack;
-    private CheckForEnemyInRange checkForEnemyInRange;
 
     private void Awake()
     {
@@ -71,6 +71,8 @@ public class PlaceTower : MonoBehaviour
     {
         if (isSelected)
         {
+            if (EventSystem.current.IsPointerOverGameObject()) { return; }
+
             //Gets the tower to the mouse position
             mousePos = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
@@ -96,9 +98,9 @@ public class PlaceTower : MonoBehaviour
             towerRangeTransform.GetComponent<MeshRenderer>().enabled = false;
             isSelected = false;
 
+            towerAttack.enabled = true;
             tower.enabled = true;
             PlaceTower placeTower = this;
-            towerAttack.enabled = true;
             placeTower.enabled = false;
         }
     }
