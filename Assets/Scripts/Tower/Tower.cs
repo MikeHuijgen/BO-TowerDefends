@@ -9,17 +9,18 @@ public class Tower : MonoBehaviour
     [SerializeField] [Range(5, 30)] public float towerRange;
     [SerializeField] [Range(0, 1)] public float rangeOpacity;
     [SerializeField] public GameObject towerRangeTransform;
+    [SerializeField] private List<Transform> enemys = new List<Transform>();
 
     [Header("Attack style")]
     [SerializeField] private bool first;
     [SerializeField] private bool last;
 
-    [Header("Target List")]
-    [SerializeField] private List<Transform> targets = new List<Transform>();
+    private Transform target;
+    private TowerAttack towerAttack;
 
     private void OnEnable()
     {
-        targets.Clear();
+        towerAttack = GetComponent<TowerAttack>();
         towerRangeTransform.GetComponent<CheckForEnemyInRange>().enabled = true;
         towerRangeTransform.GetComponent<CapsuleCollider>().enabled = true;
         Debug.Log("Hey");
@@ -31,20 +32,22 @@ public class Tower : MonoBehaviour
     }
 
     private void LookAt()
-    { 
-        if (targets.Count > 0)
+    {
+        if (enemys.Count > 0)
         {
-            transform.LookAt(targets[0]);
+            transform.LookAt(enemys[0]);
+            towerAttack.AttackEnemy(enemys[0]);
         }
     }
 
-    public void AddEnemyInRange(Transform enemy)
+    public void AddEnemy(Transform enemy)
     {
-        targets.Add(enemy);
+        enemys.Add(enemy);
     }
 
-    public void RemoveEnemyInRange(Transform enemy)
+    public void RemoveEnemy(Transform enemy)
     {
-        targets.Remove(enemy);
+        enemys.Remove(enemy);
     }
+    
 }

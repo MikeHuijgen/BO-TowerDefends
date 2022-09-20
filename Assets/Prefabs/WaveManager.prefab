@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave: 0
-  maxWave: 10
+  maxWave: 2
   enemysIncreasement: 3
   maxEnemysInFirstWave: 10
   moneyIncreaseAmount: 10

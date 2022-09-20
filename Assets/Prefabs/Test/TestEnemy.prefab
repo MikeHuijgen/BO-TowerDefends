@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4947392632415830247}
   - component: {fileID: 4329924611674754490}
   - component: {fileID: 2757786258935416662}
+  - component: {fileID: 2183917632092070675}
+  - component: {fileID: 4145808186428029388}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: enemy
@@ -114,3 +116,29 @@ MonoBehaviour:
   decreasePlayerLife: 1
   waypoints: []
   enemySpawnedIn: 0
+--- !u!114 &2183917632092070675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931138022101126314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520f976d4eccec440b777c5820b610f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyID: 0
+--- !u!114 &4145808186428029388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931138022101126314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c78b0d113593b541b0f9effd55474f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealt: 1

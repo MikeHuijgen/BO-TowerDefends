@@ -47,7 +47,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8931138022101126314, guid: f2ea8d376b6122b46b1766c45e4c6fe2,
     type: 3}
   enemyPoolSize: 50
-  maxEnemysOnScreen: 10
+  maxEnemysOnScreen: 5
   betweenSpawnTime: 0.5
   enemyPool: []
   enemysHaveSpawned: 0
