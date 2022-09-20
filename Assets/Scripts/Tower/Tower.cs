@@ -17,12 +17,10 @@ public class Tower : MonoBehaviour
     [Header("Target List")]
     [SerializeField] private List<Transform> targets = new List<Transform>();
 
-    private TowerAttack towerAttack;
-    private GameObject towerTarget;
-
     private void OnEnable()
     {
         targets.Clear();
+        towerRangeTransform.GetComponent<CheckForEnemyInRange>().enabled = true;
         Debug.Log("Hey");
     }
 

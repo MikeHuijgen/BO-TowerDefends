@@ -7,23 +7,23 @@ public class EnemySpawner : MonoBehaviour
     [Header("Enemy Prefab")]
     [SerializeField] private GameObject enemyPrefab;
     [Header("Spanwer Settings")]
+    [SerializeField][Range(30,150)] private int enemyPoolSize;
+    [SerializeField][Range(2, 50)] private int maxEnemysOnScreen;
     [SerializeField][Range(0.1f, 30f)] private float betweenSpawnTime;
+    [SerializeField] private List<GameObject> enemyPool = new List<GameObject>();
     
     private int maxEnemysInWave;
-    private int enemyPoolSize;
-    private int enemysHaveSpawned;
+    [SerializeField] private int enemysHaveSpawned;
     public int enemysLeft;
 
     private bool canSpawn = true;
 
     private Waves waves;
-    private GameObject[] pool;
 
     private void Awake()
     {
         waves = FindObjectOfType<Waves>();
-        maxEnemysInWave = waves.maxEnemysInWave;
-        enemyPoolSize = maxEnemysInWave;
+        maxEnemysInWave = waves.maxEnemysInFirstWave;
         PopulatePool();
     }
 
@@ -36,18 +36,18 @@ public class EnemySpawner : MonoBehaviour
     private void PopulatePool()
     {
         //makes a pool of enemys that then can be turned on and off
-        pool = new GameObject[enemyPoolSize];
 
-        for (int i = 0; i < pool.Length; i++)
+        for (int i = 0; i < enemyPoolSize; i++) 
         {
-            pool[i] = Instantiate(enemyPrefab, transform);
-            pool[i].SetActive(false);
+            GameObject newEnemy = Instantiate(enemyPrefab, transform);
+            newEnemy.SetActive(false);
+            enemyPool.Add(newEnemy);
         }
     }
 
     IEnumerator SpawnEnemy()
     {
-        if (enemysHaveSpawned < maxEnemysInWave && canSpawn)
+        if (enemysHaveSpawned < maxEnemysInWave && enemysHaveSpawned < maxEnemysOnScreen && canSpawn)
         {
             canSpawn = false;
             enemysLeft++;
@@ -56,17 +56,18 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(betweenSpawnTime);
             canSpawn = true;
         }
+
     }
 
     private void EnableEnemyInPool()
     {    
         //zorgt er voor dat de enemys geactiveerd worden na de spawn time
-        for (int i = 0; i < pool.Length; i++)
+        for (int i = 0;i < enemyPool.Count;i++)
         {
-            if (!pool[i].activeInHierarchy)
+            if (!enemyPool[i].activeInHierarchy)
             {
-                pool[i].SetActive(true);
-                pool[i].GetComponent<Enemy>().enemySpawnedIn = true;
+                enemyPool[i].SetActive(true);
+                enemyPool[i].GetComponent<EnemyFollowWaypoint>().enemySpawnedIn = true;
                 return;
             }
         }
@@ -74,18 +75,18 @@ public class EnemySpawner : MonoBehaviour
 
     private void CheckIfEveryEnemyDied()
     {
-        if(enemysLeft <= 0)
+        if(enemysLeft <= 0 && enemysHaveSpawned > 1)
         {
+            canSpawn = false;
             Debug.Log("Next wave");
             enemysHaveSpawned = 0;
             waves.GoToNextWave();
         }
     }
 
-    public void StartNextWave(int enemyIncreasement)
+    public void StartNextWave(int increasement)
     {
-        maxEnemysInWave += enemyIncreasement;
-        enemyPoolSize = maxEnemysInWave;
-        PopulatePool();
+        maxEnemysInWave += increasement;
+        canSpawn = true;
     }
 }

@@ -106,7 +106,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248980609916512757}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c8a1b28d86dde347bf1a433dfac78e7, type: 3}
   m_Name: 
@@ -299,6 +299,8 @@ MonoBehaviour:
   towerRange: 10
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
+  first: 0
+  last: 0
   targets: []
 --- !u!114 &6936578838262381732
 MonoBehaviour:

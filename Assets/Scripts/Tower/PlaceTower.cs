@@ -38,11 +38,9 @@ public class PlaceTower : MonoBehaviour
         // it takes some values from the tower script and after that disable the tower script
         tower = GetComponent<Tower>();
         towerAttack = GetComponent<TowerAttack>();
-        checkForEnemyInRange = GetComponentInChildren<CheckForEnemyInRange>();
         towerRangeTransform = tower.towerRangeTransform;
         towerRange = tower.towerRange;
         towerRangeOpacity = tower.rangeOpacity;
-        checkForEnemyInRange.enabled = false;
         towerAttack.enabled = false;
         tower.enabled = false;
     }
@@ -101,7 +99,6 @@ public class PlaceTower : MonoBehaviour
             tower.enabled = true;
             PlaceTower placeTower = this;
             towerAttack.enabled = true;
-            checkForEnemyInRange.enabled = true;
             placeTower.enabled = false;
         }
     }

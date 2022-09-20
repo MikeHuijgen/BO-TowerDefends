@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class EnemyFollowWaypoint : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private int decreasePlayerLife;
     [SerializeField] private List<Transform> waypoints = new List<Transform>();
 
     private int amountOfWaypoints = 0;
@@ -18,10 +19,12 @@ public class Enemy : MonoBehaviour
     private Transform currentWaypoint;
     private GameObject waypointParent;
     private EnemySpawner enemySpawner;
+    private PlayerHealth playerHealth;
 
     private void OnEnable()
     {
         enemySpawner = GetComponentInParent<EnemySpawner>();
+        playerHealth = FindObjectOfType<PlayerHealth>();
         waypointParent = GameObject.FindGameObjectWithTag("waypointParent");
         waypointsPassed = 0;
         FindWaypoints();
@@ -47,13 +50,13 @@ public class Enemy : MonoBehaviour
 
         amountOfWaypoints = waypoints.Count;
     }
-
     private void ResetStartPos()
     {
         //it place the enemy on the first waypoint
         transform.position = waypoints[0].position;
         currentWaypoint = waypoints[0];
     }
+
 
     private void MoveEnemy()
     {
@@ -90,6 +93,7 @@ public class Enemy : MonoBehaviour
             hasFinished = false;
             Debug.Log("Finished");
             enemySpawner.enemysLeft--;
+            playerHealth.DecreaseHealth(decreasePlayerLife);
             gameObject.SetActive(false);
         }
     }

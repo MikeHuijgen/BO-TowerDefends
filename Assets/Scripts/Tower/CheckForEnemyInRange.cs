@@ -13,15 +13,17 @@ public class CheckForEnemyInRange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.gameObject.CompareTag("enemy"))
         {
+            Debug.Log("Collide");
             tower.AddEnemyInRange(other.transform);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("enemy"))
+        if (other.gameObject.CompareTag("enemy") && other.gameObject != null)
         {
             tower.RemoveEnemyInRange(other.transform);
         }
