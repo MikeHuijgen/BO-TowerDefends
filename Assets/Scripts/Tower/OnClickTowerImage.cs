@@ -12,6 +12,7 @@ public class OnClickTowerImage : MonoBehaviour
     [Header("Tower Prefab")]
     [SerializeField] private GameObject towerPrefab;
     [SerializeField] private TMP_Text towerCostText;
+    [SerializeField] private Transform towerParent;
 
     private float imageApacityEnable;
     private GameObject tower;
@@ -55,7 +56,7 @@ public class OnClickTowerImage : MonoBehaviour
     {
         if (!disable)
         {
-            tower = Instantiate(towerPrefab, new Vector3(0, 1, 0), Quaternion.identity);
+            tower = Instantiate(towerPrefab, towerParent);
             tower.GetComponent<PlaceTower>().TowerSelected(true,towerCost);
             towerShop.TowerHasBeenSelected();
         }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TowerAttack : MonoBehaviour
 {
-    [SerializeField] private Transform enemyToAttack;
     [SerializeField] private float attackSpeed;
-    [SerializeField] private Transform raySpawner;
+    [SerializeField] private List<Transform> enemys = new List<Transform>();
 
     [SerializeField] private float currentAttackSpeed;
     private Tower tower;
+    private bool canShoot = false;
 
     Ray ray;
     RaycastHit hit;
@@ -20,30 +20,65 @@ public class TowerAttack : MonoBehaviour
         currentAttackSpeed = attackSpeed;
     }
 
-    public void AttackEnemy(Transform enmey)
-    {
-        enemyToAttack = enmey;
-    }
+
 
     private void Update()
     {
+        LookAt();
         HitEnemy();
+        AttackSpeed();
+    }
+
+    private void LookAt()
+    {
+        if (enemys.Count > 0)
+        {
+            transform.LookAt(enemys[0]);
+        }
     }
 
     private void HitEnemy()
     {
-        if (enemyToAttack == null) { return; }
-
-        ray.origin = raySpawner.position;
-        ray.direction = raySpawner.forward;
-
-        currentAttackSpeed -= Time.deltaTime;
-
-        if (Physics.Raycast(ray, out hit, tower.towerRange) && currentAttackSpeed <= 0)
+        if (enemys.Count == 0) 
         {
-            Debug.Log(hit.transform.name);
-            hit.transform.GetComponent<Enemy>().DecreaseHealth(tower.towerDamage);
-            currentAttackSpeed = attackSpeed;
+            return; 
         }
+        else if (enemys.Count > 0 && canShoot)
+        {
+            ray.origin = transform.position;
+            ray.direction = transform.forward;
+
+            if (Physics.Raycast(ray, out hit, tower.towerRange))
+            {
+                hit.transform.GetComponent<Enemy>().DecreaseHealth(tower.towerDamage);
+                RemoveEnemy(hit.transform);
+                currentAttackSpeed = attackSpeed;
+            }
+        }
+    }
+
+    private void AttackSpeed()
+    {
+        if (currentAttackSpeed <= 0)
+        {
+            currentAttackSpeed = 0;
+            canShoot = true;
+        }
+        else
+        {
+            canShoot = false;
+            currentAttackSpeed -= Time.deltaTime;
+        }
+    }      
+
+
+    public void AddEnemy(Transform enemy)
+    {
+        enemys.Add(enemy);
+    }
+
+    public void RemoveEnemy(Transform enemy)
+    {
+        enemys.Remove(enemy);
     }
 }

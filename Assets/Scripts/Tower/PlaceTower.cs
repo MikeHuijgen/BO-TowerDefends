@@ -21,8 +21,9 @@ public class PlaceTower : MonoBehaviour
 
     private bool isSelected = false;
     private bool isInTowerCollider = false;
+    private bool mouseIsInUI = false;
 
-    private List<Collider> colliderChecker = new List<Collider>();
+    private List<Collider> towerCollides = new List<Collider>();
     private Bank bank;
     private TowerShop towerShop;
     private GameObject towerRangeTransform;
@@ -71,7 +72,11 @@ public class PlaceTower : MonoBehaviour
     {
         if (isSelected)
         {
-            if (EventSystem.current.IsPointerOverGameObject()) { return; }
+            if (EventSystem.current.IsPointerOverGameObject()) 
+            {
+                mouseIsInUI = true;
+                return; 
+            }
 
             //Gets the tower to the mouse position
             mousePos = Input.mousePosition;
@@ -80,6 +85,7 @@ public class PlaceTower : MonoBehaviour
 
             if (Physics.Raycast(ray,out RaycastHit hitInfo, 100f, groundLayer))
             {
+                mouseIsInUI = false;
                 hit = hitInfo;
                 worldPos = hitInfo.point;
             }
@@ -91,7 +97,7 @@ public class PlaceTower : MonoBehaviour
     private void PlaceTheTower()
     {
         //if you can place the tower you place the tower where your mouse is
-        if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path" && !isInTowerCollider && bank.bankBalance > towerCost)
+        if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path" && !isInTowerCollider && bank.bankBalance > towerCost && !mouseIsInUI)
         {
             bank.DecreaseBankAmount(towerCost);
             towerShop.TowerHasBeenPlaced();
@@ -116,9 +122,10 @@ public class PlaceTower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // it checks if the tower is collided with a other tower
         if (other.gameObject.CompareTag("tower"))
         {
-            colliderChecker.Add(other);
+            towerCollides.Add(other);
         }
     }
 
@@ -126,13 +133,14 @@ public class PlaceTower : MonoBehaviour
     {
         if (other.gameObject.CompareTag("tower"))
         {
-            colliderChecker.Remove(other);
+            towerCollides.Remove(other);
         }
     }
 
     private void CheckCollisonList()
     {
-        if (colliderChecker.Count > 0)
+        // if there are 0 tower collides then you can place the tower otherwise you can't place the tower
+        if (towerCollides.Count > 0)
         {
             isInTowerCollider = true;
         }
@@ -147,7 +155,7 @@ public class PlaceTower : MonoBehaviour
         //it checks if you can place the tower and change the color
         if (hit.transform == null) { return; }
 
-        if (hit.transform.tag == "Path" || isInTowerCollider)
+        if (hit.transform.tag == "Path" || isInTowerCollider || mouseIsInUI)
         {
             rangeColor = Color.red;
             rangeColor.a = towerRangeOpacity;

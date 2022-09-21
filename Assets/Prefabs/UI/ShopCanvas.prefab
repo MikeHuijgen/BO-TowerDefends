@@ -479,6 +479,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 5334317038526400404, guid: 441614b71c213604d956d73c44d28c49,
     type: 3}
   towerCostText: {fileID: 7172958867954235015}
+  towerParent: {fileID: 0}
 --- !u!1 &2209364176703802081
 GameObject:
   m_ObjectHideFlags: 0
