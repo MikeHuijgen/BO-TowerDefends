@@ -32,17 +32,14 @@ public class PlaceTower : MonoBehaviour
     private RaycastHit hit;
     private Color rangeColor;
     private Tower tower;
-    private TowerAttack towerAttack;
 
     private void Awake()
     {
         // it takes some values from the tower script and after that disable the tower script
         tower = GetComponent<Tower>();
-        towerAttack = GetComponent<TowerAttack>();
         towerRangeTransform = tower.towerRangeTransform;
         towerRange = tower.towerRange;
         towerRangeOpacity = tower.rangeOpacity;
-        towerAttack.enabled = false;
         tower.enabled = false;
     }
 
@@ -104,7 +101,6 @@ public class PlaceTower : MonoBehaviour
             towerRangeTransform.GetComponent<MeshRenderer>().enabled = false;
             isSelected = false;
 
-            towerAttack.enabled = true;
             tower.enabled = true;
             PlaceTower placeTower = this;
             placeTower.enabled = false;

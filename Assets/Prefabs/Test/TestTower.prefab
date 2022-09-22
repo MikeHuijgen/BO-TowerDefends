@@ -201,7 +201,6 @@ GameObject:
   - component: {fileID: 7731137724131667949}
   - component: {fileID: 3485944331762483255}
   - component: {fileID: -4484325802217507847}
-  - component: {fileID: 1329966579936348041}
   m_Layer: 0
   m_Name: TestTower
   m_TagString: Untagged
@@ -331,26 +330,10 @@ MonoBehaviour:
   towerRange: 10
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
-  first: 0
-  last: 0
---- !u!114 &1329966579936348041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5334317038526400404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081a68ae495c42f4cb017a7eb95e3f3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 8380639514477891576, guid: ac51b20ee0b97df408e2769e16e40ef3,
-    type: 3}
-  attackSpeed: 1
-  damage: 1
-  poolCount: 10
-  projectilePool: []
+  fireRate: 1
+  targetFirst: 1
+  targetLast: 0
+  targetList: []
 --- !u!1 &8298592991154685434
 GameObject:
   m_ObjectHideFlags: 0

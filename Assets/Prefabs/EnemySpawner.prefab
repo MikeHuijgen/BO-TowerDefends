@@ -48,7 +48,6 @@ MonoBehaviour:
     type: 3}
   enemyPoolSize: 50
   maxEnemysOnScreen: 5
-  betweenSpawnTime: 0.5
+  betweenSpawnTime: 1
   enemyPool: []
-  enemysHaveSpawned: 0
   enemysLeft: 0

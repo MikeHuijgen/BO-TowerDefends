@@ -13,9 +13,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<GameObject> enemyPool = new List<GameObject>();
     
     private int maxEnemysInWave;
-    private int enemyID;
     private int enemysHaveSpawned;
     public int enemysLeft;
+    private int giveEnemyId;
 
     private bool canSpawn = true;
 
@@ -23,7 +23,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        enemyID = 0;
         waves = FindObjectOfType<Waves>();
         maxEnemysInWave = waves.maxEnemysInFirstWave;
         PopulatePool();
@@ -41,9 +40,9 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < enemyPoolSize; i++) 
         {
-            enemyID++;
+            giveEnemyId++;
             GameObject newEnemy = Instantiate(enemyPrefab, transform);
-            newEnemy.GetComponent<EnemyID>().GiveEnemyIDNumber(enemyID);
+            newEnemy.GetComponent<Enemy>().enemyId = giveEnemyId;
             newEnemy.SetActive(false);
             enemyPool.Add(newEnemy);
         }

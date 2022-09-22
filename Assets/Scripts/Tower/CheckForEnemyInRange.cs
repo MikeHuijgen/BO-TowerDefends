@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class CheckForEnemyInRange : MonoBehaviour
 {
-    [Header("Target List")]
-    private TowerAttack towerAttack;
+    
+    private Tower tower;
 
     private void OnEnable()
     {
-        towerAttack = GetComponentInParent<TowerAttack>();
+        tower = GetComponentInParent<Tower>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("enemy"))
         {
-            towerAttack.AddEnemy(other.transform);
+            tower.AddEnemyToTargetList(other.transform);
         }
     }
 
@@ -24,7 +24,7 @@ public class CheckForEnemyInRange : MonoBehaviour
     {
         if (other.gameObject.CompareTag("enemy"))
         {
-            towerAttack.RemoveEnemy(other.transform);
+            tower.RemoveEnemyFromTargetList(other.transform);
         }
     }
 }
