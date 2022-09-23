@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [Header("Tower Settings")]
-    [SerializeField] public float towerDamage;
+    [SerializeField] public int towerDamage;
     [SerializeField] [Range(5, 60)] public float towerRange;
     [SerializeField] [Range(0, 1)] public float rangeOpacity;
     public GameObject towerRangeTransform;
@@ -81,9 +81,8 @@ public class Tower : MonoBehaviour
 
             if (enemy != null)
             {
+                enemy.DecreaseHealth(towerDamage, this.transform);
                 balloonsPoped++;
-                transform.parent.BroadcastMessage("EnemyGotKilledByTower", enemy.transform);
-                enemy.DecreaseHealth(towerDamage);
             }
         }
     }

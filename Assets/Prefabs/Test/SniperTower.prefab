@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerDamage: 1
-  towerRange: 60
+  towerRange: 30
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
   fireRate: 3
