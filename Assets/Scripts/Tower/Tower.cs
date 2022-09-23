@@ -6,7 +6,7 @@ public class Tower : MonoBehaviour
 {
     [Header("Tower Settings")]
     [SerializeField] public float towerDamage;
-    [SerializeField] [Range(5, 30)] public float towerRange;
+    [SerializeField] [Range(5, 60)] public float towerRange;
     [SerializeField] [Range(0, 1)] public float rangeOpacity;
     public GameObject towerRangeTransform;
     [SerializeField] private float fireRate;
@@ -15,6 +15,9 @@ public class Tower : MonoBehaviour
     [SerializeField] private bool targetFirst;
     [SerializeField] private bool targetLast;
     [SerializeField] private List<Transform> targetList = new List<Transform>();
+
+    [Header("Tower Check")]
+    [SerializeField] private int balloonsPoped;
 
     private float lastCurrentTimeEnemy = 0f;
     private Transform myTarget;
@@ -78,6 +81,7 @@ public class Tower : MonoBehaviour
 
             if (enemy != null)
             {
+                balloonsPoped++;
                 transform.parent.BroadcastMessage("EnemyGotKilledByTower", enemy.transform);
                 enemy.DecreaseHealth(towerDamage);
             }
