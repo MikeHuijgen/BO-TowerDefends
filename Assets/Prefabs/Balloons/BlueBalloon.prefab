@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c78b0d113593b541b0f9effd55474f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonHealth: 4
+  balloonHealth: 2
   enemyDieGold: 20
   inGameTime: 0
   balloonColor:

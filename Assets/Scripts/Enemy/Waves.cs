@@ -29,7 +29,6 @@ public class Waves : MonoBehaviour
         {
             wave++;
             waveCounter.text = $"{wave}/{maxWave}";
-            EnemySpawner.StartNextWave(enemysIncreasement);
             bank.IncreaseBankAmount(moneyIncreaseAmount);
         }
         else

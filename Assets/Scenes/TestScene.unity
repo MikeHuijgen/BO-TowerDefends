@@ -15363,14 +15363,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
         type: 3}
-      propertyPath: maxWave
-      value: 5
-      objectReference: {fileID: 0}
+      propertyPath: waveObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f693eeae8bdc7b49ae9ea1d0c928091,
+        type: 2}
     - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
         type: 3}
       propertyPath: waveCounter
       value: 
       objectReference: {fileID: 1489734452}
+    - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
+        type: 3}
+      propertyPath: waves.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f693eeae8bdc7b49ae9ea1d0c928091,
+        type: 2}
     - target: {fileID: 5797938039411722877, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
         type: 3}
       propertyPath: m_Name
@@ -15592,6 +15599,39 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
+        type: 3}
+      propertyPath: enemyPoolSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
+        type: 3}
+      propertyPath: wave.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
+        type: 3}
+      propertyPath: betweenSpawnTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
+        type: 3}
+      propertyPath: redBalloonPrefab
+      value: 
+      objectReference: {fileID: 8931138022101126314, guid: f2ea8d376b6122b46b1766c45e4c6fe2,
+        type: 3}
+    - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
+        type: 3}
+      propertyPath: blueBalloonPrefab
+      value: 
+      objectReference: {fileID: 8931138022101126314, guid: d628a43e62c9b6e4cbd829c135a6ed98,
+        type: 3}
+    - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
+        type: 3}
+      propertyPath: wave.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f693eeae8bdc7b49ae9ea1d0c928091,
+        type: 2}
     - target: {fileID: 8401781055927622661, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
         type: 3}
       propertyPath: m_Name

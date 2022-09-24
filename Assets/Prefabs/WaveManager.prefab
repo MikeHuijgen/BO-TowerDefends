@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave: 0
-  maxWave: 2
+  maxWave: 5
   enemysIncreasement: 3
   maxEnemysInFirstWave: 10
   moneyIncreaseAmount: 10
   waveCounter: {fileID: 0}
+  waves:
+  - {fileID: 11400000, guid: 6f693eeae8bdc7b49ae9ea1d0c928091, type: 2}
