@@ -10,7 +10,7 @@ public class WaveScriptableObject : ScriptableObject
     [System.Serializable]
     public class BalloonSlot
     {
-        public BalloonType balloonType;
+        public BalloonInfo balloonType;
         public int amount;
     }
 }

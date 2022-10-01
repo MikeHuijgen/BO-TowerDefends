@@ -11,17 +11,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField][Range(0.1f, 30f)] private float betweenSpawnTime;
     [SerializeField] private List<GameObject> balloonPool = new List<GameObject>();
 
-    //Balloons spawned
-    private int redBalloonsSpawned;
-    private int blueBalloonsSpawned;
     public int enemysLeft;
-
-    //Balloon Amount
-    private int redBalloonAmount;
-    private int blueBalloonAmount;
-
-    [SerializeField] private bool spawnRedBalloons = false;
-    [SerializeField] private bool spawnBlueBalloons = false;
 
     private bool canSpawn = true;
 
@@ -78,9 +68,8 @@ public class EnemySpawner : MonoBehaviour
         {
             if (!balloonPool[i].activeInHierarchy)
             {
-                balloonPool[i].GetComponent<Enemy>().SetUpBalloon(wave[0].balloons[0].balloonType);
+                balloonPool[i].GetComponent<Enemy>().SetUpBalloon(wave[0].balloons[0].balloonType, wave[0].balloons[0].balloonType.balloonKey);
                 enemysLeft++;
-                redBalloonsSpawned++;
                 balloonPool[i].SetActive(true);
                 balloonPool[i].GetComponent<EnemyFollowWaypoint>().enemySpawnedIn = true;
                 return;

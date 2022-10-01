@@ -7,10 +7,42 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int balloonHealth;
     [SerializeField] private int enemyDieGold;
     [SerializeField] public float inGameTime = 0f;
-    private EnemySpawner enemySpawner;
+
+    [System.Serializable]
+    public class BalloonStage
+    {
+        public int key;
+        public BalloonInfo balloonInfo;
+    }
+
+    public BalloonStage[] balloonStage;
+    private Dictionary<int,BalloonInfo> balloonDictionary = new Dictionary<int, BalloonInfo>();
+
 
     private bool isDisable;
     private int resetHealth;
+    public int balloonKey;
+
+    private EnemySpawner enemySpawner;
+    private EnemyFollowWaypoint followWaypoint;
+
+
+    private void Awake()
+    {
+        foreach (var balloonStage in balloonStage)
+        {
+            balloonDictionary.Add(balloonStage.key, balloonStage.balloonInfo);     
+        }
+        enemySpawner = FindObjectOfType<EnemySpawner>();
+        followWaypoint = FindObjectOfType<EnemyFollowWaypoint>();
+    }
+    public void SetUpBalloon(BalloonInfo balloonInfo, int id)
+    {
+        balloonKey = id;
+        GetComponent<Renderer>().material.color = balloonInfo.balloonColor;
+        followWaypoint.ChangeBalloonSpeed(balloonInfo.BalloonSpeed);
+        balloonHealth = balloonInfo.BalloonHealth;
+    }
 
     private void OnEnable()
     {
@@ -19,20 +51,10 @@ public class Enemy : MonoBehaviour
         isDisable = false;
     }
 
-    public void SetUpBalloon(BalloonType balloonInfo)
-    {
-        GetComponent<Renderer>().material.color = balloonInfo.balloonColor;
-    }
 
     private void OnDisable()
     {
         isDisable = true;
-    }
-
-    private void Start()
-    {
-        enemySpawner = FindObjectOfType<EnemySpawner>();
-        
     }
 
     private void Update()
@@ -50,8 +72,10 @@ public class Enemy : MonoBehaviour
 
     public void DecreaseHealth(int amount, Transform tower)
     {
-
         balloonHealth -= amount;
+        balloonKey -= amount;
+
+        BalloonGotHit();
 
         if ( balloonHealth <= 0)
         {
@@ -61,6 +85,13 @@ public class Enemy : MonoBehaviour
             enemySpawner.enemysLeft--;
             gameObject.SetActive(false);
         }
+    }
+
+    private void BalloonGotHit()
+    {
+        if (!balloonDictionary.ContainsKey(balloonKey)) { return; }
+        GetComponent<Renderer>().material.color = balloonDictionary[balloonKey].balloonColor;
+        followWaypoint.ChangeBalloonSpeed(balloonDictionary[balloonKey].BalloonSpeed);
     }
 
     private void ResetHealth()

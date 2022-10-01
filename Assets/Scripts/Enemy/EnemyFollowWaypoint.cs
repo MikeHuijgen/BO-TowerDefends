@@ -97,4 +97,9 @@ public class EnemyFollowWaypoint : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void ChangeBalloonSpeed(float speed)
+    {
+        moveSpeed = speed;
+    }
 }

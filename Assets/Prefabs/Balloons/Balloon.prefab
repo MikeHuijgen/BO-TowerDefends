@@ -127,12 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c78b0d113593b541b0f9effd55474f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonType: 0
   balloonHealth: 1
   enemyDieGold: 20
   inGameTime: 0
-  balloonColor:
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0.041512012, b: 1, a: 0}
-  - {r: 0, g: 1, b: 0.17745495, a: 0}
-  - {r: 1, g: 0, b: 0.7981615, a: 0}
+  balloonStage:
+  - key: 1
+    balloonInfo: {fileID: 11400000, guid: c0eeed764215adf41994e69fef39f81b, type: 2}
+  - key: 2
+    balloonInfo: {fileID: 11400000, guid: 9d93121292396624b969332fcaba401a, type: 2}
+  - key: 3
+    balloonInfo: {fileID: 11400000, guid: ec6b9d3d82571aa4a8d24bbd3a9925b5, type: 2}
