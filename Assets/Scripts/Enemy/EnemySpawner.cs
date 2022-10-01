@@ -5,14 +5,11 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy Prefab")]
-    [SerializeField] private GameObject redBalloonPrefab;
-    [SerializeField] private GameObject blueBalloonPrefab;
+    [SerializeField] private GameObject balloonPrefab;
     [Header("Spanwer Settings")]
     [SerializeField][Range(30,150)] private int enemyPoolSize;
-    [SerializeField][Range(2, 50)] private int maxEnemysOnScreen;
     [SerializeField][Range(0.1f, 30f)] private float betweenSpawnTime;
-    [SerializeField] private List<GameObject> redBalloonPool = new List<GameObject>();
-    [SerializeField] private List<GameObject> blueBalloonPool = new List<GameObject>();
+    [SerializeField] private List<GameObject> balloonPool = new List<GameObject>();
 
     //Balloons spawned
     private int redBalloonsSpawned;
@@ -27,12 +24,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private bool spawnBlueBalloons = false;
 
     private bool canSpawn = true;
-    private bool spawnNextBalloon = true;
 
     private Waves waves;
 
 
     [SerializeField] private List<WaveScriptableObject> wave = new List<WaveScriptableObject>();
+
 
     // Het spawnen via een scriptable object werkt alleen ze spawnen nog allemaal tegelijkertijd dat moet nog opgelost worden 
     // daarna moet ik nog ff de code wat cleanen zodat het weer wat duidelijker is
@@ -41,31 +38,6 @@ public class EnemySpawner : MonoBehaviour
     {
         waves = FindObjectOfType<Waves>();
         PopulatePool();
-    }
-
-    private void Start()
-    {
-        ChecktypeBalloons();
-    }
-
-    private void ChecktypeBalloons()
-    {
-        for (int i = 0; i < wave[0].balloons.Count; i++)
-        {
-            if (redBalloonPool[0].name == wave[0].balloons[i].balloon.name && !spawnRedBalloons)
-            {
-                redBalloonAmount = wave[0].balloons[i].amount;
-                spawnRedBalloons = true;
-                Debug.Log(redBalloonAmount);
-            }
-
-            if (blueBalloonPool[0].name == wave[0].balloons[i].balloon.name && !spawnBlueBalloons)
-            {
-                blueBalloonAmount = wave[0].balloons[i].amount;
-                spawnBlueBalloons = true;
-                Debug.Log(blueBalloonAmount);
-            }
-        }
     }
 
     private void Update()
@@ -79,20 +51,13 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < enemyPoolSize; i++) 
         {
-            GameObject newEnemy = Instantiate(redBalloonPrefab, transform);
-            newEnemy.name = redBalloonPrefab.name;
-            newEnemy.SetActive(false);
-            redBalloonPool.Add(newEnemy);
-        }
-
-        for (int i = 0; i < enemyPoolSize; i++)
-        {
-            GameObject newEnemy = Instantiate(blueBalloonPrefab, transform);
-            newEnemy.name = blueBalloonPrefab.name;
-            newEnemy.SetActive(false);
-            blueBalloonPool.Add(newEnemy);
+            GameObject newBalloon = Instantiate(balloonPrefab, transform);
+            newBalloon.SetActive(false);
+            balloonPool.Add(newBalloon);
         }
     }
+
+    // Spawn of the balloons
 
     IEnumerator SpawnEnemy()
     {
@@ -100,40 +65,24 @@ public class EnemySpawner : MonoBehaviour
         {
             canSpawn = false;
             yield return new WaitForSeconds(betweenSpawnTime);
-            EnableRedBalloons();
-            EnableBlueBalloons();
+            EnableBalloons();
             canSpawn = true;
         }
 
     }
 
-    private void EnableRedBalloons()
+    private void EnableBalloons()
     {
         //zorgt er voor dat de enemys geactiveerd worden na de spawn time
-        for (int i = 0;i < redBalloonPool.Count;i++)
+        for (int i = 0;i < balloonPool.Count;i++)
         {
-            if (!redBalloonPool[i].activeInHierarchy && spawnRedBalloons && redBalloonAmount > redBalloonsSpawned)
+            if (!balloonPool[i].activeInHierarchy)
             {
+                balloonPool[i].GetComponent<Enemy>().SetUpBalloon(wave[0].balloons[0].balloonType);
                 enemysLeft++;
                 redBalloonsSpawned++;
-                redBalloonPool[i].SetActive(true);
-                redBalloonPool[i].GetComponent<EnemyFollowWaypoint>().enemySpawnedIn = true;
-                return;
-            }
-        }
-    }
-
-    private void EnableBlueBalloons()
-    {
-        //zorgt er voor dat de enemys geactiveerd worden na de spawn time
-        for (int i = 0; i < redBalloonPool.Count; i++)
-        {
-            if (!blueBalloonPool[i].activeInHierarchy && spawnBlueBalloons && blueBalloonAmount > blueBalloonsSpawned)
-            {
-                enemysLeft++;
-                blueBalloonsSpawned++;
-                blueBalloonPool[i].SetActive(true);
-                blueBalloonPool[i].GetComponent<EnemyFollowWaypoint>().enemySpawnedIn = true;
+                balloonPool[i].SetActive(true);
+                balloonPool[i].GetComponent<EnemyFollowWaypoint>().enemySpawnedIn = true;
                 return;
             }
         }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2757786258935416662}
   - component: {fileID: 4145808186428029388}
   m_Layer: 0
-  m_Name: RedBalloon
+  m_Name: Balloon
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c78b0d113593b541b0f9effd55474f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  balloonType: 0
   balloonHealth: 1
   enemyDieGold: 20
   inGameTime: 0
@@ -135,4 +136,3 @@ MonoBehaviour:
   - {r: 0, g: 0.041512012, b: 1, a: 0}
   - {r: 0, g: 1, b: 0.17745495, a: 0}
   - {r: 1, g: 0, b: 0.7981615, a: 0}
-  enemyId: 0

@@ -10,12 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8aa2df4431f82024a956aab804946220, type: 3}
-  m_Name: Wave 1
+  m_Name: Wave1
   m_EditorClassIdentifier: 
   balloons:
-  - balloon: {fileID: 8931138022101126314, guid: f2ea8d376b6122b46b1766c45e4c6fe2,
-      type: 3}
+  - balloonType: {fileID: 11400000, guid: c0eeed764215adf41994e69fef39f81b, type: 2}
     amount: 3
-  - balloon: {fileID: 8931138022101126314, guid: d628a43e62c9b6e4cbd829c135a6ed98,
-      type: 3}
-    amount: 7

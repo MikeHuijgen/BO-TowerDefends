@@ -7,8 +7,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int balloonHealth;
     [SerializeField] private int enemyDieGold;
     [SerializeField] public float inGameTime = 0f;
-    [SerializeField] private List<Color> balloonColor = new List<Color>();
-    public int enemyId;
     private EnemySpawner enemySpawner;
 
     private bool isDisable;
@@ -19,7 +17,11 @@ public class Enemy : MonoBehaviour
         ResetHealth();
         inGameTime = 0;
         isDisable = false;
-        CheckBalloonColor();
+    }
+
+    public void SetUpBalloon(BalloonType balloonInfo)
+    {
+        GetComponent<Renderer>().material.color = balloonInfo.balloonColor;
     }
 
     private void OnDisable()
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         enemySpawner = FindObjectOfType<EnemySpawner>();
+        
     }
 
     private void Update()
@@ -47,8 +50,8 @@ public class Enemy : MonoBehaviour
 
     public void DecreaseHealth(int amount, Transform tower)
     {
+
         balloonHealth -= amount;
-        CheckBalloonColor();
 
         if ( balloonHealth <= 0)
         {
@@ -57,17 +60,6 @@ public class Enemy : MonoBehaviour
             bank.IncreaseBankAmount(enemyDieGold);
             enemySpawner.enemysLeft--;
             gameObject.SetActive(false);
-        }
-    }
-
-    private void CheckBalloonColor()
-    {
-        for (int i = 0; i < balloonColor.Count; i++)
-        {
-            if (i == balloonHealth - 1)
-            {
-                GetComponent<Renderer>().material.color = balloonColor[i];
-            }
         }
     }
 

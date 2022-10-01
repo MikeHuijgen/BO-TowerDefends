@@ -15383,6 +15383,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaveManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5797938039411722877, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acce8ab43fd92344b99ca8c64b0dbb7a, type: 3}
 --- !u!1001 &6965573216695927962
@@ -15461,6 +15466,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 846052642155113821, guid: 8ba7ef91dedfe3c44bf3d4cf4109a4b7,
+        type: 3}
+      propertyPath: bankBalance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 866812431078674264, guid: 8ba7ef91dedfe3c44bf3d4cf4109a4b7,
         type: 3}
       propertyPath: m_RootOrder
@@ -15601,6 +15611,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
         type: 3}
+      propertyPath: balloonPrefab
+      value: 
+      objectReference: {fileID: 8931138022101126314, guid: f2ea8d376b6122b46b1766c45e4c6fe2,
+        type: 3}
+    - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
+        type: 3}
       propertyPath: enemyPoolSize
       value: 30
       objectReference: {fileID: 0}
@@ -15612,7 +15628,7 @@ PrefabInstance:
     - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
         type: 3}
       propertyPath: betweenSpawnTime
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
         type: 3}
@@ -15628,9 +15644,14 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
         type: 3}
+      propertyPath: maxEnemysOnScreen
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401781055927622660, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
+        type: 3}
       propertyPath: wave.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 6f693eeae8bdc7b49ae9ea1d0c928091,
+      objectReference: {fileID: 11400000, guid: b3b75dcf243747e4e8f9026e7a26bb66,
         type: 2}
     - target: {fileID: 8401781055927622661, guid: a2f441f4cd36f9643a4c67bbd9a71f90,
         type: 3}
