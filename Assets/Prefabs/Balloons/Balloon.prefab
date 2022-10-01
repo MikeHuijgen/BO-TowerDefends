@@ -132,8 +132,9 @@ MonoBehaviour:
   inGameTime: 0
   balloonStage:
   - key: 1
-    balloonInfo: {fileID: 11400000, guid: c0eeed764215adf41994e69fef39f81b, type: 2}
+    balloonLayer: {fileID: 11400000, guid: c0eeed764215adf41994e69fef39f81b, type: 2}
   - key: 2
-    balloonInfo: {fileID: 11400000, guid: 9d93121292396624b969332fcaba401a, type: 2}
+    balloonLayer: {fileID: 11400000, guid: 9d93121292396624b969332fcaba401a, type: 2}
   - key: 3
-    balloonInfo: {fileID: 11400000, guid: ec6b9d3d82571aa4a8d24bbd3a9925b5, type: 2}
+    balloonLayer: {fileID: 11400000, guid: ec6b9d3d82571aa4a8d24bbd3a9925b5, type: 2}
+  balloonKey: 0

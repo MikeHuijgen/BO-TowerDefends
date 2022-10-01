@@ -20,7 +20,6 @@ public class Tower : MonoBehaviour
     [SerializeField] private int balloonsPoped;
 
     private float lastCurrentTimeEnemy = 0f;
-    private Transform myTarget;
     private float currentFireRate;
 
     Ray ray;
@@ -60,7 +59,6 @@ public class Tower : MonoBehaviour
             {
                 lastCurrentTimeEnemy = targetList[i].GetComponent<Enemy>().inGameTime;
                 transform.LookAt(targetList[i]);
-                myTarget = targetList[i];
             }
         }
 
@@ -82,7 +80,6 @@ public class Tower : MonoBehaviour
             if (enemy != null)
             {
                 enemy.DecreaseHealth(towerDamage, this.transform);
-                balloonsPoped++;
             }
         }
     }

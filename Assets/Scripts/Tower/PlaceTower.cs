@@ -11,8 +11,7 @@ public class PlaceTower : MonoBehaviour
     [Header("References")]
     [SerializeField] private BoxCollider towerCollider;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask uiLayer;
-    [SerializeField] private Material rangeMat;
+    [SerializeField] private Material rangeMaterial;
 
     private int towerCost;
     private float towerColliderY = 1f;
@@ -155,13 +154,13 @@ public class PlaceTower : MonoBehaviour
         {
             rangeColor = Color.red;
             rangeColor.a = towerRangeOpacity;
-            rangeMat.color = rangeColor;
+            rangeMaterial.color = rangeColor;
         }
         else
         {
             rangeColor = Color.grey;
             rangeColor.a = towerRangeOpacity;
-            rangeMat.color = rangeColor;
+            rangeMaterial.color = rangeColor;
         }
     }
 

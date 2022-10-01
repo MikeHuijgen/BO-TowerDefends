@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3783134e2669d1a4881315df3d82040c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8931138022101126314, guid: f2ea8d376b6122b46b1766c45e4c6fe2,
+  balloonPrefab: {fileID: 8931138022101126314, guid: f2ea8d376b6122b46b1766c45e4c6fe2,
     type: 3}
-  enemyPoolSize: 50
-  maxEnemysOnScreen: 5
+  enemyPoolSize: 30
   betweenSpawnTime: 1
-  enemyPool: []
+  balloonPool: []
   enemysLeft: 0
+  wave:
+  - {fileID: 11400000, guid: b3b75dcf243747e4e8f9026e7a26bb66, type: 2}

@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (!balloonPool[i].activeInHierarchy)
             {
-                balloonPool[i].GetComponent<Enemy>().SetUpBalloon(wave[0].balloons[0].balloonType, wave[0].balloons[0].balloonType.balloonKey);
+                balloonPool[i].GetComponent<Enemy>().SetUpBalloon(wave[0].balloons[0].balloonLayer, wave[0].balloons[0].balloonLayer.balloonKey);
                 enemysLeft++;
                 balloonPool[i].SetActive(true);
                 balloonPool[i].GetComponent<EnemyFollowWaypoint>().enemySpawnedIn = true;

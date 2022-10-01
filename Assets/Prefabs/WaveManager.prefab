@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5797938039411722874
 Transform:
   m_ObjectHideFlags: 0
@@ -50,5 +50,3 @@ MonoBehaviour:
   maxEnemysInFirstWave: 10
   moneyIncreaseAmount: 10
   waveCounter: {fileID: 0}
-  waves:
-  - {fileID: 11400000, guid: 6f693eeae8bdc7b49ae9ea1d0c928091, type: 2}

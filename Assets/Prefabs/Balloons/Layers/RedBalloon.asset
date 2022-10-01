@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e596880d2680674591f554183a9e15d, type: 3}
-  m_Name: New Balloon
+  m_Name: RedBalloon
   m_EditorClassIdentifier: 
-  balloonColor: {r: 0.16423775, g: 0.5660378, b: 0.1463154, a: 0}
-  BalloonHealth: 3
-  BalloonSpeed: 10
-  balloonKey: 3
+  balloonColor: {r: 1, g: 0.09278004, b: 0, a: 0}
+  BalloonHealth: 1
+  BalloonSpeed: 1
+  balloonKey: 1
