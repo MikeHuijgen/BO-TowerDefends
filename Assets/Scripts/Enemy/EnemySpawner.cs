@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     public int waveBalloonsIndex;
 
     private bool canSpawn = true;
+    private Waves waves;
 
     private WaveScriptableObject currentWave;
 
@@ -24,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
+        waves = FindObjectOfType<Waves>();
         PopulatePool();
     }
 
@@ -44,9 +46,11 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void WaveHasStarted(WaveScriptableObject wave)
+    public void StartNextWave(WaveScriptableObject wave)
     {
+        canSpawn = true;
         currentWave = wave;
+        betweenSpawnTime = currentWave.timeBetweenSpawn;
     }
 
     // Spawn of the balloons
@@ -55,17 +59,17 @@ public class EnemySpawner : MonoBehaviour
     {
         if (canSpawn)
         {
-            Debug.Log(canSpawn);
             canSpawn = false;
             yield return new WaitForSeconds(betweenSpawnTime);
             EnableBalloons();
-            canSpawn = true;
         }
 
     }
 
     private void EnableBalloons()
     {
+        canSpawn = true;
+
         //zorgt er voor dat de enemys geactiveerd worden na de spawn time
         for (int i = 0;i < balloonPool.Count;i++)
         {
@@ -86,10 +90,17 @@ public class EnemySpawner : MonoBehaviour
             enemysHaveSpawned = 0;
             waveBalloonsIndex++;
         }
-        else if (waveBalloonsIndex == currentWave.balloons.Count - 1)
-        {
-            canSpawn = false;
-            Debug.Log("Je hebt gewonnen");
+        else if (waveBalloonsIndex == currentWave.balloons.Count - 1 && enemysLeft <= 0)
+        {          
+            AllBalloonsDied();
         }
+    }
+
+    private void AllBalloonsDied()
+    {
+        enemysHaveSpawned = 0;
+        waveBalloonsIndex = 0;
+        canSpawn = false;
+        waves.GoToNextWave();
     }
 }

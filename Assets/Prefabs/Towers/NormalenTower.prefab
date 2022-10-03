@@ -323,11 +323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18823fe71b77cc4a81ecffa6b6ea113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerDamage: 1
+  towerDamage: 3
   towerRange: 10
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
-  fireRate: 1
+  fireRate: 0.3
   targetFirst: 1
   targetLast: 0
   targetList: []

@@ -15,21 +15,14 @@ public class Waves : MonoBehaviour
     private EnemySpawner EnemySpawner;
     private Bank bank;
 
-    private bool canSpawnNextWave = false;
-
     private void Start()
     {
         bank = FindObjectOfType<Bank>();
         EnemySpawner = FindObjectOfType<EnemySpawner>();
-        GoToNextWave();
-    }
-
-    public void StartNextWave()
-    {
         wave++;
+        maxWave = waves.Count;
         waveCounter.text = $"{wave}/{maxWave}";
-        canSpawnNextWave = true;
-        GoToNextWave();
+        EnemySpawner.StartNextWave(waves[wave - 1]);
     }
 
     public void GoToNextWave()
@@ -37,9 +30,19 @@ public class Waves : MonoBehaviour
         if (wave < maxWave)
         {
             wave++;
+            Debug.Log(wave);
             waveCounter.text = $"{wave}/{maxWave}";
             bank.IncreaseBankAmount(moneyIncreaseAmount);
-            EnemySpawner.WaveHasStarted(waves[wave - 1]);
+            EnemySpawner.StartNextWave(waves[wave - 1]);
         }
+        else if(wave >= maxWave)
+        {
+            PlayerWonTheGame();
+        }
+    }
+
+    private void PlayerWonTheGame()
+    {
+        Debug.Log("You won");
     }
 }

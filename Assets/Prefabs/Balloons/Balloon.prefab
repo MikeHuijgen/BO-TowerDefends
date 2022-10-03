@@ -130,6 +130,9 @@ MonoBehaviour:
   balloonHealth: 0
   enemyDieGold: 20
   inGameTime: 0
+  balloonMesh: {fileID: 3575360789356872316, guid: b17f7ba1d86e27e458c9ddd8ba38ffe2,
+    type: 3}
+  moabMesh: {fileID: 428866477300906952, guid: 974fa790a33f2084394a19b94aa0635c, type: 3}
   balloonLayers:
   - balloonHealthId: 1
     balloonLayer: {fileID: 11400000, guid: c0eeed764215adf41994e69fef39f81b, type: 2}
@@ -137,3 +140,7 @@ MonoBehaviour:
     balloonLayer: {fileID: 11400000, guid: 9d93121292396624b969332fcaba401a, type: 2}
   - balloonHealthId: 3
     balloonLayer: {fileID: 11400000, guid: ec6b9d3d82571aa4a8d24bbd3a9925b5, type: 2}
+  - balloonHealthId: 4
+    balloonLayer: {fileID: 11400000, guid: e8e74982b47d416429eb552c31ee8196, type: 2}
+  - balloonHealthId: 50
+    balloonLayer: {fileID: 11400000, guid: 7322496ed47d8e04785471ce62c51c0f, type: 2}

@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int balloonHealth;
     [SerializeField] private int enemyDieGold;
     [SerializeField] public float inGameTime = 0f;
+    [SerializeField] private Mesh balloonMesh;
+    [SerializeField] private Mesh moabMesh;
 
     [System.Serializable]
     public class BalloonLayers
@@ -17,10 +19,10 @@ public class Enemy : MonoBehaviour
 
     public BalloonLayers[] balloonLayers;
     private Dictionary<int,BalloonLayer> balloonDictionary = new Dictionary<int, BalloonLayer>();
+    private BalloonLayer currentBalloonLayer;
 
 
     private bool isDisable;
-    private int resetHealth;
 
     private EnemySpawner enemySpawner;
     private EnemyFollowWaypoint followWaypoint;
@@ -38,15 +40,29 @@ public class Enemy : MonoBehaviour
     }
     public void SetUpBalloon(BalloonLayer balloonLayer)
     {
+        currentBalloonLayer = balloonLayer;
         // this set up the balloon when it get activated
-        GetComponent<Renderer>().material.color = balloonLayer.balloonColor;
+        if (balloonLayer.specialBalloon)
+        {
+            GetComponent<MeshFilter>().mesh = moabMesh;
+            GetComponent<Renderer>().material = balloonLayer.balloonMaterial;
+            this.balloonHealth = balloonLayer.BalloonHealth;
+        }
+        else
+        {
+            GetComponent<MeshFilter>().mesh = balloonMesh;
+            GetComponent<Renderer>().material = balloonLayer.balloonMaterial;
+            GetComponent<Renderer>().material.color = balloonLayer.balloonColor;
+            this.balloonHealth = balloonLayer.BalloonHealth;
+        }
+
+        transform.localScale = balloonLayer.balloonScale;
         followWaypoint.ChangeBalloonSpeed(balloonLayer.BalloonSpeed);
-        this.balloonHealth = balloonLayer.BalloonHealth;
+        Debug.Log(balloonHealth);
     }
 
     private void OnEnable()
     {
-        ResetHealth();
         inGameTime = 0;
         isDisable = false;
     }
@@ -90,20 +106,11 @@ public class Enemy : MonoBehaviour
     {
         // it change how the balloon work by using a sort preset from the dictionary
         if (!balloonDictionary.ContainsKey(balloonHealth)) { return; }
+        if(currentBalloonLayer.specialBalloon)
+        {
+            GetComponent<MeshFilter>().mesh = balloonMesh;
+        }
         GetComponent<Renderer>().material.color = balloonDictionary[balloonHealth].balloonColor;
         followWaypoint.ChangeBalloonSpeed(balloonDictionary[balloonHealth].BalloonSpeed);
-    }
-
-    private void ResetHealth()
-    {
-        // Reset the health when the balloon get active
-        if(resetHealth < balloonHealth)
-        {
-            resetHealth = balloonHealth;
-        }
-        else
-        {
-            balloonHealth = resetHealth;
-        }
     }
 }
