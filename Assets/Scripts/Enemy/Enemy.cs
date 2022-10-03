@@ -7,8 +7,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int balloonHealth;
     [SerializeField] private int enemyDieGold;
     [SerializeField] public float inGameTime = 0f;
-    [SerializeField] private Mesh balloonMesh;
-    [SerializeField] private Mesh moabMesh;
 
     [System.Serializable]
     public class BalloonLayers
@@ -44,18 +42,17 @@ public class Enemy : MonoBehaviour
         // this set up the balloon when it get activated
         if (balloonLayer.specialBalloon)
         {
-            GetComponent<MeshFilter>().mesh = moabMesh;
+            GetComponent<MeshFilter>().mesh = balloonLayer.balloonMesh;
             GetComponent<Renderer>().material = balloonLayer.balloonMaterial;
-            this.balloonHealth = balloonLayer.BalloonHealth;
         }
         else
         {
-            GetComponent<MeshFilter>().mesh = balloonMesh;
+            GetComponent<MeshFilter>().mesh = balloonLayer.balloonMesh;
             GetComponent<Renderer>().material = balloonLayer.balloonMaterial;
             GetComponent<Renderer>().material.color = balloonLayer.balloonColor;
-            this.balloonHealth = balloonLayer.BalloonHealth;
         }
 
+        this.balloonHealth = balloonLayer.BalloonHealth;
         transform.localScale = balloonLayer.balloonScale;
         followWaypoint.ChangeBalloonSpeed(balloonLayer.BalloonSpeed);
         Debug.Log(balloonHealth);
@@ -108,8 +105,9 @@ public class Enemy : MonoBehaviour
         if (!balloonDictionary.ContainsKey(balloonHealth)) { return; }
         if(currentBalloonLayer.specialBalloon)
         {
-            GetComponent<MeshFilter>().mesh = balloonMesh;
+            GetComponent<MeshFilter>().mesh = balloonDictionary[balloonHealth].balloonMesh;
         }
+        transform.localScale = balloonDictionary[balloonHealth].balloonScale;
         GetComponent<Renderer>().material.color = balloonDictionary[balloonHealth].balloonColor;
         followWaypoint.ChangeBalloonSpeed(balloonDictionary[balloonHealth].BalloonSpeed);
     }

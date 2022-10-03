@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balloonColor: {r: 0, g: 0, b: 0, a: 0}
   balloonMaterial: {fileID: 2100000, guid: b0417aa1a3b03e64fbc2b9a2325dcbf3, type: 2}
+  balloonMesh: {fileID: 428866477300906952, guid: 974fa790a33f2084394a19b94aa0635c,
+    type: 3}
   BalloonHealth: 50
-  BalloonSpeed: 10
+  BalloonSpeed: 3
   balloonScale: {x: 2.5, y: 2.5, z: 2.5}
   specialBalloon: 1

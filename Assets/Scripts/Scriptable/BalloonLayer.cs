@@ -8,6 +8,7 @@ public class BalloonLayer : ScriptableObject
     [Header("Color Settings")]
     public Color balloonColor;
     public Material balloonMaterial;
+    public Mesh balloonMesh;
     [Header("Balloon Settings")]
     public int BalloonHealth;
     [Range(1, 50)] public float BalloonSpeed;

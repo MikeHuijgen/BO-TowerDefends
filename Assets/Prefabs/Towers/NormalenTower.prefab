@@ -327,7 +327,7 @@ MonoBehaviour:
   towerRange: 10
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
-  fireRate: 0.3
+  fireRate: 1
   targetFirst: 1
   targetLast: 0
   targetList: []
