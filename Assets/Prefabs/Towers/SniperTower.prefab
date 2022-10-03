@@ -310,10 +310,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  uiLayer:
-    serializedVersion: 2
-    m_Bits: 32
-  rangeMat: {fileID: 2100000, guid: 936ba20cd5638474aba69d0a03d4b5d9, type: 2}
+  rangeMaterial: {fileID: 2100000, guid: 936ba20cd5638474aba69d0a03d4b5d9, type: 2}
 --- !u!114 &-4484325802217507847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,10 +324,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerDamage: 1
-  towerRange: 30
+  towerRange: 60
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
-  fireRate: 3
+  fireRate: 2
   targetFirst: 1
   targetLast: 0
   targetList: []

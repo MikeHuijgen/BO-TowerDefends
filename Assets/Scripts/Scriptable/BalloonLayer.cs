@@ -10,5 +10,5 @@ public class BalloonLayer : ScriptableObject
     [Header("Balloon Settings")]
     public int BalloonHealth;
     [Range(1,50)] public float BalloonSpeed;
-    public int balloonKey;
+
 }

@@ -9,19 +9,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float inGameTime = 0f;
 
     [System.Serializable]
-    public class BalloonStage
+    public class BalloonLayers
     {
-        public int key;
+        public int balloonHealthId;
         public BalloonLayer balloonLayer;
     }
 
-    public BalloonStage[] balloonStage;
+    public BalloonLayers[] balloonLayers;
     private Dictionary<int,BalloonLayer> balloonDictionary = new Dictionary<int, BalloonLayer>();
 
 
     private bool isDisable;
     private int resetHealth;
-    public int balloonKey;
 
     private EnemySpawner enemySpawner;
     private EnemyFollowWaypoint followWaypoint;
@@ -30,20 +29,19 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         //Fill up the dictionary in the beginning of the game
-        foreach (var balloonStage in balloonStage)
+        foreach (var layers in balloonLayers)
         {
-            balloonDictionary.Add(balloonStage.key, balloonStage.balloonLayer);     
+            balloonDictionary.Add(layers.balloonHealthId, layers.balloonLayer);     
         }
         enemySpawner = FindObjectOfType<EnemySpawner>();
         followWaypoint = FindObjectOfType<EnemyFollowWaypoint>();
     }
-    public void SetUpBalloon(BalloonLayer balloonInfo, int id)
+    public void SetUpBalloon(BalloonLayer balloonLayer)
     {
         // this set up the balloon when it get activated
-        balloonKey = id;
-        GetComponent<Renderer>().material.color = balloonInfo.balloonColor;
-        followWaypoint.ChangeBalloonSpeed(balloonInfo.BalloonSpeed);
-        balloonHealth = balloonInfo.BalloonHealth;
+        GetComponent<Renderer>().material.color = balloonLayer.balloonColor;
+        followWaypoint.ChangeBalloonSpeed(balloonLayer.BalloonSpeed);
+        this.balloonHealth = balloonLayer.BalloonHealth;
     }
 
     private void OnEnable()
@@ -75,7 +73,6 @@ public class Enemy : MonoBehaviour
     public void DecreaseHealth(int amount, Transform tower)
     {
         balloonHealth -= amount;
-        balloonKey -= amount;
 
         BalloonGotHit();
 
@@ -92,9 +89,9 @@ public class Enemy : MonoBehaviour
     private void BalloonGotHit()
     {
         // it change how the balloon work by using a sort preset from the dictionary
-        if (!balloonDictionary.ContainsKey(balloonKey)) { return; }
-        GetComponent<Renderer>().material.color = balloonDictionary[balloonKey].balloonColor;
-        followWaypoint.ChangeBalloonSpeed(balloonDictionary[balloonKey].BalloonSpeed);
+        if (!balloonDictionary.ContainsKey(balloonHealth)) { return; }
+        GetComponent<Renderer>().material.color = balloonDictionary[balloonHealth].balloonColor;
+        followWaypoint.ChangeBalloonSpeed(balloonDictionary[balloonHealth].BalloonSpeed);
     }
 
     private void ResetHealth()

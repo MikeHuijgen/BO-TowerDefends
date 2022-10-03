@@ -8,19 +8,28 @@ public class Waves : MonoBehaviour
 {
     [SerializeField] private int wave;
     [SerializeField] private int maxWave;
-    [SerializeField] private int enemysIncreasement;
-    [SerializeField][Range(2,10)] public int maxEnemysInFirstWave;
     [SerializeField] private int moneyIncreaseAmount; 
     [SerializeField] private TMP_Text waveCounter;
+
+    [SerializeField] private List<WaveScriptableObject> waves = new List<WaveScriptableObject>();
     private EnemySpawner EnemySpawner;
     private Bank bank;
+
+    private bool canSpawnNextWave = false;
 
     private void Start()
     {
         bank = FindObjectOfType<Bank>();
         EnemySpawner = FindObjectOfType<EnemySpawner>();
+        GoToNextWave();
+    }
+
+    public void StartNextWave()
+    {
         wave++;
         waveCounter.text = $"{wave}/{maxWave}";
+        canSpawnNextWave = true;
+        GoToNextWave();
     }
 
     public void GoToNextWave()
@@ -30,10 +39,7 @@ public class Waves : MonoBehaviour
             wave++;
             waveCounter.text = $"{wave}/{maxWave}";
             bank.IncreaseBankAmount(moneyIncreaseAmount);
-        }
-        else
-        {
-            Debug.Log("You won");
+            EnemySpawner.WaveHasStarted(waves[wave - 1]);
         }
     }
 }

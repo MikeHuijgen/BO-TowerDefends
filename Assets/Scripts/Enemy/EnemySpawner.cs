@@ -12,21 +12,18 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<GameObject> balloonPool = new List<GameObject>();
 
     public int enemysLeft;
+    private int enemysHaveSpawned;
+    public int waveBalloonsIndex;
 
     private bool canSpawn = true;
 
-    private Waves waves;
-
-
-    [SerializeField] private List<WaveScriptableObject> wave = new List<WaveScriptableObject>();
-
+    private WaveScriptableObject currentWave;
 
     // Het spawnen via een scriptable object werkt alleen ze spawnen nog allemaal tegelijkertijd dat moet nog opgelost worden 
     // daarna moet ik nog ff de code wat cleanen zodat het weer wat duidelijker is
 
     private void Awake()
     {
-        waves = FindObjectOfType<Waves>();
         PopulatePool();
     }
 
@@ -47,12 +44,18 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void WaveHasStarted(WaveScriptableObject wave)
+    {
+        currentWave = wave;
+    }
+
     // Spawn of the balloons
 
     IEnumerator SpawnEnemy()
     {
         if (canSpawn)
         {
+            Debug.Log(canSpawn);
             canSpawn = false;
             yield return new WaitForSeconds(betweenSpawnTime);
             EnableBalloons();
@@ -66,14 +69,27 @@ public class EnemySpawner : MonoBehaviour
         //zorgt er voor dat de enemys geactiveerd worden na de spawn time
         for (int i = 0;i < balloonPool.Count;i++)
         {
-            if (!balloonPool[i].activeInHierarchy)
+            if (!balloonPool[i].activeInHierarchy && currentWave.balloons[waveBalloonsIndex].amount > enemysHaveSpawned)
             {
-                balloonPool[i].GetComponent<Enemy>().SetUpBalloon(wave[0].balloons[0].balloonLayer, wave[0].balloons[0].balloonLayer.balloonKey);
+                enemysHaveSpawned++;
                 enemysLeft++;
+
+                balloonPool[i].GetComponent<Enemy>().SetUpBalloon(currentWave.balloons[waveBalloonsIndex].balloonLayer);
                 balloonPool[i].SetActive(true);
                 balloonPool[i].GetComponent<EnemyFollowWaypoint>().enemySpawnedIn = true;
                 return;
             }
+        }
+
+        if (currentWave.balloons[waveBalloonsIndex].amount == enemysHaveSpawned && waveBalloonsIndex < currentWave.balloons.Count - 1)
+        {
+            enemysHaveSpawned = 0;
+            waveBalloonsIndex++;
+        }
+        else if (waveBalloonsIndex == currentWave.balloons.Count - 1)
+        {
+            canSpawn = false;
+            Debug.Log("Je hebt gewonnen");
         }
     }
 }
