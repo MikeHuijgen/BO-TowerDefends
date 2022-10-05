@@ -10,13 +10,14 @@ public class EnemyFollowWaypoint : MonoBehaviour
     [SerializeField] private List<Transform> waypoints = new List<Transform>();
 
     private int amountOfWaypoints = 0;
-    private int waypointsPassed = 0;
+    public int waypointsPassed = 0;
     private float distanceThreshold = 0.1f;
+    [SerializeField] private float betweenWaypointTime;
 
     public bool enemySpawnedIn = false;
     private bool hasFinished = false;
 
-    private Transform currentWaypoint;
+    public Transform currentWaypoint;
     private GameObject waypointParent;
     private EnemySpawner enemySpawner;
     private PlayerHealth playerHealth;
@@ -63,6 +64,7 @@ public class EnemyFollowWaypoint : MonoBehaviour
         if (enemySpawnedIn)
         {
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);
+            betweenWaypointTime += Time.deltaTime;
         }
     }
 
@@ -80,7 +82,8 @@ public class EnemyFollowWaypoint : MonoBehaviour
             {
                 currentWaypoint = waypoints[currentWaypoint.GetSiblingIndex() + 1];
                 waypointsPassed++;
-                transform.LookAt(currentWaypoint.position);          
+                transform.LookAt(currentWaypoint.position);
+                betweenWaypointTime = 0;
             }
         }
     }
@@ -101,5 +104,14 @@ public class EnemyFollowWaypoint : MonoBehaviour
     public void ChangeBalloonSpeed(float speed)
     {
         moveSpeed = speed;
+    }
+
+    public EnemyFollowWaypoint GetFirstBalloon(EnemyFollowWaypoint balloon1, EnemyFollowWaypoint balloon2)
+    {
+        if (balloon1.waypointsPassed > balloon2.waypointsPassed) { return balloon1; }
+        if (balloon1.waypointsPassed < balloon2.waypointsPassed) { return balloon2; }
+        if (balloon1.betweenWaypointTime > balloon2.betweenWaypointTime) { return balloon1; }
+        if (balloon1.betweenWaypointTime < balloon2.betweenWaypointTime) { return balloon2; }
+        else { return balloon1; }
     }
 }

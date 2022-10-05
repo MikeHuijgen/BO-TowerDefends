@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wave1
   m_EditorClassIdentifier: 
   balloons:
-  - balloonLayer: {fileID: 11400000, guid: 7322496ed47d8e04785471ce62c51c0f, type: 2}
-    amount: 1
-  timeBetweenSpawn: 1
+  - balloonLayer: {fileID: 11400000, guid: e8e74982b47d416429eb552c31ee8196, type: 2}
+    amount: 20
+  timeBetweenSpawn: 0.3

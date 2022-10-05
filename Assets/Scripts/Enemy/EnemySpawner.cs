@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
     private bool canSpawn = true;
     private Waves waves;
+    private Transform towerParent;
 
     private WaveScriptableObject currentWave;
 

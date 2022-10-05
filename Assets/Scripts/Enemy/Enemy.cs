@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
     public BalloonLayers[] balloonLayers;
     private Dictionary<int,BalloonLayer> balloonDictionary = new Dictionary<int, BalloonLayer>();
-    private BalloonLayer currentBalloonLayer;
+    public BalloonLayer currentBalloonLayer;
 
 
     private bool isDisable;
@@ -110,5 +110,6 @@ public class Enemy : MonoBehaviour
         transform.localScale = balloonDictionary[balloonHealth].balloonScale;
         GetComponent<Renderer>().material.color = balloonDictionary[balloonHealth].balloonColor;
         followWaypoint.ChangeBalloonSpeed(balloonDictionary[balloonHealth].BalloonSpeed);
+        currentBalloonLayer = balloonDictionary[balloonHealth];
     }
 }

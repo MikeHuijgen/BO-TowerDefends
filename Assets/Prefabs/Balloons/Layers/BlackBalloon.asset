@@ -18,5 +18,5 @@ MonoBehaviour:
     type: 3}
   BalloonHealth: 4
   BalloonSpeed: 16
-  balloonScale: {x: 0.7, y: 0.7, z: 0.7}
+  balloonScale: {x: 0.6, y: 0.6, z: 0.6}
   specialBalloon: 0
