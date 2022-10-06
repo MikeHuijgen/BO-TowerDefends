@@ -12,7 +12,7 @@ public class EnemyFollowWaypoint : MonoBehaviour
     private int amountOfWaypoints = 0;
     public int waypointsPassed = 0;
     private float distanceThreshold = 0.1f;
-    [SerializeField] private float betweenWaypointTime;
+    [SerializeField] public float betweenWaypointTime;
 
     public bool enemySpawnedIn = false;
     private bool hasFinished = false;
@@ -104,14 +104,5 @@ public class EnemyFollowWaypoint : MonoBehaviour
     public void ChangeBalloonSpeed(float speed)
     {
         moveSpeed = speed;
-    }
-
-    public EnemyFollowWaypoint GetFirstBalloon(EnemyFollowWaypoint balloon1, EnemyFollowWaypoint balloon2)
-    {
-        if (balloon1.waypointsPassed > balloon2.waypointsPassed) { return balloon1; }
-        if (balloon1.waypointsPassed < balloon2.waypointsPassed) { return balloon2; }
-        if (balloon1.betweenWaypointTime > balloon2.betweenWaypointTime) { return balloon1; }
-        if (balloon1.betweenWaypointTime < balloon2.betweenWaypointTime) { return balloon2; }
-        else { return balloon1; }
     }
 }

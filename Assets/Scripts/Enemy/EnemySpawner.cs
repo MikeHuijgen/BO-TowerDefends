@@ -21,9 +21,6 @@ public class EnemySpawner : MonoBehaviour
 
     private WaveScriptableObject currentWave;
 
-    // Het spawnen via een scriptable object werkt alleen ze spawnen nog allemaal tegelijkertijd dat moet nog opgelost worden 
-    // daarna moet ik nog ff de code wat cleanen zodat het weer wat duidelijker is
-
     private void Awake()
     {
         waves = FindObjectOfType<Waves>();

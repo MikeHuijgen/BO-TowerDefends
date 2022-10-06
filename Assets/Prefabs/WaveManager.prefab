@@ -50,3 +50,4 @@ MonoBehaviour:
   waveCounter: {fileID: 0}
   waves:
   - {fileID: 11400000, guid: b3b75dcf243747e4e8f9026e7a26bb66, type: 2}
+  - {fileID: 11400000, guid: a943c27fda5535e4893be999d34de736, type: 2}

@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balloonHealth: 0
-  enemyDieGold: 20
+  goldPerPop: 1
   inGameTime: 0
   balloonLayers:
   - balloonHealthId: 1

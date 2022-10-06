@@ -20,16 +20,11 @@ public class Tower : MonoBehaviour
 
     [Header("Tower Check")]
     [SerializeField] private int balloonsPoped;
-
-    private float lastCurrentTimeEnemy = 0f;
-    [SerializeField] private float dartSpeed;
-    private Transform towerTarget;
+    [SerializeField] private EnemyFollowWaypoint towerTarget;
+    
     private float currentFireRate;
 
     private List<GameObject> dartPool = new List<GameObject>();
-
-    Ray ray;
-    RaycastHit hit;
 
     private void OnEnable()
     {
@@ -43,6 +38,7 @@ public class Tower : MonoBehaviour
     {
         LookAtTarget();
         AttackEnemy();
+        ResetTowerTarget();
     }
 
     private void FillDartPool()
@@ -71,18 +67,22 @@ public class Tower : MonoBehaviour
 
         if (targetFirst)
         {
-            EnemyFollowWaypoint target = targetList[0];
-
-            for (int i = 1; i < targetList.Count; i++)
+            EnemyFollowWaypoint target = targetList[0]; 
+            for (int i = 0; i < targetList.Count; i++)
             {
-                target = targetList[i].GetFirstBalloon(target, targetList[i]);
-                towerTarget = target.transform;
-                Vector3 dir = towerTarget.position - transform.position;
-                Quaternion lookRoation = Quaternion.LookRotation(dir);
-                Vector3 rotation = lookRoation.eulerAngles;
-                transform.rotation = Quaternion.Euler(0, rotation.y, 0);
+                target = GetFirstBalloon(target, targetList[i]);
+                towerTarget = target;
+                transform.LookAt(towerTarget.transform);
             }
         }
+    }
+    public EnemyFollowWaypoint GetFirstBalloon(EnemyFollowWaypoint balloon1, EnemyFollowWaypoint balloon2)
+    {
+        if (balloon1.waypointsPassed < balloon2.waypointsPassed) { return balloon2 ; }
+        if (balloon1.waypointsPassed > balloon2.waypointsPassed) { return balloon1; }
+        if (balloon1.waypointsPassed < balloon2.waypointsPassed && balloon1.betweenWaypointTime < balloon2.betweenWaypointTime) { return balloon2; }
+        if (balloon1.waypointsPassed < balloon2.waypointsPassed && balloon1.betweenWaypointTime > balloon2.betweenWaypointTime) { return balloon2; }
+        else { return balloon1; }
     }
 
     private void AttackEnemy()
@@ -95,10 +95,19 @@ public class Tower : MonoBehaviour
         {
             if (!dart.activeInHierarchy && currentFireRate <= 0)
             {
-                dart.GetComponent<Dart>().SetUpDart(towerTarget, transform, towerDamage);
+                if (!targetList.Contains(towerTarget)) { return; }
+                dart.GetComponent<Dart>().SetUpDart(towerTarget.transform, transform, towerDamage);
                 currentFireRate = fireRate;
                 return;
             }
+        }
+    }
+
+    private void ResetTowerTarget()
+    {
+        if (targetList.Count == 0) 
+        {
+            towerTarget = null;
         }
     }
 
@@ -107,4 +116,5 @@ public class Tower : MonoBehaviour
         if (!targetList.Contains(enemy.GetComponent<EnemyFollowWaypoint>())) { return; }
         targetList.Remove(enemy.GetComponent<EnemyFollowWaypoint>());
     }
+
 }

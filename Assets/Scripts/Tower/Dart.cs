@@ -33,9 +33,10 @@ public class Dart : MonoBehaviour
             return;
         }
         transform.position = Vector3.MoveTowards(transform.position,_target.position, dartSpeed * Time.deltaTime);
-
+        transform.LookAt(_target);
         if (Vector3.Distance(transform.position, _target.position) <= 0.001f)
         {
+            DamageTarget();
             gameObject.SetActive(false);
             ResetPos();
         }
@@ -46,12 +47,9 @@ public class Dart : MonoBehaviour
         transform.position = _tower.position;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void DamageTarget()
     {
-        if (other.gameObject.CompareTag("enemy"))
-        {
-            other.GetComponent<Enemy>().DecreaseHealth(_damage, _tower);
-            gameObject.SetActive(false);
-        }
+        _target.GetComponent<Enemy>().DecreaseHealth(_damage, _tower);
+        gameObject.SetActive(false);
     }
 }
