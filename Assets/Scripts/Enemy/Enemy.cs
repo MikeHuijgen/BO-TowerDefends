@@ -6,7 +6,6 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] public int balloonHealth;
     [SerializeField] private int goldPerPop;
-    [SerializeField] public float inGameTime = 0f;
 
     [System.Serializable]
     public class BalloonLayers
@@ -60,7 +59,6 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        inGameTime = 0;
         isDisable = false;
         bank = FindObjectOfType<Bank>();
     }
@@ -68,20 +66,6 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         isDisable = true;
-    }
-
-    private void Update()
-    {
-        CheckInGameTime();
-    }
-
-    private void CheckInGameTime()
-    {
-        // this is the timer that the balloon is active in the game
-        if (!isDisable)
-        {
-            inGameTime += Time.deltaTime;
-        }
     }
 
     public void DecreaseHealth(int amount, Transform tower)

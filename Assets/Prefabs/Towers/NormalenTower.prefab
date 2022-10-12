@@ -329,13 +329,14 @@ MonoBehaviour:
   towerRangeTransform: {fileID: 1248980609916512757}
   fireRate: 0.6
   dartPoolAmount: 6
-  targetFirst: 1
-  targetLast: 0
+  towerType: 0
+  targetStyle: 0
   dartPrefab: {fileID: 4315885570258830560, guid: 70d5dec22d8967243b02cd8f7b828181,
     type: 3}
-  targetList: []
+  balloonList: []
   balloonsPoped: 0
-  towerTarget: {fileID: 0}
+  currentTarget: {fileID: 0}
+  playerCanSelect: 0
 --- !u!1 &8298592991154685434
 GameObject:
   m_ObjectHideFlags: 0

@@ -87,6 +87,7 @@ public class Tower : MonoBehaviour
                 GetFirstTarget();
                 break;
             case TargetStyle.last:
+                GetLastTarget();
                 break;
             default:
                 Debug.Log("Tower has no target style");
@@ -99,22 +100,25 @@ public class Tower : MonoBehaviour
         EnemyFollowWaypoint target = balloonList[0];
         for (int i = 0; i < balloonList.Count; i++)
         {
-            if (balloonList[i].precentTraveled > target.precentTraveled)
+            if (balloonList[i].inGameTime > target.inGameTime)
             {
                 target = balloonList[i];
             }
-            //target = GetFirstBalloon(target, balloonList[i]);
             currentTarget = target.transform;
         }
     }
 
-    public EnemyFollowWaypoint GetFirstBalloon(EnemyFollowWaypoint balloon1, EnemyFollowWaypoint balloon2)
+    private void GetLastTarget()
     {
-        if (balloon1.waypointsPassed < balloon2.waypointsPassed) { return balloon2 ;}
-        if (balloon1.waypointsPassed > balloon2.waypointsPassed) { return balloon1; }
-        if (balloon1.waypointsPassed == balloon2.waypointsPassed && balloon1.betweenWaypointTime < balloon2.betweenWaypointTime) { return balloon2; }
-        if (balloon1.waypointsPassed == balloon2.waypointsPassed && balloon1.betweenWaypointTime > balloon2.betweenWaypointTime) { return balloon1; }
-        else { return balloon1; }
+        EnemyFollowWaypoint target = balloonList[0];
+        for (int i = 0; i < balloonList.Count; i++)
+        {
+            if (balloonList[i].inGameTime < target.inGameTime)
+            {
+                target = balloonList[i];
+            }
+            currentTarget = target.transform;
+        }
     }
 
     private void AttackEnemy()

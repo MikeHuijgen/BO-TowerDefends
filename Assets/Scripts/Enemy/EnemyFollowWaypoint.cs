@@ -10,13 +10,10 @@ public class EnemyFollowWaypoint : MonoBehaviour
     [SerializeField] private List<Transform> waypoints = new List<Transform>();
     [SerializeField] public float betweenWaypointTime;
 
+    public float inGameTime = 0;
     private int amountOfWaypoints = 0;
     public int waypointsPassed = 0;
     private float distanceThreshold = 0.1f;
-    private float totalDistance;
-    private float distanceTraveled;
-    public float precentTraveled;
-    private float startTime;
 
     public bool enemySpawnedIn = false;
     private bool hasFinished = false;
@@ -27,9 +24,10 @@ public class EnemyFollowWaypoint : MonoBehaviour
     private EnemySpawner enemySpawner;
     private PlayerHealth playerHealth;
 
+
     private void OnEnable()
     {
-        startTime = Time.time;
+        inGameTime = 0;
         enemySpawner = GetComponentInParent<EnemySpawner>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         waypointParent = GameObject.FindGameObjectWithTag("waypointParent");
@@ -43,7 +41,6 @@ public class EnemyFollowWaypoint : MonoBehaviour
         FinishedWaypoints();
         MoveEnemy();
         CheckEnemysPos();
-        BalloonProgres();
     }
 
     private void FindWaypoints()
@@ -57,34 +54,13 @@ public class EnemyFollowWaypoint : MonoBehaviour
         }
 
         amountOfWaypoints = waypoints.Count;
-        CalculateTotalWaypointsTime();
     }
-
-    private void CalculateTotalWaypointsTime()
-    {
-        if (!hasCalculateTheTime)
-        {
-            hasCalculateTheTime = true; 
-            Transform firstWaypoint = waypoints[0];
-            foreach (Transform child in waypointParent.transform)
-            {
-                totalDistance += Vector3.Distance(firstWaypoint.position, child.position);
-                firstWaypoint = child;
-            }
-        }
-    }
-
-    private void BalloonProgres()
-    {
-        distanceTraveled = totalDistance / (Time.time - startTime);
-        precentTraveled = totalDistance / distanceTraveled;
-    }
-
 
     private void MoveEnemy()
     {
         if (enemySpawnedIn)
         {
+            inGameTime += Time.deltaTime * moveSpeed;
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);      
         }
     }
