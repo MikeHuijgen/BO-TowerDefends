@@ -13,21 +13,37 @@ public class Tower : MonoBehaviour
     [SerializeField] private int dartPoolAmount;
 
     [Header("Attack style")]
-    [SerializeField] private bool targetFirst;
-    [SerializeField] private bool targetLast;
+    [SerializeField] private TowerType towerType;
+    [SerializeField] private TargetStyle targetStyle;
     [SerializeField] private GameObject dartPrefab;
-    [SerializeField] private List<EnemyFollowWaypoint> targetList = new List<EnemyFollowWaypoint>();
+    [SerializeField] private List<EnemyFollowWaypoint> balloonList = new List<EnemyFollowWaypoint>();
 
     [Header("Tower Check")]
     [SerializeField] private int balloonsPoped;
-    [SerializeField] private EnemyFollowWaypoint towerTarget;
+    [SerializeField] private Transform currentTarget;
     
+    public bool playerCanSelect = false;
     private float currentFireRate;
 
     private List<GameObject> dartPool = new List<GameObject>();
 
+    Ray ray;
+
+    private enum TowerType 
+    { 
+        normal,
+        sniper
+    }
+
+    public enum TargetStyle
+    {
+        first,
+        last
+    }
+        
     private void OnEnable()
     {
+        playerCanSelect = true;
         currentFireRate = fireRate;
         towerRangeTransform.GetComponent<CheckForEnemyInRange>().enabled = true;
         towerRangeTransform.GetComponent<CapsuleCollider>().enabled = true;
@@ -36,7 +52,7 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
-        LookAtTarget();
+        FindTarget();
         AttackEnemy();
         ResetTowerTarget();
     }
@@ -51,70 +67,125 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void AddEnemyToTargetList(Transform enemy)
+    public void AddEnemyToTargetList(Transform balloon)
     {
-        targetList.Add(enemy.GetComponent<EnemyFollowWaypoint>());
+        balloonList.Add(balloon.GetComponent<EnemyFollowWaypoint>());
     }
 
     public void RemoveEnemyFromTargetList(Transform enemy)
     {
-        targetList.Remove(enemy.GetComponent<EnemyFollowWaypoint>());
+        balloonList.Remove(enemy.GetComponent<EnemyFollowWaypoint>());
     }
 
-    private void LookAtTarget()
+    private void FindTarget()
     {
-        if (targetList.Count == 0) { return; }
+        if (balloonList.Count == 0) { return; }
 
-        if (targetFirst)
+        switch (targetStyle)
         {
-            EnemyFollowWaypoint target = targetList[0]; 
-            for (int i = 0; i < targetList.Count; i++)
-            {
-                target = GetFirstBalloon(target, targetList[i]);
-                towerTarget = target;
-                transform.LookAt(towerTarget.transform);
-            }
+            case TargetStyle.first:
+                GetFirstTarget();
+                break;
+            case TargetStyle.last:
+                break;
+            default:
+                Debug.Log("Tower has no target style");
+                break;
         }
     }
+
+    private void GetFirstTarget()
+    {
+        EnemyFollowWaypoint target = balloonList[0];
+        for (int i = 0; i < balloonList.Count; i++)
+        {
+            if (balloonList[i].precentTraveled > target.precentTraveled)
+            {
+                target = balloonList[i];
+            }
+            //target = GetFirstBalloon(target, balloonList[i]);
+            currentTarget = target.transform;
+        }
+    }
+
     public EnemyFollowWaypoint GetFirstBalloon(EnemyFollowWaypoint balloon1, EnemyFollowWaypoint balloon2)
     {
-        if (balloon1.waypointsPassed < balloon2.waypointsPassed) { return balloon2 ; }
+        if (balloon1.waypointsPassed < balloon2.waypointsPassed) { return balloon2 ;}
         if (balloon1.waypointsPassed > balloon2.waypointsPassed) { return balloon1; }
-        if (balloon1.waypointsPassed < balloon2.waypointsPassed && balloon1.betweenWaypointTime < balloon2.betweenWaypointTime) { return balloon2; }
-        if (balloon1.waypointsPassed < balloon2.waypointsPassed && balloon1.betweenWaypointTime > balloon2.betweenWaypointTime) { return balloon2; }
+        if (balloon1.waypointsPassed == balloon2.waypointsPassed && balloon1.betweenWaypointTime < balloon2.betweenWaypointTime) { return balloon2; }
+        if (balloon1.waypointsPassed == balloon2.waypointsPassed && balloon1.betweenWaypointTime > balloon2.betweenWaypointTime) { return balloon1; }
         else { return balloon1; }
     }
 
     private void AttackEnemy()
     {
-        if (targetList.Count == 0) { return; }
+        if (currentTarget == null) { return; }
 
+        switch (towerType)
+        {
+            case TowerType.normal:
+                AttackWithDarts();
+                break;
+            case TowerType.sniper:
+                AttackWithRay();
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void AttackWithDarts()
+    {
         currentFireRate -= Time.deltaTime;
 
         foreach (var dart in dartPool)
         {
             if (!dart.activeInHierarchy && currentFireRate <= 0)
             {
-                if (!targetList.Contains(towerTarget)) { return; }
-                dart.GetComponent<Dart>().SetUpDart(towerTarget.transform, transform, towerDamage);
+                transform.LookAt(new Vector3(currentTarget.position.x, 1, currentTarget.position.z));
+                dart.GetComponent<Dart>().SetUpDart(currentTarget.transform, transform, towerDamage);
                 currentFireRate = fireRate;
-                return;
+
+            }
+        }
+    }
+
+    private void AttackWithRay()
+    {
+        currentFireRate -= Time.deltaTime;
+
+        ray.origin = transform.position;
+        ray.direction = transform.forward;
+
+        transform.LookAt(new Vector3(currentTarget.position.x, 1, currentTarget.position.z));
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo) && currentFireRate <= 0)
+        {
+            if (hitInfo.transform == currentTarget.transform)
+            {
+                currentTarget.GetComponent<Enemy>().DecreaseHealth(towerDamage, this.transform);
+                currentFireRate = fireRate;
             }
         }
     }
 
     private void ResetTowerTarget()
     {
-        if (targetList.Count == 0) 
+        if (balloonList.Count == 0) 
         {
-            towerTarget = null;
+            currentTarget = null;
         }
     }
 
     public void EnemyGotKilledByTower(Transform enemy)
     {
-        if (!targetList.Contains(enemy.GetComponent<EnemyFollowWaypoint>())) { return; }
-        targetList.Remove(enemy.GetComponent<EnemyFollowWaypoint>());
+        if (!balloonList.Contains(enemy.GetComponent<EnemyFollowWaypoint>())) { return; }
+        balloonList.Remove(enemy.GetComponent<EnemyFollowWaypoint>());
     }
 
+    public void towerGotSelected()
+    {
+        towerRangeTransform.GetComponent<MeshRenderer>().enabled = true;
+    }
 }

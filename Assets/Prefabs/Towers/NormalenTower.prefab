@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2113806869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RayCastSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5206712673303441888}
   - component: {fileID: 3220483466735263144}
   - component: {fileID: 8674071553034214065}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9142969102587888530}
   - component: {fileID: 7428317796733494735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TowerCollider
   m_TagString: tower
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 7731137724131667949}
   - component: {fileID: 3485944331762483255}
   - component: {fileID: -4484325802217507847}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NormalenTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ MonoBehaviour:
     type: 3}
   targetList: []
   balloonsPoped: 0
-  dartSpeed: 10
+  towerTarget: {fileID: 0}
 --- !u!1 &8298592991154685434
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 8046208493866803683}
   - component: {fileID: 4473821361243216766}
   - component: {fileID: 1027501442169115}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RaySpawnerParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}

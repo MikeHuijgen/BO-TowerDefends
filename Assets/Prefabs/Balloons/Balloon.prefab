@@ -115,8 +115,8 @@ MonoBehaviour:
   moveSpeed: 10
   decreasePlayerLife: 1
   waypoints: []
-  waypointsPassed: 0
   betweenWaypointTime: 0
+  waypointsPassed: 0
   enemySpawnedIn: 0
   currentWaypoint: {fileID: 0}
 --- !u!114 &4145808186428029388

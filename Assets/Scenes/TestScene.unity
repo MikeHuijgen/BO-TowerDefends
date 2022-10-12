@@ -13846,6 +13846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1911990087}
+  - component: {fileID: 1911990088}
   m_Layer: 0
   m_Name: TowerParent
   m_TagString: Untagged
@@ -13868,6 +13869,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1911990088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911990086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfab2ecf268ed72448a0e0079f77de16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &1916877672 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3226008398909991060, guid: 5e5a35b420a9e8e42b278835095c7c45,
@@ -15366,6 +15382,11 @@ PrefabInstance:
       propertyPath: waveCounter
       value: 
       objectReference: {fileID: 1489734452}
+    - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
+        type: 3}
+      propertyPath: waves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
         type: 3}
       propertyPath: waves.Array.data[0]

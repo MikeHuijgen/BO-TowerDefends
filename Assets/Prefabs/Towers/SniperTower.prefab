@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: -4484325802217507847}
   m_Layer: 0
   m_Name: SniperTower
-  m_TagString: Untagged
+  m_TagString: tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,13 +329,14 @@ MonoBehaviour:
   towerRangeTransform: {fileID: 1248980609916512757}
   fireRate: 1
   dartPoolAmount: 5
-  targetFirst: 1
-  targetLast: 0
+  towerType: 1
+  targetStyle: 0
   dartPrefab: {fileID: 4315885570258830560, guid: 70d5dec22d8967243b02cd8f7b828181,
     type: 3}
-  targetList: []
+  balloonList: []
   balloonsPoped: 0
-  dartSpeed: 0
+  currentTarget: {fileID: 0}
+  playerCanSelect: 0
 --- !u!1 &8298592991154685434
 GameObject:
   m_ObjectHideFlags: 0

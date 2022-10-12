@@ -8,14 +8,19 @@ public class EnemyFollowWaypoint : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private int decreasePlayerLife;
     [SerializeField] private List<Transform> waypoints = new List<Transform>();
+    [SerializeField] public float betweenWaypointTime;
 
     private int amountOfWaypoints = 0;
     public int waypointsPassed = 0;
     private float distanceThreshold = 0.1f;
-    [SerializeField] public float betweenWaypointTime;
+    private float totalDistance;
+    private float distanceTraveled;
+    public float precentTraveled;
+    private float startTime;
 
     public bool enemySpawnedIn = false;
     private bool hasFinished = false;
+    private bool hasCalculateTheTime = false;
 
     public Transform currentWaypoint;
     private GameObject waypointParent;
@@ -24,6 +29,7 @@ public class EnemyFollowWaypoint : MonoBehaviour
 
     private void OnEnable()
     {
+        startTime = Time.time;
         enemySpawner = GetComponentInParent<EnemySpawner>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         waypointParent = GameObject.FindGameObjectWithTag("waypointParent");
@@ -37,6 +43,7 @@ public class EnemyFollowWaypoint : MonoBehaviour
         FinishedWaypoints();
         MoveEnemy();
         CheckEnemysPos();
+        BalloonProgres();
     }
 
     private void FindWaypoints()
@@ -50,12 +57,27 @@ public class EnemyFollowWaypoint : MonoBehaviour
         }
 
         amountOfWaypoints = waypoints.Count;
+        CalculateTotalWaypointsTime();
     }
-    private void ResetStartPos()
+
+    private void CalculateTotalWaypointsTime()
     {
-        //it place the enemy on the first waypoint
-        transform.position = waypoints[0].position;
-        currentWaypoint = waypoints[0];
+        if (!hasCalculateTheTime)
+        {
+            hasCalculateTheTime = true; 
+            Transform firstWaypoint = waypoints[0];
+            foreach (Transform child in waypointParent.transform)
+            {
+                totalDistance += Vector3.Distance(firstWaypoint.position, child.position);
+                firstWaypoint = child;
+            }
+        }
+    }
+
+    private void BalloonProgres()
+    {
+        distanceTraveled = totalDistance / (Time.time - startTime);
+        precentTraveled = totalDistance / distanceTraveled;
     }
 
 
@@ -63,8 +85,7 @@ public class EnemyFollowWaypoint : MonoBehaviour
     {
         if (enemySpawnedIn)
         {
-            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);
-            betweenWaypointTime += Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);      
         }
     }
 
@@ -83,9 +104,14 @@ public class EnemyFollowWaypoint : MonoBehaviour
                 currentWaypoint = waypoints[currentWaypoint.GetSiblingIndex() + 1];
                 waypointsPassed++;
                 transform.LookAt(currentWaypoint.position);
-                betweenWaypointTime = 0;
             }
         }
+    }
+    private void ResetStartPos()
+    {
+        //it place the enemy on the first waypoint
+        transform.position = waypoints[0].position;
+        currentWaypoint = waypoints[0];
     }
 
     private void FinishedWaypoints()

@@ -26,12 +26,6 @@ public class Dart : MonoBehaviour
 
     private void GoToTarget()
     {
-        if (_target == null)
-        {
-            transform.position = _tower.position;
-            gameObject.SetActive(false);
-            return;
-        }
         transform.position = Vector3.MoveTowards(transform.position,_target.position, dartSpeed * Time.deltaTime);
         transform.LookAt(_target);
         if (Vector3.Distance(transform.position, _target.position) <= 0.001f)
