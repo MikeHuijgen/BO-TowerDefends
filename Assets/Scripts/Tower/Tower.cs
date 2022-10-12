@@ -100,7 +100,7 @@ public class Tower : MonoBehaviour
         EnemyFollowWaypoint target = balloonList[0];
         for (int i = 0; i < balloonList.Count; i++)
         {
-            if (balloonList[i].inGameTime > target.inGameTime)
+            if (balloonList[i].procentTraveled > target.procentTraveled)
             {
                 target = balloonList[i];
             }
@@ -113,7 +113,7 @@ public class Tower : MonoBehaviour
         EnemyFollowWaypoint target = balloonList[0];
         for (int i = 0; i < balloonList.Count; i++)
         {
-            if (balloonList[i].inGameTime < target.inGameTime)
+            if (balloonList[i].procentTraveled < target.procentTraveled)
             {
                 target = balloonList[i];
             }

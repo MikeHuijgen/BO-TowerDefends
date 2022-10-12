@@ -25,9 +25,21 @@ public class EnemyFollowWaypoint : MonoBehaviour
     private PlayerHealth playerHealth;
 
 
+    private float totalDistance;
+    private int waypointIndex;
+    private float totalTraveled;
+    public float procentTraveled;
+    private float totalDistanceNeedToTraveled;
+    private float balloonDistance;
+    private float distanceTillNextWaypoint;
+
+
     private void OnEnable()
     {
         inGameTime = 0;
+        totalDistanceNeedToTraveled = 0;
+        totalDistance = 0;
+        waypointIndex = 0;
         enemySpawner = GetComponentInParent<EnemySpawner>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         waypointParent = GameObject.FindGameObjectWithTag("waypointParent");
@@ -41,6 +53,7 @@ public class EnemyFollowWaypoint : MonoBehaviour
         FinishedWaypoints();
         MoveEnemy();
         CheckEnemysPos();
+        balloonProgressOnWaypoint();
     }
 
     private void FindWaypoints()
@@ -54,13 +67,56 @@ public class EnemyFollowWaypoint : MonoBehaviour
         }
 
         amountOfWaypoints = waypoints.Count;
+        CalculateTotalDistance();
+    }
+
+    private void CalculateTotalDistance()
+    {
+        //Calculate how far the total distance is
+        Transform waypoint = waypoints[0];
+        foreach (Transform child in waypointParent.transform)
+        {
+            totalDistance += Vector3.Distance(waypoint.position, child.position);
+            waypoint = child;
+        }
+
+    }
+
+    private void balloonProgressOnWaypoint()
+    {
+        //Checks how far the balloon is on the total distance
+        float newDistance = Vector3.Distance(transform.position, currentWaypoint.position);
+
+        if (newDistance < distanceTillNextWaypoint)
+        {
+            float difference = distanceTillNextWaypoint - newDistance;
+            totalTraveled = balloonDistance - difference;
+            procentTraveled = totalDistance - totalTraveled;
+        }      
+    }
+
+    private void BalloonProgres()
+    {
+        //Checks everytime the balloon change waypoints how long the distance is to the end from its current waypoint
+        waypointIndex++;
+        distanceTillNextWaypoint = Vector3.Distance(waypoints[waypointIndex - 1].position, currentWaypoint.position);
+        totalDistanceNeedToTraveled = 0;
+        Transform waypoint = waypoints[waypointIndex - 1];
+ 
+        for (int i = waypointIndex; i < waypoints.Count; i++)
+        {
+            totalDistanceNeedToTraveled += Vector3.Distance(waypoint.position, waypoints[i].position);
+            waypoint = waypoints[i];
+        }
+
+        balloonDistance = totalDistanceNeedToTraveled;
     }
 
     private void MoveEnemy()
     {
         if (enemySpawnedIn)
         {
-            inGameTime += Time.deltaTime * moveSpeed;
+            //inGameTime += Time.deltaTime * moveSpeed;
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);      
         }
     }
@@ -80,6 +136,7 @@ public class EnemyFollowWaypoint : MonoBehaviour
                 currentWaypoint = waypoints[currentWaypoint.GetSiblingIndex() + 1];
                 waypointsPassed++;
                 transform.LookAt(currentWaypoint.position);
+                BalloonProgres();
             }
         }
     }
