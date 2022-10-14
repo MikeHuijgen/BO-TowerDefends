@@ -16,6 +16,7 @@ public class PlaceTower : MonoBehaviour
     private int towerCost;
     private float towerColliderY = 1f;
     private float towerRange;
+    private float towerRangeColliderTrans;
     private float towerRangeOpacity;
 
     private bool isSelected = false;
@@ -26,6 +27,7 @@ public class PlaceTower : MonoBehaviour
     private Bank bank;
     private TowerShop towerShop;
     private GameObject towerRangeTransform;
+    private GameObject towerRangeCollider;
     private Vector3 mousePos;
     private Vector3 worldPos;
     private RaycastHit hit;
@@ -37,7 +39,9 @@ public class PlaceTower : MonoBehaviour
         // it takes some values from the tower script and after that disable the tower script
         tower = GetComponent<Tower>();
         towerRangeTransform = tower.towerRangeTransform;
+        towerRangeCollider = tower.towerRangeCollider;
         towerRange = tower.towerRange;
+        towerRangeColliderTrans = tower.towerRangeColliderTrans;
         towerRangeOpacity = tower.rangeOpacity;
         tower.enabled = false;
     }
@@ -48,6 +52,7 @@ public class PlaceTower : MonoBehaviour
         bank = FindObjectOfType<Bank>();
         towerCollider.size = new Vector3(towerColliderX, towerColliderY, towerColliderZ);
         towerRangeTransform.transform.localScale = new Vector3(towerRange,0,towerRange);
+        towerRangeCollider.transform.localScale = new Vector3(towerRangeColliderTrans, 0, towerRangeColliderTrans);
     }
 
     private void Update()
@@ -93,7 +98,7 @@ public class PlaceTower : MonoBehaviour
     private void PlaceTheTower()
     {
         //if you can place the tower you place the tower where your mouse is
-        if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path" && !isInTowerCollider && bank.bankBalance > towerCost && !mouseIsInUI)
+        if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path" && !isInTowerCollider && bank.bankBalance >= towerCost && !mouseIsInUI)
         {
             bank.DecreaseBankAmount(towerCost);
             towerShop.TowerHasBeenPlaced();

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2113806869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RayCastSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,8 +42,6 @@ GameObject:
   - component: {fileID: 2687247141991033190}
   - component: {fileID: 92604879538736504}
   - component: {fileID: 5206712673303441888}
-  - component: {fileID: 3220483466735263144}
-  - component: {fileID: 8674071553034214065}
   m_Layer: 0
   m_Name: Range
   m_TagString: Untagged
@@ -59,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248980609916512757}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.43, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 10, y: 0.01, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116,32 +114,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3220483466735263144
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248980609916512757}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8674071553034214065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248980609916512757}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c8a1b28d86dde347bf1a433dfac78e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2232994232732204437
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9142969102587888530}
   - component: {fileID: 7428317796733494735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TowerCollider
   m_TagString: tower
   m_Icon: {fileID: 0}
@@ -187,6 +159,74 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2519356719328958373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5308335951324328808}
+  - component: {fileID: 5878213600362662920}
+  - component: {fileID: 8518083654773473782}
+  - component: {fileID: 1618444528882747936}
+  m_Layer: 0
+  m_Name: RangeCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5308335951324328808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519356719328958373}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalScale: {x: 10, y: 0.01, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4048586458721308477}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5878213600362662920
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519356719328958373}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!136 &8518083654773473782
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519356719328958373}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1618444528882747936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519356719328958373}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8a1b28d86dde347bf1a433dfac78e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5334317038526400404
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,8 +241,8 @@ GameObject:
   - component: {fileID: 7731137724131667949}
   - component: {fileID: 3485944331762483255}
   - component: {fileID: -4484325802217507847}
-  m_Layer: 0
-  m_Name: SniperTower
+  m_Layer: 6
+  m_Name: Sniper_Monkey
   m_TagString: tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,6 +263,7 @@ Transform:
   - {fileID: 2687247141991033190}
   - {fileID: 9142969102587888530}
   - {fileID: 8046208493866803683}
+  - {fileID: 5308335951324328808}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -324,16 +365,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerDamage: 1
-  towerRange: 60
+  towerRange: 5
+  towerRangeColliderTrans: 100
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
+  towerRangeCollider: {fileID: 2519356719328958373}
   fireRate: 1
   dartPoolAmount: 5
   towerType: 1
   targetStyle: 0
   dartPrefab: {fileID: 4315885570258830560, guid: 70d5dec22d8967243b02cd8f7b828181,
     type: 3}
-  balloonList: []
   balloonsPoped: 0
   currentTarget: {fileID: 0}
   playerCanSelect: 0
@@ -348,7 +390,7 @@ GameObject:
   - component: {fileID: 8046208493866803683}
   - component: {fileID: 4473821361243216766}
   - component: {fileID: 1027501442169115}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RaySpawnerParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,9 +6,11 @@ public class Tower : MonoBehaviour
 {
     [Header("Tower Settings")]
     [SerializeField] public int towerDamage;
-    [SerializeField] [Range(5, 60)] public float towerRange;
+    [SerializeField] [Range(5, 100)] public float towerRange;
+    [SerializeField] [Range(5, 100)] public float towerRangeColliderTrans;
     [SerializeField] [Range(0, 1)] public float rangeOpacity;
     public GameObject towerRangeTransform;
+    public GameObject towerRangeCollider;
     [SerializeField] private float fireRate;
     [SerializeField] private int dartPoolAmount;
 
@@ -16,7 +18,6 @@ public class Tower : MonoBehaviour
     [SerializeField] private TowerType towerType;
     [SerializeField] private TargetStyle targetStyle;
     [SerializeField] private GameObject dartPrefab;
-    [SerializeField] private List<EnemyFollowWaypoint> balloonList = new List<EnemyFollowWaypoint>();
 
     [Header("Tower Check")]
     [SerializeField] private int balloonsPoped;
@@ -25,14 +26,15 @@ public class Tower : MonoBehaviour
     public bool playerCanSelect = false;
     private float currentFireRate;
 
+    private List<EnemyFollowWaypoint> balloonList = new List<EnemyFollowWaypoint>();
     private List<GameObject> dartPool = new List<GameObject>();
 
     Ray ray;
 
     private enum TowerType 
     { 
-        normal,
-        sniper
+        Projectile,
+        RayCast
     }
 
     public enum TargetStyle
@@ -44,9 +46,8 @@ public class Tower : MonoBehaviour
     private void OnEnable()
     {
         playerCanSelect = true;
-        currentFireRate = fireRate;
-        towerRangeTransform.GetComponent<CheckForEnemyInRange>().enabled = true;
-        towerRangeTransform.GetComponent<CapsuleCollider>().enabled = true;
+        towerRangeCollider.GetComponent<CheckForEnemyInRange>().enabled = true;
+        towerRangeCollider.GetComponent<CapsuleCollider>().enabled = true;
         FillDartPool();
     }
 
@@ -59,9 +60,11 @@ public class Tower : MonoBehaviour
 
     private void FillDartPool()
     {
+        if (towerType != TowerType.Projectile) { return; }
         for (int i = 0; i < dartPoolAmount; i++)
         {
             GameObject newDart = Instantiate(dartPrefab, transform.position, Quaternion.identity);
+            newDart.transform.parent = transform;
             dartPool.Add(newDart);
             newDart.SetActive(false);
         }
@@ -100,7 +103,7 @@ public class Tower : MonoBehaviour
         EnemyFollowWaypoint target = balloonList[0];
         for (int i = 0; i < balloonList.Count; i++)
         {
-            if (balloonList[i].procentTraveled > target.procentTraveled)
+            if (balloonList[i].totalDistanceTraveled > target.totalDistanceTraveled)
             {
                 target = balloonList[i];
             }
@@ -113,7 +116,7 @@ public class Tower : MonoBehaviour
         EnemyFollowWaypoint target = balloonList[0];
         for (int i = 0; i < balloonList.Count; i++)
         {
-            if (balloonList[i].procentTraveled < target.procentTraveled)
+            if (balloonList[i].totalDistanceTraveled < target.totalDistanceTraveled)
             {
                 target = balloonList[i];
             }
@@ -127,10 +130,10 @@ public class Tower : MonoBehaviour
 
         switch (towerType)
         {
-            case TowerType.normal:
+            case TowerType.Projectile:
                 AttackWithDarts();
                 break;
-            case TowerType.sniper:
+            case TowerType.RayCast:
                 AttackWithRay();
                 break;
             default:
@@ -147,10 +150,9 @@ public class Tower : MonoBehaviour
         {
             if (!dart.activeInHierarchy && currentFireRate <= 0)
             {
-                transform.LookAt(new Vector3(currentTarget.position.x, 1, currentTarget.position.z));
+                transform.LookAt(new Vector3(currentTarget.position.x, transform.position.y, currentTarget.position.z));
                 dart.GetComponent<Dart>().SetUpDart(currentTarget.transform, transform, towerDamage);
                 currentFireRate = fireRate;
-
             }
         }
     }
@@ -162,7 +164,7 @@ public class Tower : MonoBehaviour
         ray.origin = transform.position;
         ray.direction = transform.forward;
 
-        transform.LookAt(new Vector3(currentTarget.position.x, 1, currentTarget.position.z));
+        transform.LookAt(new Vector3(currentTarget.position.x, transform.position.y, currentTarget.position.z));
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo) && currentFireRate <= 0)
         {
@@ -188,8 +190,15 @@ public class Tower : MonoBehaviour
         balloonList.Remove(enemy.GetComponent<EnemyFollowWaypoint>());
     }
 
-    public void towerGotSelected()
+    public void TowerGotSelected()
     {
         towerRangeTransform.GetComponent<MeshRenderer>().enabled = true;
+        playerCanSelect = false;
+    }
+
+    public void TowerGotDeselected()
+    {
+        towerRangeTransform.GetComponent<MeshRenderer>().enabled = false;
+        playerCanSelect = true;
     }
 }

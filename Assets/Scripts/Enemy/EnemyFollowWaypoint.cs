@@ -27,10 +27,9 @@ public class EnemyFollowWaypoint : MonoBehaviour
 
     private float totalDistance;
     private int waypointIndex;
-    private float totalTraveled;
-    public float procentTraveled;
+    private float totalNeedsToTraveled;
+    public float totalDistanceTraveled;
     private float totalDistanceNeedToTraveled;
-    private float balloonDistance;
     private float distanceTillNextWaypoint;
 
 
@@ -53,7 +52,7 @@ public class EnemyFollowWaypoint : MonoBehaviour
         FinishedWaypoints();
         MoveEnemy();
         CheckEnemysPos();
-        balloonProgressOnWaypoint();
+        balloonProgressOnCurWaypoint();
     }
 
     private void FindWaypoints()
@@ -79,10 +78,9 @@ public class EnemyFollowWaypoint : MonoBehaviour
             totalDistance += Vector3.Distance(waypoint.position, child.position);
             waypoint = child;
         }
-
     }
 
-    private void balloonProgressOnWaypoint()
+    private void balloonProgressOnCurWaypoint()
     {
         //Checks how far the balloon is on the total distance
         float newDistance = Vector3.Distance(transform.position, currentWaypoint.position);
@@ -90,26 +88,24 @@ public class EnemyFollowWaypoint : MonoBehaviour
         if (newDistance < distanceTillNextWaypoint)
         {
             float difference = distanceTillNextWaypoint - newDistance;
-            totalTraveled = balloonDistance - difference;
-            procentTraveled = totalDistance - totalTraveled;
+            totalNeedsToTraveled = totalDistanceNeedToTraveled - difference;
+            totalDistanceTraveled = totalDistance - totalNeedsToTraveled;
         }      
     }
 
     private void BalloonProgres()
     {
         //Checks everytime the balloon change waypoints how long the distance is to the end from its current waypoint
-        waypointIndex++;
-        distanceTillNextWaypoint = Vector3.Distance(waypoints[waypointIndex - 1].position, currentWaypoint.position);
+        distanceTillNextWaypoint = Vector3.Distance(waypoints[waypointIndex].position, currentWaypoint.position);
         totalDistanceNeedToTraveled = 0;
-        Transform waypoint = waypoints[waypointIndex - 1];
+        Transform waypoint = waypoints[waypointIndex];
  
         for (int i = waypointIndex; i < waypoints.Count; i++)
         {
             totalDistanceNeedToTraveled += Vector3.Distance(waypoint.position, waypoints[i].position);
             waypoint = waypoints[i];
         }
-
-        balloonDistance = totalDistanceNeedToTraveled;
+        waypointIndex++;
     }
 
     private void MoveEnemy()

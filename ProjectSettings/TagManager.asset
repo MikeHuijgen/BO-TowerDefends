@@ -9,7 +9,8 @@ TagManager:
   - waypointParent
   - pathParent
   - enemy
-  - ui
+  - towerParent
+  - towerInfo
   layers:
   - Default
   - TransparentFX

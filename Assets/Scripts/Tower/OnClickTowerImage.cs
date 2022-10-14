@@ -12,7 +12,7 @@ public class OnClickTowerImage : MonoBehaviour
     [Header("Tower Prefab")]
     [SerializeField] private GameObject towerPrefab;
     [SerializeField] private TMP_Text towerCostText;
-    [SerializeField] private Transform towerParent;
+    private GameObject towerParent;
 
     private float imageApacityEnable;
     private GameObject tower;
@@ -25,6 +25,7 @@ public class OnClickTowerImage : MonoBehaviour
 
     private void Start()
     {
+        towerParent = GameObject.FindGameObjectWithTag("towerParent");
         bank = FindObjectOfType<Bank>();
         towerImage = transform.GetComponent<Image>();
         imageApacityEnable = towerImage.color.a;
@@ -56,7 +57,7 @@ public class OnClickTowerImage : MonoBehaviour
     {
         if (!disable)
         {
-            tower = Instantiate(towerPrefab, towerParent);
+            tower = Instantiate(towerPrefab, towerParent.transform);
             tower.GetComponent<PlaceTower>().TowerSelected(true,towerCost);
             towerShop.TowerHasBeenSelected();
         }
@@ -71,6 +72,7 @@ public class OnClickTowerImage : MonoBehaviour
 
     public void EnableTowerImage()
     {
+        notEnoughMoney = false;
         disable = false;
         towerImageColor.a = imageApacityEnable;
         towerImage.color = towerImageColor;
