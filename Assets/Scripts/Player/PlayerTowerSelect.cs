@@ -35,8 +35,8 @@ public class PlayerTowerSelect : MonoBehaviour
                 selectedTower.GetComponent<Tower>().TowerGotDeselected();
                 selectedTower = hit.transform;
                 selectedTower.GetComponent<Tower>().TowerGotSelected();
-                towerInfoPanel.gameObject.SetActive(true);
-                towerInfoPanel.GetTowerScript(selectedTower.GetComponent<Tower>());
+               // towerInfoPanel.gameObject.SetActive(true);
+               // towerInfoPanel.GetTowerScript(selectedTower.GetComponent<Tower>());
             }
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, towerLayer) && hitInfo.transform.GetComponent<Tower>().playerCanSelect && !towerHasBeenSelected)
@@ -44,8 +44,8 @@ public class PlayerTowerSelect : MonoBehaviour
                 hitInfo.transform.GetComponent<Tower>().TowerGotSelected();
                 selectedTower = hitInfo.transform;
                 towerHasBeenSelected = true;
-                towerInfoPanel.gameObject.SetActive(true);
-                towerInfoPanel.GetTowerScript(selectedTower.GetComponent<Tower>());
+                //towerInfoPanel.gameObject.SetActive(true);
+                //towerInfoPanel.GetTowerScript(selectedTower.GetComponent<Tower>());
             }
 
         }

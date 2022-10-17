@@ -305,7 +305,7 @@ MonoBehaviour:
   fireRate: 0.5
   dartPoolAmount: 3
   towerType: 0
-  targetStyle: 0
+  targetStyle: 1
   dartPrefab: {fileID: 4315885570258830560, guid: 70d5dec22d8967243b02cd8f7b828181,
     type: 3}
   balloonsPoped: 0
