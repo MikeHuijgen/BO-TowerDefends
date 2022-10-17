@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 7731137724131667949}
   - component: {fileID: 3485944331762483255}
   - component: {fileID: -4484325802217507847}
+  - component: {fileID: 5901241435938955302}
   m_Layer: 6
   m_Name: Sniper_Monkey
   m_TagString: tower
@@ -365,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerDamage: 1
-  towerRange: 5
+  towerRangeSphere: 5
   towerRangeColliderTrans: 100
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
@@ -379,6 +380,21 @@ MonoBehaviour:
   balloonsPoped: 0
   currentTarget: {fileID: 0}
   playerCanSelect: 0
+  balloonList: []
+--- !u!114 &5901241435938955302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5334317038526400404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bdd4465875c9e2458b813342b6a4d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posIsLeft: 0
+  posIsRight: 0
 --- !u!1 &8298592991154685434
 GameObject:
   m_ObjectHideFlags: 0

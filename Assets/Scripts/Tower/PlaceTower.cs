@@ -40,7 +40,7 @@ public class PlaceTower : MonoBehaviour
         tower = GetComponent<Tower>();
         towerRangeTransform = tower.towerRangeTransform;
         towerRangeCollider = tower.towerRangeCollider;
-        towerRange = tower.towerRange;
+        towerRange = tower.towerRangeSphere;
         towerRangeColliderTrans = tower.towerRangeColliderTrans;
         towerRangeOpacity = tower.rangeOpacity;
         tower.enabled = false;
@@ -100,6 +100,7 @@ public class PlaceTower : MonoBehaviour
         //if you can place the tower you place the tower where your mouse is
         if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path" && !isInTowerCollider && bank.bankBalance >= towerCost && !mouseIsInUI)
         {
+            GetComponent<SaveTowerPosition>().SaveCurrentPosition();
             bank.DecreaseBankAmount(towerCost);
             towerShop.TowerHasBeenPlaced();
             towerRangeTransform.GetComponent<MeshRenderer>().enabled = false;

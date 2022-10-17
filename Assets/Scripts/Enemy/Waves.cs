@@ -7,13 +7,14 @@ using TMPro;
 public class Waves : MonoBehaviour
 {
     [SerializeField] private int wave;
-    [SerializeField] private int maxWave;
-    [SerializeField] private int moneyIncreaseAmount; 
+    [SerializeField] private int moneyIncreasePerWave; 
     [SerializeField] private TMP_Text waveCounter;
 
     [SerializeField] private List<WaveScriptableObject> waves = new List<WaveScriptableObject>();
     private EnemySpawner EnemySpawner;
     private Bank bank;
+
+    private int maxWave;
 
     private void Start()
     {
@@ -32,7 +33,7 @@ public class Waves : MonoBehaviour
             wave++;
             Debug.Log(wave);
             waveCounter.text = $"{wave}/{maxWave}";
-            bank.IncreaseBankAmount(moneyIncreaseAmount);
+            bank.IncreaseBankAmount(moneyIncreasePerWave);
             EnemySpawner.StartNextWave(waves[wave - 1]);
         }
         else if(wave >= maxWave)

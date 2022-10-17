@@ -70,6 +70,7 @@ public class Enemy : MonoBehaviour
 
     public void DecreaseHealth(int amount, Transform tower)
     {
+        if (isDisable) { return; }
         bank.IncreaseBankAmount(goldPerPop);
         balloonHealth -= amount;
 

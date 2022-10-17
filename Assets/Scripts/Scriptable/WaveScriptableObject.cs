@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Wave", menuName = "Scriptable Objects")]
+[CreateAssetMenu(fileName = "New Wave", menuName = "Create new Wave")]
 public class WaveScriptableObject : ScriptableObject
 {
     [SerializeField] public List<BalloonSlot> balloons = new List<BalloonSlot>();

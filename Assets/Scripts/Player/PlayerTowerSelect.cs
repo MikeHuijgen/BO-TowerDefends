@@ -8,13 +8,12 @@ public class PlayerTowerSelect : MonoBehaviour
     [SerializeField] private LayerMask towerLayer;
 
     private bool towerHasBeenSelected = false;
-    private ShowTowerInfo towerInfoPanel;
+    private ShowTowerInfo towerInfo;
     private Transform selectedTower;
 
     private void Start()
     {
-        towerInfoPanel = FindObjectOfType<ShowTowerInfo>();
-        towerInfoPanel.gameObject.SetActive(false);
+        towerInfo = FindObjectOfType<ShowTowerInfo>();
     }
 
     // dit moet nog verbeterd worden
@@ -35,8 +34,8 @@ public class PlayerTowerSelect : MonoBehaviour
                 selectedTower.GetComponent<Tower>().TowerGotDeselected();
                 selectedTower = hit.transform;
                 selectedTower.GetComponent<Tower>().TowerGotSelected();
-               // towerInfoPanel.gameObject.SetActive(true);
-               // towerInfoPanel.GetTowerScript(selectedTower.GetComponent<Tower>());
+
+                towerInfo.GetTowerInfo(selectedTower.GetComponent<Tower>(), selectedTower.GetComponent<SaveTowerPosition>());
             }
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, towerLayer) && hitInfo.transform.GetComponent<Tower>().playerCanSelect && !towerHasBeenSelected)
@@ -44,8 +43,8 @@ public class PlayerTowerSelect : MonoBehaviour
                 hitInfo.transform.GetComponent<Tower>().TowerGotSelected();
                 selectedTower = hitInfo.transform;
                 towerHasBeenSelected = true;
-                //towerInfoPanel.gameObject.SetActive(true);
-                //towerInfoPanel.GetTowerScript(selectedTower.GetComponent<Tower>());
+
+                towerInfo.GetTowerInfo(selectedTower.GetComponent<Tower>(), selectedTower.GetComponent<SaveTowerPosition>());
             }
 
         }
@@ -63,7 +62,7 @@ public class PlayerTowerSelect : MonoBehaviour
 
                 selectedTower.GetComponent<Tower>().TowerGotDeselected();
                 towerHasBeenSelected = false;
-                towerInfoPanel.gameObject.SetActive(false);
+                towerInfo.TowerGotDeselected();
             }
         }
     }

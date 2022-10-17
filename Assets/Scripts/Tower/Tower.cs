@@ -6,7 +6,7 @@ public class Tower : MonoBehaviour
 {
     [Header("Tower Settings")]
     [SerializeField] public int towerDamage;
-    [SerializeField] [Range(5, 100)] public float towerRange;
+    [SerializeField] [Range(5, 100)] public float towerRangeSphere;
     [SerializeField] [Range(5, 100)] public float towerRangeColliderTrans;
     [SerializeField] [Range(0, 1)] public float rangeOpacity;
     public GameObject towerRangeTransform;
@@ -26,8 +26,10 @@ public class Tower : MonoBehaviour
     public bool playerCanSelect = false;
     private float currentFireRate;
 
-    private List<EnemyFollowWaypoint> balloonList = new List<EnemyFollowWaypoint>();
+    [SerializeField] private List<EnemyFollowWaypoint> balloonList = new List<EnemyFollowWaypoint>();
     private List<GameObject> dartPool = new List<GameObject>();
+
+    ShowTowerInfo towerInfoPanel;
 
     Ray ray;
 
