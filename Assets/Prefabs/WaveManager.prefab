@@ -45,17 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave: 0
-  maxWave: 5
-  moneyIncreaseAmount: 10
+  moneyIncreasePerWave: 200
   waveCounter: {fileID: 0}
   waves:
-  - {fileID: 11400000, guid: b3b75dcf243747e4e8f9026e7a26bb66, type: 2}
-  - {fileID: 11400000, guid: a943c27fda5535e4893be999d34de736, type: 2}
-  - {fileID: 11400000, guid: 78260e8d9cfb799409382d32115f1cbb, type: 2}
-  - {fileID: 11400000, guid: 1ced17d409524ea4899ab7622095238e, type: 2}
-  - {fileID: 11400000, guid: 5b5032a44b0884a44bfa8e821d599db4, type: 2}
-  - {fileID: 11400000, guid: dc07ff665ffc4f54e8dafa426d4054a2, type: 2}
-  - {fileID: 11400000, guid: b815597bb39ec8043beabd8d99cb6a79, type: 2}
-  - {fileID: 11400000, guid: 4f56afdd201a5934d8e1decc50c4a8d5, type: 2}
-  - {fileID: 11400000, guid: 5aa3923f9fd2538469a7ade7fa642d20, type: 2}
-  - {fileID: 11400000, guid: dba0540319bb2ff4d92b212645e1fa33, type: 2}
+  - {fileID: 11400000, guid: 2d64aec40e141cb4db9dc4b7ef56d51e, type: 2}

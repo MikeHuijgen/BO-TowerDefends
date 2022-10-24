@@ -203,4 +203,27 @@ public class Tower : MonoBehaviour
         towerRangeTransform.GetComponent<MeshRenderer>().enabled = false;
         playerCanSelect = true;
     }
+
+    public void HasBeenUpgraded(UpgradeType type, float value)
+    {
+        UpgradeType upgradeType = type;
+        switch (upgradeType)
+        {
+            case UpgradeType.Range:
+                towerRangeColliderTrans += value;
+                towerRangeSphere += value;
+                towerRangeTransform.transform.localScale = new Vector3(towerRangeSphere, 0, towerRangeSphere);
+                towerRangeCollider.transform.localScale = new Vector3(towerRangeColliderTrans, 0, towerRangeColliderTrans);
+                break;
+            case UpgradeType.Damage:
+                towerDamage += (int)value;
+                break;
+            case UpgradeType.AttackSpeed:
+                fireRate -= value;
+                break;
+            default:
+                Debug.Log("Test");
+                break;
+        }
+    }
 }

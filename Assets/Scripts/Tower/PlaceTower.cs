@@ -63,6 +63,7 @@ public class PlaceTower : MonoBehaviour
         CheckCollisonList();
         CancelTowerPlacement();
     }
+
     public void TowerSelected(bool selected, int costTower)
     {
         towerCost = costTower;
@@ -100,7 +101,7 @@ public class PlaceTower : MonoBehaviour
         //if you can place the tower you place the tower where your mouse is
         if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path" && !isInTowerCollider && bank.bankBalance >= towerCost && !mouseIsInUI)
         {
-            GetComponent<SaveTowerPosition>().SaveCurrentPosition();
+            GetComponentInChildren<SaveTowerPosition>().SaveCurrentPosition();
             bank.DecreaseBankAmount(towerCost);
             towerShop.TowerHasBeenPlaced();
             towerRangeTransform.GetComponent<MeshRenderer>().enabled = false;
