@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class UpgradeTower : MonoBehaviour
 {
-    [SerializeField] private List<UpgradeScript> Path1 = new List<UpgradeScript>();
-    [SerializeField] private List<UpgradeScript> Path2 = new List<UpgradeScript>();
+    public List<UpgradeScript> Path1 = new List<UpgradeScript>();
+    public List<UpgradeScript> Path2 = new List<UpgradeScript>();
 
     private int upgradesDonePath1;
     private int upgradesDonePath2;
-    private int path1Index;
-    private int path2Index;
+    public int path1Index;
+    public int path2Index;
 
     private Tower tower;
 

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: test
   m_EditorClassIdentifier: 
   upgradeName: Test Upgade
-  description: 'ufgqgfigfegfrfyieggfyegfigfyiqgfyg
-
-'
+  description: Ik heb een nieuwe upgrade nodig
   upgradeCost: 100
   UpgradeValueInfo:
   - upgradeType: 0

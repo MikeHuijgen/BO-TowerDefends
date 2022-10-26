@@ -19,7 +19,7 @@ public class PlaceTower : MonoBehaviour
     private float towerRangeColliderTrans;
     private float towerRangeOpacity;
 
-    private bool isSelected = false;
+    [System.NonSerialized] public bool isSelected = false;
     private bool isInTowerCollider = false;
     private bool mouseIsInUI = false;
 
@@ -32,17 +32,30 @@ public class PlaceTower : MonoBehaviour
     private Vector3 worldPos;
     private RaycastHit hit;
     private Color rangeColor;
+    private ShowTowerInfo showTowerInfo;
     private Tower tower;
+    private Transform towerParent;
 
     private void Awake()
     {
         // it takes some values from the tower script and after that disable the tower script
+        towerParent = transform.parent;
         tower = GetComponent<Tower>();
+        showTowerInfo = FindObjectOfType<ShowTowerInfo>();
         towerRangeTransform = tower.towerRangeTransform;
         towerRangeCollider = tower.towerRangeCollider;
         towerRange = tower.towerRangeSphere;
         towerRangeColliderTrans = tower.towerRangeColliderTrans;
         towerRangeOpacity = tower.rangeOpacity;
+        foreach (Transform tower in towerParent)
+        {
+            // door deze lijn breekt mijn code moet nog aangepast worden 
+            if (!tower.GetComponent<Tower>().playerCanSelect)
+            {
+                tower.GetComponent<Tower>().TowerGotDeselected();
+            }
+            showTowerInfo.TowerGotDeselected();
+        }
         tower.enabled = false;
     }
 

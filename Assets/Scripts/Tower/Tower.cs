@@ -200,6 +200,7 @@ public class Tower : MonoBehaviour
 
     public void TowerGotDeselected()
     {
+        Debug.Log("test");
         towerRangeTransform.GetComponent<MeshRenderer>().enabled = false;
         playerCanSelect = true;
     }

@@ -344,7 +344,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2dfb4540df395af4088d6a105cfbf5ff, type: 2}
   - {fileID: 11400000, guid: 81bb7f83faba79a41811f48b4516d38e, type: 2}
   - {fileID: 11400000, guid: e991585cd238e4f43aea7555f48b490a, type: 2}
-  Path2: []
+  Path2:
+  - {fileID: 11400000, guid: e991585cd238e4f43aea7555f48b490a, type: 2}
+  path1Index: 0
+  path2Index: 0
 --- !u!1 &5901039571302851449
 GameObject:
   m_ObjectHideFlags: 0

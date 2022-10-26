@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b96d7bdeafb054e9aef48e5b0255e6, type: 3}
   m_Name: Test2
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
+  upgradeName: ghello
+  description: heyyyyyyyy
   upgradeCost: 0
   UpgradeValueInfo:
   - upgradeType: 1
