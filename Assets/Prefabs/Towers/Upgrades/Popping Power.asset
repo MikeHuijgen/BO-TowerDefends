@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44b96d7bdeafb054e9aef48e5b0255e6, type: 3}
-  m_Name: Poping Power
+  m_Name: Popping Power
   m_EditorClassIdentifier: 
-  upgradeName: Poping Power
+  upgradeName: Popping Power
   description: The monkey can hit 2 layers per shot
   upgradeCost: 300
   UpgradeValueInfo:

@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 658856524}
   - component: {fileID: 658856523}
   - component: {fileID: 658856522}
+  - component: {fileID: 733422224}
   m_Layer: 5
   m_Name: SellButton
   m_TagString: Untagged
@@ -198,7 +199,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 658856523}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 733422224}
+        m_TargetAssemblyTypeName: SellButton, Assembly-CSharp
+        m_MethodName: SellTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &733422224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658856520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74abd94318fcae541bac74e481ce4b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1378214639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,8 +1500,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17
-  m_fontSizeBase: 17
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4713,6 +4738,7 @@ GameObject:
   - component: {fileID: 265663832814773217}
   - component: {fileID: 6116013042043244685}
   - component: {fileID: 5902248631472199404}
+  - component: {fileID: 423686617}
   m_Layer: 5
   m_Name: SellButton
   m_TagString: Untagged
@@ -4822,7 +4848,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6116013042043244685}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 423686617}
+        m_TargetAssemblyTypeName: SellButton, Assembly-CSharp
+        m_MethodName: SellTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &423686617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5733530160663137142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74abd94318fcae541bac74e481ce4b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5854169375227462952
 GameObject:
   m_ObjectHideFlags: 0
@@ -5116,7 +5166,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: play
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5334,6 +5386,7 @@ GameObject:
   - component: {fileID: 2027660292470305964}
   - component: {fileID: 8952202110741212934}
   - component: {fileID: 1228117795442478649}
+  - component: {fileID: 1366447226}
   m_Layer: 5
   m_Name: Play/Pauze Button
   m_TagString: Untagged
@@ -5443,7 +5496,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8952202110741212934}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1366447226}
+        m_TargetAssemblyTypeName: PlayPauzeButton, Assembly-CSharp
+        m_MethodName: OnClickPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1366447226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6652158024433739987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea0ba250fdb3c74d9f5be7b3a5f634d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 735762584522326593}
 --- !u!1 &6883074266443229259
 GameObject:
   m_ObjectHideFlags: 0
