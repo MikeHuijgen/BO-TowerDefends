@@ -124,6 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9142969102587888530}
   - component: {fileID: 7428317796733494735}
+  - component: {fileID: 2540695599423133169}
   m_Layer: 6
   m_Name: TowerCollider
   m_TagString: tower
@@ -159,6 +160,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2540695599423133169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2232994232732204437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bdd4465875c9e2458b813342b6a4d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posIsLeft: 0
+  posIsRight: 0
 --- !u!1 &2519356719328958373
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +256,7 @@ GameObject:
   - component: {fileID: 7731137724131667949}
   - component: {fileID: 3485944331762483255}
   - component: {fileID: -4484325802217507847}
-  - component: {fileID: 5901241435938955302}
+  - component: {fileID: 8365835959565594266}
   m_Layer: 6
   m_Name: Sniper_Monkey
   m_TagString: tower
@@ -381,7 +396,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   playerCanSelect: 0
   balloonList: []
---- !u!114 &5901241435938955302
+--- !u!114 &8365835959565594266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,11 +405,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5334317038526400404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bdd4465875c9e2458b813342b6a4d4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 688a451a2195b7b4e98839fb125646ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posIsLeft: 0
-  posIsRight: 0
+  Path1:
+  - {fileID: 11400000, guid: 31b6f64dd5bbe1047bf5d014a7443ac4, type: 2}
+  Path2:
+  - {fileID: 11400000, guid: a3fcbe7e8feeebc4c86453cec440eb35, type: 2}
+  path1Index: 0
+  path2Index: 0
 --- !u!1 &8298592991154685434
 GameObject:
   m_ObjectHideFlags: 0

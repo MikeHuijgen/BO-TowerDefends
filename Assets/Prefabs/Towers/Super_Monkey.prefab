@@ -161,6 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9142969102587888530}
   - component: {fileID: 7428317796733494735}
+  - component: {fileID: 2068460037994387386}
   m_Layer: 6
   m_Name: TowerCollider
   m_TagString: tower
@@ -196,6 +197,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2068460037994387386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2232994232732204437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bdd4465875c9e2458b813342b6a4d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posIsLeft: 0
+  posIsRight: 0
 --- !u!1 &5334317038526400404
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +225,7 @@ GameObject:
   - component: {fileID: 7731137724131667949}
   - component: {fileID: 3485944331762483255}
   - component: {fileID: -4484325802217507847}
-  - component: {fileID: 3487751279520519935}
+  - component: {fileID: 1437474225018565208}
   m_Layer: 6
   m_Name: Super_Monkey
   m_TagString: tower
@@ -349,7 +364,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   playerCanSelect: 0
   balloonList: []
---- !u!114 &3487751279520519935
+--- !u!114 &1437474225018565208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -358,8 +373,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5334317038526400404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bdd4465875c9e2458b813342b6a4d4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 688a451a2195b7b4e98839fb125646ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posIsLeft: 0
-  posIsRight: 0
+  Path1:
+  - {fileID: 11400000, guid: e301137dff7ba1e47b347d4f36b292f0, type: 2}
+  - {fileID: 11400000, guid: 2dfb4540df395af4088d6a105cfbf5ff, type: 2}
+  Path2:
+  - {fileID: 11400000, guid: a809bfa439b9d7e45abf8ccea8e75713, type: 2}
+  - {fileID: 11400000, guid: 2dfb4540df395af4088d6a105cfbf5ff, type: 2}
+  path1Index: 0
+  path2Index: 0

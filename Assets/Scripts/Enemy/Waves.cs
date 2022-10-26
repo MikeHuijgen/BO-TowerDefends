@@ -23,6 +23,10 @@ public class Waves : MonoBehaviour
         wave++;
         maxWave = waves.Count;
         waveCounter.text = $"{wave}/{maxWave}";
+    }
+
+    public void PlayerStartedTheGame()
+    {
         EnemySpawner.StartNextWave(waves[wave - 1]);
     }
 
@@ -31,7 +35,6 @@ public class Waves : MonoBehaviour
         if (wave < maxWave)
         {
             wave++;
-            Debug.Log(wave);
             waveCounter.text = $"{wave}/{maxWave}";
             bank.IncreaseBankAmount(moneyIncreasePerWave);
             EnemySpawner.StartNextWave(waves[wave - 1]);

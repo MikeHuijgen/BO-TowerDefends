@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44b96d7bdeafb054e9aef48e5b0255e6, type: 3}
-  m_Name: Test3
+  m_Name: Stronger Bullets
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: qeufgqugfug
-  upgradeCost: 2005
+  upgradeName: Stronger Bullets
+  description: The monkey hit 3 layers at the same time
+  upgradeCost: 400
   UpgradeValueInfo:
-  - upgradeType: 2
-    upgradeValue: 0.3
+  - upgradeType: 1
+    upgradeValue: 2

@@ -13,9 +13,11 @@ public class UpgradeTower : MonoBehaviour
     public int path2Index;
 
     private Tower tower;
+    private Bank bank;
 
     private void Start()
     {
+        bank = GameObject.FindObjectOfType<Bank>();
         tower = GetComponent<Tower>();
     }
 
@@ -35,11 +37,14 @@ public class UpgradeTower : MonoBehaviour
         UpgradeScript upgradeScript = Path1[path1Index];
         UpgradeType upgradeType;
         float upgradeValue;
+        int upgradeCost;
         for (int i = 0; i < upgradeScript.UpgradeValueInfo.Count; i++)
         {
+            upgradeCost = upgradeScript.upgradeCost;
+            bank.DecreaseBankAmount(upgradeScript.upgradeCost);
             upgradeType = upgradeScript.UpgradeValueInfo[i].upgradeType;
             upgradeValue = upgradeScript.UpgradeValueInfo[i].upgradeValue;
-            TellTowerToUpgrade(upgradeType, upgradeValue);
+            TellTowerToUpgrade(upgradeType, upgradeValue, upgradeCost);
         }
 
         upgradesDonePath1++;
@@ -53,19 +58,22 @@ public class UpgradeTower : MonoBehaviour
         UpgradeScript upgradeScript = Path2[path2Index];
         UpgradeType upgradeType;
         float upgradeValue;
+        int upgradeCost;
         for (int i = 0; i < upgradeScript.UpgradeValueInfo.Count; i++)
         {
+            upgradeCost = upgradeScript.upgradeCost;
+            bank.DecreaseBankAmount(upgradeScript.upgradeCost);
             upgradeType = upgradeScript.UpgradeValueInfo[i].upgradeType;
             upgradeValue = upgradeScript.UpgradeValueInfo[i].upgradeValue;
-            TellTowerToUpgrade(upgradeType, upgradeValue);
+            TellTowerToUpgrade(upgradeType, upgradeValue, upgradeCost);
         }
 
         upgradesDonePath2++;
         path2Index++;
     }
 
-    public void TellTowerToUpgrade(UpgradeType type, float value)
+    public void TellTowerToUpgrade(UpgradeType type, float value, int cost)
     {
-        tower.HasBeenUpgraded(type, value);
+        tower.HasBeenUpgraded(type, value, cost);
     }
 }

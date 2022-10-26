@@ -25,6 +25,7 @@ public class Tower : MonoBehaviour
     
     public bool playerCanSelect = false;
     private float currentFireRate;
+    public int towerValue;
 
     [SerializeField] private List<EnemyFollowWaypoint> balloonList = new List<EnemyFollowWaypoint>();
     private List<GameObject> dartPool = new List<GameObject>();
@@ -47,6 +48,8 @@ public class Tower : MonoBehaviour
         
     private void OnEnable()
     {
+        towerValue = 0;
+        towerValue = transform.GetComponent<PlaceTower>().towerCost;
         playerCanSelect = true;
         towerRangeCollider.GetComponent<CheckForEnemyInRange>().enabled = true;
         towerRangeCollider.GetComponent<CapsuleCollider>().enabled = true;
@@ -205,25 +208,27 @@ public class Tower : MonoBehaviour
         playerCanSelect = true;
     }
 
-    public void HasBeenUpgraded(UpgradeType type, float value)
+    public void HasBeenUpgraded(UpgradeType type, float value, int cost)
     {
         UpgradeType upgradeType = type;
         switch (upgradeType)
         {
             case UpgradeType.Range:
+                towerValue += cost;
                 towerRangeColliderTrans += value;
                 towerRangeSphere += value;
                 towerRangeTransform.transform.localScale = new Vector3(towerRangeSphere, 0, towerRangeSphere);
                 towerRangeCollider.transform.localScale = new Vector3(towerRangeColliderTrans, 0, towerRangeColliderTrans);
                 break;
             case UpgradeType.Damage:
+                towerValue += cost;
                 towerDamage += (int)value;
                 break;
             case UpgradeType.AttackSpeed:
+                towerValue += cost;
                 fireRate -= value;
                 break;
             default:
-                Debug.Log("Test");
                 break;
         }
     }

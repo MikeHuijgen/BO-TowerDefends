@@ -13,7 +13,7 @@ public class PlaceTower : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Material rangeMaterial;
 
-    private int towerCost;
+    public int towerCost;
     private float towerColliderY = 1f;
     private float towerRange;
     private float towerRangeColliderTrans;

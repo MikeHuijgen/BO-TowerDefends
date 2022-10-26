@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     private int enemysHaveSpawned;
     public int waveBalloonsIndex;
 
-    private bool canSpawn = true;
+    private bool canSpawn;
     private Waves waves;
     private Transform towerParent;
 
@@ -46,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartNextWave(WaveScriptableObject wave)
     {
+        Debug.Log("test");
         canSpawn = true;
         currentWave = wave;
         betweenSpawnTime = currentWave.timeBetweenSpawn;

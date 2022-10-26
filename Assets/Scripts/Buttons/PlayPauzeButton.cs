@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using System;
+
+public class PlayPauzeButton : MonoBehaviour
+{
+    [SerializeField] private TMP_Text buttonText;
+    private Waves wave;
+    private bool isPauze;
+    private bool isPlaying;
+    private bool gameStarted;
+
+    void Start()
+    {
+        wave = FindObjectOfType<Waves>();
+        buttonText.text = "Play";
+    }
+
+    public void OnClickPlayer()
+    {
+        if (!gameStarted)
+        {
+            gameStarted = true;
+            isPlaying = true;
+            wave.PlayerStartedTheGame();
+        }
+
+        if (isPauze)
+        {
+            Time.timeScale = 0f;
+            isPauze = false;
+            isPlaying = true;
+            buttonText.text = "Play";
+        }
+        else if (isPlaying)
+        {
+            Time.timeScale = 1f;
+            isPlaying = false;
+            isPauze = true;
+            buttonText.text = "Pauze";
+        }
+    }
+
+}
