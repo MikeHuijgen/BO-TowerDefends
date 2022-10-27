@@ -30,7 +30,7 @@ public class ShowTowerInfo : MonoBehaviour
     private UpgradeTower _upgradeTower;
     private SaveTowerPosition _saveTowerPosition;
     private PlayerTowerSelect playerTowerSelect;
-    private bool towerInfoShow;
+    public bool towerInfoShow;
 
     private void Start()
     {
@@ -77,28 +77,57 @@ public class ShowTowerInfo : MonoBehaviour
         if (_saveTowerPosition == null) { return; }
         if (_saveTowerPosition.posIsRight && towerInfoShow)
         {
-            leftPanel.BroadcastMessage("GetTower", _upgradeTower);
-            leftPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
-            leftUpgradeName1.text = _upgradeTower.Path1[_upgradeTower.path1Index].upgradeName;
-            leftUpgradeDescription1.text = _upgradeTower.Path1[_upgradeTower.path1Index].description;
-            leftUpgradeCost1.text = $"Cost : {_upgradeTower.Path1[_upgradeTower.path1Index].upgradeCost}";
-
-            leftUpgradeName2.text = _upgradeTower.Path2[_upgradeTower.path2Index].upgradeName;
-            leftUpgradeDescription2.text = _upgradeTower.Path2[_upgradeTower.path2Index].description;
-            leftUpgradeCost2.text = $"Cost : {_upgradeTower.Path2[_upgradeTower.path2Index].upgradeCost}";
+            FillLeftInfo();
         }
         else if (_saveTowerPosition.posIsLeft && towerInfoShow)
         {
-            //moet nog een aparte functie maken zodat als 1 van de path klaar is met upgraden dat hij dan niet meer zijn info hoeft te showen
+            FillRightInfo();
+        }
+    }
+
+    private void FillRightInfo()
+    {
+        // show the info from the upgrades on the right panel
+        if (_upgradeTower.path1Index < _upgradeTower.Path1.Count)
+        {
             rightPanel.BroadcastMessage("GetTower", _upgradeTower);
             rightPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
+
             rightUpgradeName1.text = _upgradeTower.Path1[_upgradeTower.path1Index].upgradeName;
             rightUpgradeDescription1.text = _upgradeTower.Path1[_upgradeTower.path1Index].description;
             rightUpgradeCost1.text = $"Cost : {_upgradeTower.Path1[_upgradeTower.path1Index].upgradeCost}";
+        }
+        if ( _upgradeTower.path2Index < _upgradeTower.Path2.Count)
+        {
+            rightPanel.BroadcastMessage("GetTower", _upgradeTower);
+            rightPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
 
             rightUpgradeName2.text = _upgradeTower.Path2[_upgradeTower.path2Index].upgradeName;
             rightUpgradeDescription2.text = _upgradeTower.Path2[_upgradeTower.path2Index].description;
             rightUpgradeCost2.text = $"Cost : {_upgradeTower.Path2[_upgradeTower.path2Index].upgradeCost}";
+        }
+    }
+
+    private void FillLeftInfo()
+    {
+        // show the info from the upgrades on the left panel
+        if (_upgradeTower.path1Index < _upgradeTower.Path1.Count)
+        {
+            leftPanel.BroadcastMessage("GetTower", _upgradeTower);
+            leftPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
+
+            leftUpgradeName1.text = _upgradeTower.Path1[_upgradeTower.path1Index].upgradeName;
+            leftUpgradeDescription1.text = _upgradeTower.Path1[_upgradeTower.path1Index].description;
+            leftUpgradeCost1.text = $"Cost : {_upgradeTower.Path1[_upgradeTower.path1Index].upgradeCost}";
+        }
+        if (_upgradeTower.path2Index < _upgradeTower.Path2.Count)
+        {
+            leftPanel.BroadcastMessage("GetTower", _upgradeTower);
+            leftPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
+
+            leftUpgradeName2.text = _upgradeTower.Path2[_upgradeTower.path2Index].upgradeName;
+            leftUpgradeDescription2.text = _upgradeTower.Path2[_upgradeTower.path2Index].description;
+            leftUpgradeCost2.text = $"Cost : {_upgradeTower.Path2[_upgradeTower.path2Index].upgradeCost}";
         }
     }
 }

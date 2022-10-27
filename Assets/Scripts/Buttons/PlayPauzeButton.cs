@@ -7,6 +7,8 @@ using System;
 public class PlayPauzeButton : MonoBehaviour
 {
     [SerializeField] private TMP_Text buttonText;
+    [SerializeField] private GameObject redArrowPartical;
+    [SerializeField] private GameObject greenArrowPartical;
     private Waves wave;
     private bool isPauze;
     private bool isPlaying;
@@ -25,6 +27,8 @@ public class PlayPauzeButton : MonoBehaviour
             gameStarted = true;
             isPlaying = true;
             wave.PlayerStartedTheGame();
+            redArrowPartical.SetActive(false);
+            greenArrowPartical.SetActive(false);
         }
 
         if (isPauze)

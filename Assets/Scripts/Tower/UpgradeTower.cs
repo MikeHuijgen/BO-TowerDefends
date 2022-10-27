@@ -7,10 +7,11 @@ public class UpgradeTower : MonoBehaviour
     public List<UpgradeScript> Path1 = new List<UpgradeScript>();
     public List<UpgradeScript> Path2 = new List<UpgradeScript>();
 
-    private int upgradesDonePath1;
-    private int upgradesDonePath2;
     public int path1Index;
     public int path2Index;
+
+    public bool path1Done = false;
+    public bool path2Done = false;
 
     private Tower tower;
     private Bank bank;
@@ -23,6 +24,7 @@ public class UpgradeTower : MonoBehaviour
 
     private void Update()
     {
+        CheckIfAPathIsDone();
         //is voor debugging
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -30,46 +32,61 @@ public class UpgradeTower : MonoBehaviour
         }
     }
 
+    private void CheckIfAPathIsDone()
+    {
+        if (path1Index >= Path1.Count && !path1Done)
+        {
+            path1Done = true;
+        }
+        if (path2Index >= Path2.Count && !path2Done)
+        {
+            path2Done = true;
+        }
+    }
+
     public void UpgradePath1()
     {
-        if (upgradesDonePath1 >= Path1.Count) { return; }
-
-        UpgradeScript upgradeScript = Path1[path1Index];
-        UpgradeType upgradeType;
-        float upgradeValue;
-        int upgradeCost;
-        for (int i = 0; i < upgradeScript.UpgradeValueInfo.Count; i++)
+        if (!path1Done)
         {
-            upgradeCost = upgradeScript.upgradeCost;
-            bank.DecreaseBankAmount(upgradeScript.upgradeCost);
-            upgradeType = upgradeScript.UpgradeValueInfo[i].upgradeType;
-            upgradeValue = upgradeScript.UpgradeValueInfo[i].upgradeValue;
-            TellTowerToUpgrade(upgradeType, upgradeValue, upgradeCost);
-        }
+            UpgradeScript upgradeScript = Path1[path1Index];
+            UpgradeType upgradeType;
+            float upgradeValue;
+            int upgradeCost;
+            Debug.Log(upgradeScript.name);
+            for (int i = 0; i < upgradeScript.UpgradeValueInfo.Count; i++)
+            {
+                upgradeCost = upgradeScript.upgradeCost;
+                bank.DecreaseBankAmount(upgradeScript.upgradeCost);
+                upgradeType = upgradeScript.UpgradeValueInfo[i].upgradeType;
+                upgradeValue = upgradeScript.UpgradeValueInfo[i].upgradeValue;
+                TellTowerToUpgrade(upgradeType, upgradeValue, upgradeCost);
+            }
 
-        upgradesDonePath1++;
-        path1Index++;
+            path1Index++;
+            Debug.Log(path1Index);
+        }
     }
 
     public void UpgradePath2()
     {
-        if (upgradesDonePath2 >= Path2.Count) { return; }
-
-        UpgradeScript upgradeScript = Path2[path2Index];
-        UpgradeType upgradeType;
-        float upgradeValue;
-        int upgradeCost;
-        for (int i = 0; i < upgradeScript.UpgradeValueInfo.Count; i++)
+        if (!path2Done)
         {
-            upgradeCost = upgradeScript.upgradeCost;
-            bank.DecreaseBankAmount(upgradeScript.upgradeCost);
-            upgradeType = upgradeScript.UpgradeValueInfo[i].upgradeType;
-            upgradeValue = upgradeScript.UpgradeValueInfo[i].upgradeValue;
-            TellTowerToUpgrade(upgradeType, upgradeValue, upgradeCost);
-        }
+            UpgradeScript upgradeScript = Path2[path2Index];
+            UpgradeType upgradeType;
+            float upgradeValue;
+            int upgradeCost;
+            for (int i = 0; i < upgradeScript.UpgradeValueInfo.Count; i++)
+            {
+                upgradeCost = upgradeScript.upgradeCost;
+                bank.DecreaseBankAmount(upgradeScript.upgradeCost);
+                upgradeType = upgradeScript.UpgradeValueInfo[i].upgradeType;
+                upgradeValue = upgradeScript.UpgradeValueInfo[i].upgradeValue;
+                TellTowerToUpgrade(upgradeType, upgradeValue, upgradeCost);
+            }
 
-        upgradesDonePath2++;
-        path2Index++;
+            path2Index++;
+            Debug.Log(path2Index);
+        }
     }
 
     public void TellTowerToUpgrade(UpgradeType type, float value, int cost)

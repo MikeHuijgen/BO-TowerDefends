@@ -300,6 +300,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 136
   rangeMaterial: {fileID: 2100000, guid: 936ba20cd5638474aba69d0a03d4b5d9, type: 2}
+  towerCost: 0
 --- !u!114 &-4484325802217507847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +328,7 @@ MonoBehaviour:
   balloonsPoped: 0
   currentTarget: {fileID: 0}
   playerCanSelect: 0
+  towerValue: 0
   balloonList: []
 --- !u!114 &3351296692786828334
 MonoBehaviour:
@@ -342,13 +344,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path1:
   - {fileID: 11400000, guid: e301137dff7ba1e47b347d4f36b292f0, type: 2}
-  - {fileID: 11400000, guid: 81bb7f83faba79a41811f48b4516d38e, type: 2}
-  - {fileID: 11400000, guid: e991585cd238e4f43aea7555f48b490a, type: 2}
   Path2:
   - {fileID: 11400000, guid: a809bfa439b9d7e45abf8ccea8e75713, type: 2}
-  - {fileID: 11400000, guid: 2dfb4540df395af4088d6a105cfbf5ff, type: 2}
   path1Index: 0
   path2Index: 0
+  path1Done: 0
+  path2Done: 0
 --- !u!1 &5901039571302851449
 GameObject:
   m_ObjectHideFlags: 0
