@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     private Bank bank;
     private EnemySpawner enemySpawner;
     private EnemyFollowWaypoint followWaypoint;
+    private EnemyCounter enemyCounter;
 
 
     private void Awake()
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
         }
         enemySpawner = FindObjectOfType<EnemySpawner>();
         followWaypoint = FindObjectOfType<EnemyFollowWaypoint>();
+        enemyCounter = FindObjectOfType<EnemyCounter>();
     }
     public void SetUpBalloon(BalloonLayer balloonLayer)
     {
@@ -73,12 +75,12 @@ public class Enemy : MonoBehaviour
         if (isDisable) { return; }
         bank.IncreaseBankAmount(goldPerPop);
         balloonHealth -= amount;
-
         BalloonGotHit();
 
         if ( balloonHealth <= 0)
         {
             tower.parent.BroadcastMessage("EnemyGotKilledByTower", this.transform);
+            enemyCounter.DecreaseEnemyCounter();
             enemySpawner.enemysLeft--;
             gameObject.SetActive(false);
         }

@@ -14,16 +14,19 @@ public class EnemySpawner : MonoBehaviour
     public int enemysLeft;
     private int enemysHaveSpawned;
     public int waveBalloonsIndex;
+    public int enemysInWave;
 
     private bool canSpawn;
     private Waves waves;
     private Transform towerParent;
 
     private WaveScriptableObject currentWave;
+    private EnemyCounter EnemyCounter;
 
     private void Awake()
     {
         waves = FindObjectOfType<Waves>();
+        EnemyCounter = FindObjectOfType<EnemyCounter>();
         PopulatePool();
     }
 
@@ -46,10 +49,14 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartNextWave(WaveScriptableObject wave)
     {
-        Debug.Log("test");
+        for (int i = 0;i < wave.balloons.Count;i++)
+        {
+            enemysInWave += wave.balloons[i].amount;
+        }
         canSpawn = true;
         currentWave = wave;
         betweenSpawnTime = currentWave.timeBetweenSpawn;
+        EnemyCounter.GetAmountOfEnemys(enemysInWave);
     }
 
     // Spawn of the balloons

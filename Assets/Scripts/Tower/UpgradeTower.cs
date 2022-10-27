@@ -63,7 +63,6 @@ public class UpgradeTower : MonoBehaviour
             }
 
             path1Index++;
-            Debug.Log(path1Index);
         }
     }
 
@@ -85,7 +84,6 @@ public class UpgradeTower : MonoBehaviour
             }
 
             path2Index++;
-            Debug.Log(path2Index);
         }
     }
 

@@ -13,6 +13,7 @@ TagManager:
   - towerInfo
   - leftMapCollider
   - rightMapCollider
+  - enemyCounter
   layers:
   - Default
   - TransparentFX
