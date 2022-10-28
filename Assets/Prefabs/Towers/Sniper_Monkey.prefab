@@ -411,9 +411,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path1:
-  - {fileID: 11400000, guid: e301137dff7ba1e47b347d4f36b292f0, type: 2}
+  - {fileID: 11400000, guid: 31b6f64dd5bbe1047bf5d014a7443ac4, type: 2}
+  - {fileID: 11400000, guid: 836fb0784ff3fdf45bc3c3075c32fa0d, type: 2}
   Path2:
   - {fileID: 11400000, guid: a3fcbe7e8feeebc4c86453cec440eb35, type: 2}
+  - {fileID: 11400000, guid: af9c8e589c95e114db38c1959411b7c2, type: 2}
   path1Index: 0
   path2Index: 0
   path1Done: 0

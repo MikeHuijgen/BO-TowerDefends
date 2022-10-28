@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e596880d2680674591f554183a9e15d, type: 3}
-  m_Name: M.O.A.B
+  m_Name: YellowBalloon
   m_EditorClassIdentifier: 
-  balloonColor: {r: 0, g: 0, b: 0, a: 0}
-  balloonMaterial: {fileID: 2100000, guid: b0417aa1a3b03e64fbc2b9a2325dcbf3, type: 2}
-  balloonMesh: {fileID: 428866477300906952, guid: 974fa790a33f2084394a19b94aa0635c,
+  balloonColor: {r: 0.9948019, g: 1, b: 0, a: 0}
+  balloonMaterial: {fileID: 2100000, guid: 55c9ab60fbd73f34a954429366110d41, type: 2}
+  balloonMesh: {fileID: 3575360789356872316, guid: b17f7ba1d86e27e458c9ddd8ba38ffe2,
     type: 3}
-  BalloonHealth: 700
-  BalloonSpeed: 7
-  balloonScale: {x: 2.5, y: 2.5, z: 2.5}
-  specialBalloon: 1
+  BalloonHealth: 5
+  BalloonSpeed: 12
+  balloonScale: {x: 1, y: 1, z: 1}
+  specialBalloon: 0

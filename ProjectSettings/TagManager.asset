@@ -16,6 +16,8 @@ TagManager:
   - enemyCounter
   - targetButton
   - deathScreen
+  - dartPool2
+  - dartPool1
   layers:
   - Default
   - TransparentFX

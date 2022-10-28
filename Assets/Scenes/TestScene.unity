@@ -1166,6 +1166,11 @@ PrefabInstance:
       objectReference: {fileID: 1364103373}
     - target: {fileID: 846052642155113821, guid: 8ba7ef91dedfe3c44bf3d4cf4109a4b7,
         type: 3}
+      propertyPath: bankBalance
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 846052642155113821, guid: 8ba7ef91dedfe3c44bf3d4cf4109a4b7,
+        type: 3}
       propertyPath: bankAmountText
       value: 
       objectReference: {fileID: 1020237516}

@@ -52,7 +52,6 @@ public class UpgradeTower : MonoBehaviour
             UpgradeType upgradeType;
             float upgradeValue;
             int upgradeCost;
-            Debug.Log(upgradeScript.name);
             for (int i = 0; i < upgradeScript.UpgradeValueInfo.Count; i++)
             {
                 upgradeCost = upgradeScript.upgradeCost;

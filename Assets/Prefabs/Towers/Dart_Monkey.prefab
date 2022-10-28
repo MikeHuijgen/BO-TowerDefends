@@ -174,6 +174,89 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posIsLeft: 0
   posIsRight: 0
+--- !u!1 &3434371114645228828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2657835137092999078}
+  - component: {fileID: 1390870582525286403}
+  - component: {fileID: 3794751237428423881}
+  m_Layer: 0
+  m_Name: dartPoolTransform
+  m_TagString: dartPool1
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2657835137092999078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3434371114645228828}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.54, y: 0.726, z: 0.416}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4048586458721308477}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1390870582525286403
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3434371114645228828}
+  m_Mesh: {fileID: -332109342675432758, guid: 5bf7b0310a55832498d4a90d87b85e2e, type: 3}
+--- !u!23 &3794751237428423881
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3434371114645228828}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -876546973899608171, guid: 5bf7b0310a55832498d4a90d87b85e2e, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5334317038526400404
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +295,7 @@ Transform:
   - {fileID: 9142969102587888530}
   - {fileID: 8046208493866803683}
   - {fileID: 5487795303155260010}
+  - {fileID: 2657835137092999078}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -314,12 +398,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerDamage: 1
-  towerRangeSphere: 10
-  towerRangeColliderTrans: 10
+  towerRangeSphere: 7
+  towerRangeColliderTrans: 7
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
   towerRangeCollider: {fileID: 5901039571302851449}
-  fireRate: 0.5
+  fireRate: 0.7
   dartPoolAmount: 3
   towerType: 0
   targetStyle: 0
@@ -344,9 +428,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path1:
   - {fileID: 11400000, guid: e301137dff7ba1e47b347d4f36b292f0, type: 2}
-  - {fileID: 11400000, guid: a3fcbe7e8feeebc4c86453cec440eb35, type: 2}
+  - {fileID: 11400000, guid: 213e31e35a18d2740ba0840a05a28bf8, type: 2}
   Path2:
   - {fileID: 11400000, guid: a809bfa439b9d7e45abf8ccea8e75713, type: 2}
+  - {fileID: 11400000, guid: b7ed94737a0c75a4fb587036ffe61863, type: 2}
   path1Index: 0
   path2Index: 0
   path1Done: 0

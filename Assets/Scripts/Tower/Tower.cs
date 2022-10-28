@@ -30,6 +30,8 @@ public class Tower : MonoBehaviour
     [SerializeField] private List<EnemyFollowWaypoint> balloonList = new List<EnemyFollowWaypoint>();
     private List<GameObject> dartPool = new List<GameObject>();
 
+    private Transform dartPoolTransform;
+
     ShowTowerInfo towerInfoPanel;
 
     Ray ray;
@@ -66,10 +68,17 @@ public class Tower : MonoBehaviour
     private void FillDartPool()
     {
         if (towerType != TowerType.Projectile) { return; }
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("dartPool1"))
+            {
+                dartPoolTransform = child;
+            }
+        }
         for (int i = 0; i < dartPoolAmount; i++)
         {
-            GameObject newDart = Instantiate(dartPrefab, transform.position, Quaternion.identity);
-            newDart.transform.parent = transform;
+            GameObject newDart = Instantiate(dartPrefab, dartPoolTransform.position, Quaternion.identity);
+            newDart.transform.parent = dartPoolTransform;
             dartPool.Add(newDart);
             newDart.SetActive(false);
         }

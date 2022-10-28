@@ -116,9 +116,11 @@ MonoBehaviour:
   decreasePlayerLife: 1
   waypoints: []
   betweenWaypointTime: 0
+  inGameTime: 0
   waypointsPassed: 0
   enemySpawnedIn: 0
   currentWaypoint: {fileID: 0}
+  totalDistanceTraveled: 0
 --- !u!114 &4145808186428029388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balloonHealth: 0
   goldPerPop: 1
-  inGameTime: 0
   balloonLayers:
   - balloonHealthId: 1
     balloonLayer: {fileID: 11400000, guid: c0eeed764215adf41994e69fef39f81b, type: 2}
@@ -142,8 +143,16 @@ MonoBehaviour:
   - balloonHealthId: 3
     balloonLayer: {fileID: 11400000, guid: ec6b9d3d82571aa4a8d24bbd3a9925b5, type: 2}
   - balloonHealthId: 4
+    balloonLayer: {fileID: 11400000, guid: 61cde158eeee12b4aaa0cd855a84df58, type: 2}
+  - balloonHealthId: 5
+    balloonLayer: {fileID: 11400000, guid: 7f260a3dcc35a2544ad44d5599d87a67, type: 2}
+  - balloonHealthId: 6
     balloonLayer: {fileID: 11400000, guid: e8e74982b47d416429eb552c31ee8196, type: 2}
-  - balloonHealthId: 50
+  - balloonHealthId: 7
+    balloonLayer: {fileID: 11400000, guid: 67cfcd2299fbb0c4eaa5b5773f57c944, type: 2}
+  - balloonHealthId: 8
+    balloonLayer: {fileID: 11400000, guid: 23e5cbed937ffd84da576013be412b6d, type: 2}
+  - balloonHealthId: 700
     balloonLayer: {fileID: 11400000, guid: 7322496ed47d8e04785471ce62c51c0f, type: 2}
   currentBalloonLayer: {fileID: 0}
 --- !u!54 &6205113706255774680
