@@ -31,6 +31,7 @@ public class ShowTowerInfo : MonoBehaviour
     private SaveTowerPosition _saveTowerPosition;
     private PlayerTowerSelect playerTowerSelect;
     public bool towerInfoShow;
+    private bool gotTowerInfo;
 
     private void Start()
     {
@@ -48,24 +49,33 @@ public class ShowTowerInfo : MonoBehaviour
     {
         _saveTowerPosition = towerPos;
         _upgradeTower = upgradeTower;
-        if (towerPos.posIsLeft)
-        {
+        if (towerPos.posIsLeft && !gotTowerInfo)
+        {   
+            gotTowerInfo = true;
             _selectedTower = tower;
             towerInfoShow = true;
             rightPanel.SetActive(true);
             leftPanel.SetActive(false);
+            rightPanel.BroadcastMessage("GetTower", _upgradeTower);
+            rightPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
+            rightPanel.BroadcastMessage("GetTowerGameobject", _selectedTower);
         }
-        else if (towerPos.posIsRight)
+        else if (towerPos.posIsRight && !gotTowerInfo)
         {
+            gotTowerInfo= true;
             _selectedTower = tower;
             towerInfoShow = true;
             leftPanel.SetActive(true);
             rightPanel.SetActive(false);
+            leftPanel.BroadcastMessage("GetTower", _upgradeTower);
+            leftPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
+            leftPanel.BroadcastMessage("GetTowerGameobject", _selectedTower);
         }
     }
 
     public void TowerGotDeselected()
     {
+        gotTowerInfo = false;
         playerTowerSelect.SetSelectedTowerNull();
         towerInfoShow = false;
         leftPanel.SetActive(false);
@@ -90,18 +100,12 @@ public class ShowTowerInfo : MonoBehaviour
         // show the info from the upgrades on the right panel
         if (_upgradeTower.path1Index < _upgradeTower.Path1.Count)
         {
-            rightPanel.BroadcastMessage("GetTower", _upgradeTower);
-            rightPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
-
             rightUpgradeName1.text = _upgradeTower.Path1[_upgradeTower.path1Index].upgradeName;
             rightUpgradeDescription1.text = _upgradeTower.Path1[_upgradeTower.path1Index].description;
             rightUpgradeCost1.text = $"Cost : {_upgradeTower.Path1[_upgradeTower.path1Index].upgradeCost}";
         }
         if ( _upgradeTower.path2Index < _upgradeTower.Path2.Count)
         {
-            rightPanel.BroadcastMessage("GetTower", _upgradeTower);
-            rightPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
-
             rightUpgradeName2.text = _upgradeTower.Path2[_upgradeTower.path2Index].upgradeName;
             rightUpgradeDescription2.text = _upgradeTower.Path2[_upgradeTower.path2Index].description;
             rightUpgradeCost2.text = $"Cost : {_upgradeTower.Path2[_upgradeTower.path2Index].upgradeCost}";
@@ -113,18 +117,12 @@ public class ShowTowerInfo : MonoBehaviour
         // show the info from the upgrades on the left panel
         if (_upgradeTower.path1Index < _upgradeTower.Path1.Count)
         {
-            leftPanel.BroadcastMessage("GetTower", _upgradeTower);
-            leftPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
-
             leftUpgradeName1.text = _upgradeTower.Path1[_upgradeTower.path1Index].upgradeName;
             leftUpgradeDescription1.text = _upgradeTower.Path1[_upgradeTower.path1Index].description;
             leftUpgradeCost1.text = $"Cost : {_upgradeTower.Path1[_upgradeTower.path1Index].upgradeCost}";
         }
         if (_upgradeTower.path2Index < _upgradeTower.Path2.Count)
         {
-            leftPanel.BroadcastMessage("GetTower", _upgradeTower);
-            leftPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
-
             leftUpgradeName2.text = _upgradeTower.Path2[_upgradeTower.path2Index].upgradeName;
             leftUpgradeDescription2.text = _upgradeTower.Path2[_upgradeTower.path2Index].description;
             leftUpgradeCost2.text = $"Cost : {_upgradeTower.Path2[_upgradeTower.path2Index].upgradeCost}";

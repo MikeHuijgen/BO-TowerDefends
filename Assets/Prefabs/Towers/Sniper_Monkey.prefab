@@ -368,6 +368,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   rangeMaterial: {fileID: 2100000, guid: 936ba20cd5638474aba69d0a03d4b5d9, type: 2}
+  towerCost: 0
 --- !u!114 &-4484325802217507847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +388,7 @@ MonoBehaviour:
   towerRangeTransform: {fileID: 1248980609916512757}
   towerRangeCollider: {fileID: 2519356719328958373}
   fireRate: 1
-  dartPoolAmount: 5
+  dartPoolAmount: 0
   towerType: 1
   targetStyle: 0
   dartPrefab: {fileID: 4315885570258830560, guid: 70d5dec22d8967243b02cd8f7b828181,
@@ -395,6 +396,7 @@ MonoBehaviour:
   balloonsPoped: 0
   currentTarget: {fileID: 0}
   playerCanSelect: 0
+  towerValue: 0
   balloonList: []
 --- !u!114 &8365835959565594266
 MonoBehaviour:
@@ -409,11 +411,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path1:
-  - {fileID: 11400000, guid: 31b6f64dd5bbe1047bf5d014a7443ac4, type: 2}
+  - {fileID: 11400000, guid: e301137dff7ba1e47b347d4f36b292f0, type: 2}
   Path2:
   - {fileID: 11400000, guid: a3fcbe7e8feeebc4c86453cec440eb35, type: 2}
   path1Index: 0
   path2Index: 0
+  path1Done: 0
+  path2Done: 0
 --- !u!1 &8298592991154685434
 GameObject:
   m_ObjectHideFlags: 0

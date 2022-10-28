@@ -40,7 +40,7 @@ public class PlayPauzeButton : MonoBehaviour
         }
         else if (isPlaying)
         {
-            Time.timeScale = 1f;
+            Time.timeScale = .5f;
             isPlaying = false;
             isPauze = true;
             buttonText.text = "Pauze";

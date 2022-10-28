@@ -50,34 +50,34 @@ public class UpgradeButton : MonoBehaviour
 
     private void checkBankBalance()
     {
-        if (upgradeTower.path1Index < upgradeTower.Path1.Count && bank.bankBalance < upgradeTower.Path1[upgradeTower.path1Index].upgradeCost && buttonPath1)
-        {
-            SetButtonDeactive();
-
-        }
-        if (upgradeTower.path1Index < upgradeTower.Path1.Count && bank.bankBalance >= upgradeTower.Path1[upgradeTower.path1Index].upgradeCost && buttonPath1)
+        // hij deactiveerd het als hij van 1 van de path klaar is
+        if (upgradeTower.path1Index < upgradeTower.Path1.Count && bank.bankBalance >= upgradeTower.Path1[upgradeTower.path1Index].upgradeCost && buttonPath1 && !upgradeTower.path1Done)
         {
             SetButtonActive();
         }
-        if (upgradeTower.path2Index < upgradeTower.Path2.Count && bank.bankBalance < upgradeTower.Path2[upgradeTower.path2Index].upgradeCost && buttonPath2)
+        if (upgradeTower.path2Index < upgradeTower.Path2.Count && bank.bankBalance >= upgradeTower.Path2[upgradeTower.path2Index].upgradeCost && buttonPath2 && !upgradeTower.path2Done)
+        {
+            SetButtonActive();
+        }
+        if (upgradeTower.path1Index < upgradeTower.Path1.Count && bank.bankBalance < upgradeTower.Path1[upgradeTower.path1Index].upgradeCost && buttonPath1 && !upgradeTower.path1Done)
         {
             SetButtonDeactive();
         }
-        if (upgradeTower.path2Index < upgradeTower.Path2.Count && bank.bankBalance >= upgradeTower.Path2[upgradeTower.path2Index].upgradeCost && buttonPath2)
+        if (upgradeTower.path2Index < upgradeTower.Path2.Count && bank.bankBalance < upgradeTower.Path2[upgradeTower.path2Index].upgradeCost && buttonPath2 && !upgradeTower.path2Done)
         {
-            SetButtonActive();
+            SetButtonDeactive();
         }
     }
 
 
     private void PathDone()
     {
-        if (upgradeTower.path1Done)
+        if (upgradeTower.path1Done && buttonPath1)
         {
             SetButtonDeactive();
         }
 
-        if (upgradeTower.path2Done)
+        if (upgradeTower.path2Done && buttonPath2)
         {
             SetButtonDeactive();
         }

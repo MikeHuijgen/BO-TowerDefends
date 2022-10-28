@@ -16,7 +16,7 @@ public class Tower : MonoBehaviour
 
     [Header("Attack style")]
     [SerializeField] private TowerType towerType;
-    [SerializeField] private TargetStyle targetStyle;
+    [SerializeField] public TargetStyle targetStyle;
     [SerializeField] private GameObject dartPrefab;
 
     [Header("Tower Check")]
@@ -165,7 +165,6 @@ public class Tower : MonoBehaviour
     private void AttackWithRay()
     {
         currentFireRate -= Time.deltaTime;
-
         ray.origin = transform.position;
         ray.direction = transform.forward;
 
@@ -173,11 +172,9 @@ public class Tower : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo) && currentFireRate <= 0)
         {
-            if (hitInfo.transform == currentTarget.transform)
-            {
-                currentTarget.GetComponent<Enemy>().DecreaseHealth(towerDamage, this.transform);
-                currentFireRate = fireRate;
-            }
+            Debug.DrawLine(transform.position, currentTarget.position, Color.red, 1f);
+            currentTarget.GetComponent<Enemy>().DecreaseHealth(towerDamage, this.transform);
+            currentFireRate = fireRate;
         }
     }
 
@@ -230,5 +227,10 @@ public class Tower : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void ChangeTargetStyle(TargetStyle style)
+    {
+        targetStyle = style;
     }
 }
