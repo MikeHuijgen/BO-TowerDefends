@@ -31,7 +31,6 @@ public class ShowTowerInfo : MonoBehaviour
     private SaveTowerPosition _saveTowerPosition;
     private PlayerTowerSelect playerTowerSelect;
     public bool towerInfoShow;
-    private bool gotTowerInfo;
 
     private void Start()
     {
@@ -49,9 +48,8 @@ public class ShowTowerInfo : MonoBehaviour
     {
         _saveTowerPosition = towerPos;
         _upgradeTower = upgradeTower;
-        if (towerPos.posIsLeft && !gotTowerInfo)
+        if (towerPos.posIsLeft)
         {   
-            gotTowerInfo = true;
             _selectedTower = tower;
             towerInfoShow = true;
             rightPanel.SetActive(true);
@@ -60,9 +58,8 @@ public class ShowTowerInfo : MonoBehaviour
             rightPanel.BroadcastMessage("GetTowerTransform", _upgradeTower.transform);
             rightPanel.BroadcastMessage("GetTowerGameobject", _selectedTower);
         }
-        else if (towerPos.posIsRight && !gotTowerInfo)
+        else if (towerPos.posIsRight)
         {
-            gotTowerInfo= true;
             _selectedTower = tower;
             towerInfoShow = true;
             leftPanel.SetActive(true);
@@ -75,7 +72,6 @@ public class ShowTowerInfo : MonoBehaviour
 
     public void TowerGotDeselected()
     {
-        gotTowerInfo = false;
         playerTowerSelect.SetSelectedTowerNull();
         towerInfoShow = false;
         leftPanel.SetActive(false);
@@ -110,6 +106,18 @@ public class ShowTowerInfo : MonoBehaviour
             rightUpgradeDescription2.text = _upgradeTower.Path2[_upgradeTower.path2Index].description;
             rightUpgradeCost2.text = $"Cost : {_upgradeTower.Path2[_upgradeTower.path2Index].upgradeCost}";
         }
+        if (_upgradeTower.path1Done)
+        {
+            rightUpgradeName1.text = "";
+            rightUpgradeDescription1.text = "All upgrades from this path are done";
+            rightUpgradeCost1.text = "";
+        }
+        if (_upgradeTower.path2Done)
+        {
+            rightUpgradeName2.text = "";
+            rightUpgradeDescription2.text = "All upgrades from this path are done";
+            rightUpgradeCost2.text = "";
+        }
     }
 
     private void FillLeftInfo()
@@ -126,6 +134,18 @@ public class ShowTowerInfo : MonoBehaviour
             leftUpgradeName2.text = _upgradeTower.Path2[_upgradeTower.path2Index].upgradeName;
             leftUpgradeDescription2.text = _upgradeTower.Path2[_upgradeTower.path2Index].description;
             leftUpgradeCost2.text = $"Cost : {_upgradeTower.Path2[_upgradeTower.path2Index].upgradeCost}";
+        }
+        if (_upgradeTower.path1Done)
+        {
+            leftUpgradeName1.text = "";
+            leftUpgradeDescription1.text = "All upgrades from this path are done";
+            leftUpgradeCost1.text = "";
+        }
+        if (_upgradeTower.path2Done)
+        {
+            leftUpgradeName2.text = "";
+            leftUpgradeDescription2.text = "All upgrades from this path are done";
+            leftUpgradeCost2.text = "";
         }
     }
 }

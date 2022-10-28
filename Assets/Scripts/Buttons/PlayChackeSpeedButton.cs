@@ -4,14 +4,14 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class PlayPauzeButton : MonoBehaviour
+public class PlayChackeSpeedButton : MonoBehaviour
 {
     [SerializeField] private TMP_Text buttonText;
     [SerializeField] private GameObject redArrowPartical;
     [SerializeField] private GameObject greenArrowPartical;
     private Waves wave;
-    private bool isPauze;
-    private bool isPlaying;
+    private bool isFast;
+    private bool isNormale;
     private bool gameStarted;
 
     void Start()
@@ -25,25 +25,25 @@ public class PlayPauzeButton : MonoBehaviour
         if (!gameStarted)
         {
             gameStarted = true;
-            isPlaying = true;
+            isNormale = true;
             wave.PlayerStartedTheGame();
             redArrowPartical.SetActive(false);
             greenArrowPartical.SetActive(false);
         }
 
-        if (isPauze)
+        if (isFast)
         {
             Time.timeScale = 1.5f;
-            isPauze = false;
-            isPlaying = true;
-            buttonText.text = "Play";
+            isFast = false;
+            isNormale = true;
+            buttonText.text = "Normale Speed";
         }
-        else if (isPlaying)
+        else if (isNormale)
         {
-            Time.timeScale = .5f;
-            isPlaying = false;
-            isPauze = true;
-            buttonText.text = "Pauze";
+            Time.timeScale = 1f;
+            isNormale = false;
+            isFast = true;
+            buttonText.text = "Fast Speed";
         }
     }
 

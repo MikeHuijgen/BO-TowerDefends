@@ -23,7 +23,8 @@ public class EnemyFollowWaypoint : MonoBehaviour
     private GameObject waypointParent;
     private EnemySpawner enemySpawner;
     private PlayerHealth playerHealth;
-
+    private GameObject towerParent;
+    private EnemyCounter enemyCounter;
 
     private float totalDistance;
     private int waypointIndex;
@@ -39,6 +40,8 @@ public class EnemyFollowWaypoint : MonoBehaviour
         totalDistanceNeedToTraveled = 0;
         totalDistance = 0;
         waypointIndex = 0;
+        enemyCounter = FindObjectOfType<EnemyCounter>();
+        towerParent = GameObject.FindGameObjectWithTag("towerParent");
         enemySpawner = GetComponentInParent<EnemySpawner>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         waypointParent = GameObject.FindGameObjectWithTag("waypointParent");
@@ -149,9 +152,13 @@ public class EnemyFollowWaypoint : MonoBehaviour
         { 
             enemySpawnedIn = false;
             hasFinished = false;
-            Debug.Log("Finished");
             enemySpawner.enemysLeft--;
-            playerHealth.DecreaseHealth(decreasePlayerLife);
+            if (towerParent.transform.childCount > 0)
+            {
+                towerParent.BroadcastMessage("EnemyGotKilledByTower", this.transform);
+            }
+            enemyCounter.DecreaseEnemyCounter();
+            playerHealth.DecreaseHealth(transform.GetComponent<Enemy>().balloonHealth);
             gameObject.SetActive(false);
         }
     }
