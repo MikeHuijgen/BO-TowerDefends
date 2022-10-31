@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] public int balloonHealth;
-    [SerializeField] private int goldPerPop;
+
 
     [System.Serializable]
     public class BalloonLayers
@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     public BalloonLayer currentBalloonLayer;
 
 
+    private int goldAmount;
+    private int lastHealth;
     private bool isDisable;
 
     private Bank bank;
@@ -73,12 +75,28 @@ public class Enemy : MonoBehaviour
     public void DecreaseHealth(int amount, Transform tower)
     {
         if (isDisable) { return; }
-        bank.IncreaseBankAmount(goldPerPop);
+        lastHealth = balloonHealth;
         balloonHealth -= amount;
         BalloonGotHit();
 
+        if (balloonHealth > 0)
+        {
+            goldAmount = amount;
+            bank.IncreaseBankAmount(goldAmount);
+        }
+
         if ( balloonHealth <= 0)
         {
+            if (lastHealth > 1)
+            {
+                goldAmount = lastHealth - balloonHealth;
+                bank.IncreaseBankAmount(goldAmount);
+            }
+            else
+            {
+                goldAmount = 1;
+                bank.IncreaseBankAmount(goldAmount);
+            }
             tower.parent.BroadcastMessage("EnemyGotKilledByTower", this.transform);
             enemyCounter.DecreaseEnemyCounter();
             enemySpawner.enemysLeft--;

@@ -17,4 +17,4 @@ MonoBehaviour:
   upgradeCost: 1600
   UpgradeValueInfo:
   - upgradeType: 1
-    upgradeValue: 4
+    upgradeValue: 2

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Long Range
   description: The monkey can hit further away then before
-  upgradeCost: 250
+  upgradeCost: 400
   UpgradeValueInfo:
   - upgradeType: 0
     upgradeValue: 4

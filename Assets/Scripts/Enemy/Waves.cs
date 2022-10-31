@@ -34,7 +34,6 @@ public class Waves : MonoBehaviour
     {
         if (wave < maxWave)
         {
-            Debug.Log("New Wave");
             wave++;
             waveCounter.text = $"{wave}/{maxWave}";
             bank.IncreaseBankAmount(moneyIncreasePerWave);

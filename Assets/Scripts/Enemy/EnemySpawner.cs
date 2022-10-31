@@ -49,6 +49,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartNextWave(WaveScriptableObject wave)
     {
+        enemysInWave = 0;
         for (int i = 0;i < wave.balloons.Count;i++)
         {
             enemysInWave += wave.balloons[i].amount;

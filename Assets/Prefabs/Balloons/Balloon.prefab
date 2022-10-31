@@ -143,9 +143,9 @@ MonoBehaviour:
   - balloonHealthId: 3
     balloonLayer: {fileID: 11400000, guid: ec6b9d3d82571aa4a8d24bbd3a9925b5, type: 2}
   - balloonHealthId: 4
-    balloonLayer: {fileID: 11400000, guid: 61cde158eeee12b4aaa0cd855a84df58, type: 2}
-  - balloonHealthId: 5
     balloonLayer: {fileID: 11400000, guid: 7f260a3dcc35a2544ad44d5599d87a67, type: 2}
+  - balloonHealthId: 5
+    balloonLayer: {fileID: 11400000, guid: 61cde158eeee12b4aaa0cd855a84df58, type: 2}
   - balloonHealthId: 6
     balloonLayer: {fileID: 11400000, guid: e8e74982b47d416429eb552c31ee8196, type: 2}
   - balloonHealthId: 7

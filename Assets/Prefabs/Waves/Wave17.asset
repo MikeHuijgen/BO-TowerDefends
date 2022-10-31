@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8aa2df4431f82024a956aab804946220, type: 3}
-  m_Name: TestWave
+  m_Name: Wave17
   m_EditorClassIdentifier: 
   balloons:
-  - balloonLayer: {fileID: 11400000, guid: ec6b9d3d82571aa4a8d24bbd3a9925b5, type: 2}
-    amount: 1
   - balloonLayer: {fileID: 11400000, guid: 61cde158eeee12b4aaa0cd855a84df58, type: 2}
-    amount: 2
-  timeBetweenSpawn: 2
+    amount: 70
+  timeBetweenSpawn: 0.2

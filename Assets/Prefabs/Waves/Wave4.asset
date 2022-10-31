@@ -17,4 +17,6 @@ MonoBehaviour:
     amount: 35
   - balloonLayer: {fileID: 11400000, guid: 9d93121292396624b969332fcaba401a, type: 2}
     amount: 18
+  - balloonLayer: {fileID: 11400000, guid: ec6b9d3d82571aa4a8d24bbd3a9925b5, type: 2}
+    amount: 5
   timeBetweenSpawn: 0.5
