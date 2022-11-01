@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Popping Power
   m_EditorClassIdentifier: 
   upgradeName: Popping Power
-  description: The monkey can hit 2 layers per shot
+  description: The monkey can hit 2 layers per shot.
   upgradeCost: 430
   UpgradeValueInfo:
   - upgradeType: 1
-    upgradeValue: 1
+    upgradeValue: 2

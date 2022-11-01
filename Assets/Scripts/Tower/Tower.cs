@@ -220,18 +220,18 @@ public class Tower : MonoBehaviour
         {
             case UpgradeType.Range:
                 towerValue += cost;
-                towerRangeColliderTrans += value;
-                towerRangeSphere += value;
+                towerRangeColliderTrans = value;
+                towerRangeSphere = value;
                 towerRangeTransform.transform.localScale = new Vector3(towerRangeSphere, 0, towerRangeSphere);
                 towerRangeCollider.transform.localScale = new Vector3(towerRangeColliderTrans, 0, towerRangeColliderTrans);
                 break;
             case UpgradeType.Damage:
                 towerValue += cost;
-                towerDamage += (int)value;
+                towerDamage = (int)value;
                 break;
             case UpgradeType.AttackSpeed:
                 towerValue += cost;
-                fireRate -= value;
+                fireRate = value;
                 break;
             default:
                 break;

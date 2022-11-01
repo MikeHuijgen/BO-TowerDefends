@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Better Darts
   m_EditorClassIdentifier: 
   upgradeName: Better Darts
-  description: Even better darts then before he can hit up to 2 layers per shot
+  description: Even better darts then before. He can hit up to 2 layers per shot.
   upgradeCost: 800
   UpgradeValueInfo:
   - upgradeType: 1
-    upgradeValue: 1
+    upgradeValue: 2

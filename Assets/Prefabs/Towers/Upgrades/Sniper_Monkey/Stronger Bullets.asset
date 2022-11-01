@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Stronger Bullets
   m_EditorClassIdentifier: 
   upgradeName: Stronger Bullets
-  description: The monkey hit 2 layers at the same time
+  description: The monkey hit 2 layers at the same time.
   upgradeCost: 400
   UpgradeValueInfo:
   - upgradeType: 1
-    upgradeValue: 1
+    upgradeValue: 2
