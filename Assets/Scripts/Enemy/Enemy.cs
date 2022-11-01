@@ -85,8 +85,10 @@ public class Enemy : MonoBehaviour
             bank.IncreaseBankAmount(goldAmount);
         }
 
-        if ( balloonHealth <= 0)
+        if (balloonHealth <= 0)
         {
+            gameObject.SetActive(false);
+            balloonHealth = 0;
             if (lastHealth > 1)
             {
                 goldAmount = lastHealth - balloonHealth;
@@ -100,7 +102,6 @@ public class Enemy : MonoBehaviour
             tower.parent.BroadcastMessage("EnemyGotKilledByTower", this.transform);
             enemyCounter.DecreaseEnemyCounter();
             enemySpawner.enemysLeft--;
-            gameObject.SetActive(false);
         }
     }
 

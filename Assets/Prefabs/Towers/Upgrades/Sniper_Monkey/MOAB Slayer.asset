@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MOAB Slayer
   m_EditorClassIdentifier: 
   upgradeName: MOAB slayer
-  description: Even M.O.A.B's are anxious of him
+  description: Even M.O.A.B's are anxious of him.
   upgradeCost: 1600
   UpgradeValueInfo:
   - upgradeType: 1
-    upgradeValue: 2
+    upgradeValue: 5
