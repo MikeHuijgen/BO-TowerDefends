@@ -114,6 +114,10 @@ public class PlaceTower : MonoBehaviour
         //if you can place the tower you place the tower where your mouse is
         if (Input.GetMouseButtonDown(0) && isSelected && hit.transform.tag != "Path" && !isInTowerCollider && bank.bankBalance >= towerCost && !mouseIsInUI)
         {
+            if (transform.parent.transform.childCount > 0)
+            {
+                transform.parent.BroadcastMessage("CanSelectTower");
+            }
             GetComponentInChildren<SaveTowerPosition>().SaveCurrentPosition();
             bank.DecreaseBankAmount(towerCost);
             towerShop.TowerHasBeenPlaced();

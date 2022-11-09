@@ -59,6 +59,10 @@ public class OnClickTowerImage : MonoBehaviour
         {
             tower = Instantiate(towerPrefab, towerParent.transform);
             tower.GetComponent<PlaceTower>().TowerSelected(true,towerCost);
+            if (towerParent.transform.childCount > 0)
+            {
+                towerParent.BroadcastMessage("CantSelectTower");
+            }
             towerShop.TowerHasBeenSelected();
         }
     }

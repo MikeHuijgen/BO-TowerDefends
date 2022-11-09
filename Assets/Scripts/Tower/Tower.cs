@@ -242,4 +242,14 @@ public class Tower : MonoBehaviour
     {
         targetStyle = style;
     }
+
+    public void CantSelectTower()
+    {
+        playerCanSelect = false;
+    }
+
+    public void CanSelectTower()
+    {
+        playerCanSelect = true;
+    }
 }
