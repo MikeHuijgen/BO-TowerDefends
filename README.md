@@ -1,11 +1,17 @@
 # BO-TowerDefense
+![alt-text](https://github.com/MikeHuijgen/BO-TowerDefends/blob/9a0e7a1601c441ae3469bc45c3dc2a9c8d76155a/Gifs/TowerDefenseGifReadme.gif)
 ## My tower defense project
-### In this project we need to make a tower defense game. My game was inspired on the famous tower defense Bloons TD 6. I wanted to remake Bloons in 7 weeks. For the most part I succeded, there are somethings that are missing. 
+In this project we need to make a tower defense game. My game was inspired on the famous tower defense Bloons TD 6. This project needed to be done in 7 weeks (19 sep - 11 nov). 
 
 ## Mechanics
-### The basic mechanics are simple. You have your map where you can place your towers. There is a path in the map where the balloons will float on. They follow a waypoint path to the end of the map. If the balloon is in the range of the tower, the tower will attack the balloon. If the balloon dies you wil get gold to buy new towers or upgrades.
+The basic mechanics are simple. You have your map where **you can place your towers**. There is a path in the map where the balloons will float on. **They follow a waypoint path to the end of the map**. If the **balloon is in the range** of the tower he will **attack the balloon**. If the **balloon dies you wil get gold** to **buy new towers or upgrades**.
 
-### In Bloons TD 6 there are a couple mechanics that are more difficult to make then the basic mechanics. To begin with the layers of the balloon are different. Each layer has his own speed, health, scale, color, and mesh. I use this information to let the balloon know what he needs to do. If the balloon lose lives the layer change. Bloons also have a sort of preset waves. I wanted to create a similair thing. With scriptable objects I made an system that you can drag and drop the layers of the balloons you want in that wave into a list. Every time a balloon spawn in the game, it takes the layer he needs and the amount of balloons that need to spawn in the wave.
+### Balloon layer Mechanics
+One of the mechanics where I put alot of time in is the balloon layers. I wanted to have the same system that bloons TD 6 have. For example if the balloon is blue and the tower hit him, the layer will change to red. If he changes his layer he will change his speed, scale and lives.
+
+First I tried to use prefabs to execute this mechanic. I made different prefebs for each layer of a balloon, But because I use an object pool (I spawned 50 balloons in from 1 prefab) I could not use multiple prefabs. After a while I got good advice to use scriptable objects for this mechanic. In the scriptable object you can store data of a layer for the balloons. 
+
+foto van scriptable object
 
 ## What I learned
 - To plan a 7 week project all by myself
@@ -30,5 +36,5 @@ move-->balloonHit(If the balloon get hit)
 balloonHit-->destroyLayer(Change the layer of the balloon)
 destroyLayer-->|If there are no more layers|disableBalloon
 disableBalloon-->waveStart
-waveStart-->|Completed all waves|youWin(You won the game)
+waveStart-->|Completed all waves|youWin((You won the game))
 
