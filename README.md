@@ -9,9 +9,13 @@ The basic mechanics are simple. You have your map where **you can place your tow
 ### Balloon layer Mechanics
 One of the mechanics where I put alot of time in is the balloon layers. I wanted to have the same system that bloons TD 6 have. For example if the balloon is blue and the tower hit him, the layer will change to red. If he changes his layer he will change his speed, scale and lives.
 
-First I tried to use prefabs to execute this mechanic. I made different prefebs for each layer of a balloon, But because I use an object pool (I spawned 50 balloons in from 1 prefab) I could not use multiple prefabs. After a while I got good advice to use scriptable objects for this mechanic. In the scriptable object you can store data of a layer for the balloons. 
+First I tried to use prefabs to execute this mechanic. I made different prefabs for each layer of a balloon, But because I use an object pool (I spawned 50 balloons in from 1 prefab) I could not use multiple prefabs. After a while I got good advice to use scriptable objects for this mechanic. In the scriptable object you can store data of 1 layer for the balloons. 
 
-foto van scriptable object
+![Picture of the balloonLayer scriptable object](Pictures/Screenshot-balloonLayer.jpg "Picture of the balloonLayer scriptable object")
+
+When the wave start a function will be called to send a balloon layer to the balloon that is going to be activated. When the balloon receives the layer, it will take the layer values and apply it to his own values. If the balloon is set up correctly, it will be activated. 
+
+I use an dictionary to track what layer is next if the balloon take damage. If the balloon take damage the dictionary will look at the health of the balloon. 
 
 ## What I learned
 - To plan a 7 week project all by myself
