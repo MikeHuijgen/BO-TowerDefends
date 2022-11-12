@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Ultra Range
   description: Super monkey has a bigger range
-  upgradeCost: 700
+  upgradeCost: 730
   UpgradeValueInfo:
   - upgradeType: 0
     upgradeValue: 13

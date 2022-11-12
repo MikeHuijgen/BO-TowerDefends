@@ -1160,7 +1160,7 @@ PrefabInstance:
     - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
         type: 3}
       propertyPath: moneyIncreasePerWave
-      value: 280
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
         type: 3}
@@ -1226,7 +1226,7 @@ PrefabInstance:
         type: 3}
       propertyPath: waves.Array.data[20]
       value: 
-      objectReference: {fileID: 11400000, guid: b3b75dcf243747e4e8f9026e7a26bb66,
+      objectReference: {fileID: 11400000, guid: 83cbce3da8d193a4d8df43adf94c229a,
         type: 2}
     - target: {fileID: 5797938039411722875, guid: acce8ab43fd92344b99ca8c64b0dbb7a,
         type: 3}
@@ -3647,7 +3647,7 @@ PrefabInstance:
     - target: {fileID: 846052642155113821, guid: 8ba7ef91dedfe3c44bf3d4cf4109a4b7,
         type: 3}
       propertyPath: bankBalance
-      value: 2000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 846052642155113821, guid: 8ba7ef91dedfe3c44bf3d4cf4109a4b7,
         type: 3}

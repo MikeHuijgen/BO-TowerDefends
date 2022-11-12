@@ -8,11 +8,7 @@ public class EnemyFollowWaypoint : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private int decreasePlayerLife;
     [SerializeField] private List<Transform> waypoints = new List<Transform>();
-    [SerializeField] public float betweenWaypointTime;
 
-    public float inGameTime = 0;
-    private int amountOfWaypoints = 0;
-    public int waypointsPassed = 0;
     private float distanceThreshold = 0.1f;
 
     public bool enemySpawnedIn = false;
@@ -33,10 +29,8 @@ public class EnemyFollowWaypoint : MonoBehaviour
     private float totalDistanceNeedToTraveled;
     private float distanceTillNextWaypoint;
 
-
     private void OnEnable()
     {
-        inGameTime = 0;
         totalDistanceNeedToTraveled = 0;
         totalDistance = 0;
         waypointIndex = 0;
@@ -45,9 +39,14 @@ public class EnemyFollowWaypoint : MonoBehaviour
         enemySpawner = GetComponentInParent<EnemySpawner>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         waypointParent = GameObject.FindGameObjectWithTag("waypointParent");
-        waypointsPassed = 0;
         FindWaypoints();
         ResetStartPos();
+        enemySpawnedIn = true;
+    }
+
+    private void OnDisable()
+    {
+        enemySpawnedIn = false;
     }
 
     private void Update()
@@ -68,7 +67,6 @@ public class EnemyFollowWaypoint : MonoBehaviour
             waypoints.Add(child);
         }
 
-        amountOfWaypoints = waypoints.Count;
         CalculateTotalDistance();
     }
 
@@ -124,22 +122,22 @@ public class EnemyFollowWaypoint : MonoBehaviour
     {
         if (enemySpawnedIn && !hasFinished)
         {
-            if (amountOfWaypoints - 1 == waypointsPassed)
+            if (Vector3.Distance(transform.position, waypoints[waypoints.Count -1].position) < distanceThreshold)
             {
                 hasFinished = true;
+                return;
             }
 
             //if the enemy is close to the waypoint then the currentwaypoint changes into the next waypoint in the list
             if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
             {
                 currentWaypoint = waypoints[currentWaypoint.GetSiblingIndex() + 1];
-                waypointsPassed++;
                 transform.LookAt(currentWaypoint.position);
                 BalloonProgres();
             }
         }
     }
-    private void ResetStartPos()
+    public void ResetStartPos()
     {
         //it place the enemy on the first waypoint
         transform.position = waypoints[0].position;
@@ -148,9 +146,9 @@ public class EnemyFollowWaypoint : MonoBehaviour
 
     private void FinishedWaypoints()
     {
-        if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold && hasFinished)
-        { 
-            enemySpawnedIn = false;
+        if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold && hasFinished && enemySpawnedIn)
+        {
+            Debug.Log("Eind van het pad");
             hasFinished = false;
             enemySpawner.enemysLeft--;
             if (towerParent.transform.childCount > 0)

@@ -135,6 +135,10 @@ public class PlaceTower : MonoBehaviour
         if (Input.GetMouseButtonDown (1))
         {
             towerShop.TowerHasBeenPlaced();
+            if (transform.parent.transform.childCount > 0)
+            {
+                transform.parent.BroadcastMessage("CanSelectTower");
+            }
             Destroy(gameObject);
         }
     }

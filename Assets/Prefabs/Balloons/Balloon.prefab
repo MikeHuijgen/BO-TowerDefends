@@ -134,7 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balloonHealth: 0
-  goldPerPop: 1
   balloonLayers:
   - balloonHealthId: 1
     balloonLayer: {fileID: 11400000, guid: c0eeed764215adf41994e69fef39f81b, type: 2}

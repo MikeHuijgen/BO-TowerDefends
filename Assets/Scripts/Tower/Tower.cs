@@ -18,6 +18,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private TowerType towerType;
     [SerializeField] public TargetStyle targetStyle;
     [SerializeField] private GameObject dartPrefab;
+    [SerializeField] private ParticleSystem sniperMuzzleEffect;
 
     [Header("Tower Check")]
     [SerializeField] private int balloonsPoped;
@@ -181,6 +182,7 @@ public class Tower : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo) && currentFireRate <= 0)
         {
+            sniperMuzzleEffect.Play();
             Debug.DrawLine(transform.position, currentTarget.position, Color.red, 1f);
             currentTarget.GetComponent<Enemy>().DecreaseHealth(towerDamage, this.transform);
             currentFireRate = fireRate;

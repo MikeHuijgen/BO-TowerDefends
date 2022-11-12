@@ -76,12 +76,11 @@ public class UpgradeTower : MonoBehaviour
             for (int i = 0; i < upgradeScript.UpgradeValueInfo.Count; i++)
             {
                 upgradeCost = upgradeScript.upgradeCost;
-                bank.DecreaseBankAmount(upgradeScript.upgradeCost);
                 upgradeType = upgradeScript.UpgradeValueInfo[i].upgradeType;
                 upgradeValue = upgradeScript.UpgradeValueInfo[i].upgradeValue;
                 TellTowerToUpgrade(upgradeType, upgradeValue, upgradeCost);
             }
-
+            bank.DecreaseBankAmount(upgradeScript.upgradeCost);
             path2Index++;
         }
     }

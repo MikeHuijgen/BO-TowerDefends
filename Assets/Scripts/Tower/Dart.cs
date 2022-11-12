@@ -22,6 +22,7 @@ public class Dart : MonoBehaviour
     void Update()
     {
         GoToTarget();
+        TargetIsDisabled();
     }
 
     private void GoToTarget()
@@ -33,6 +34,16 @@ public class Dart : MonoBehaviour
             DamageTarget();
             gameObject.SetActive(false);
             ResetPos();
+        }
+    }
+
+    private void TargetIsDisabled()
+    {
+        if (!_target.gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(false);
+            ResetPos();
+            return;
         }
     }
 

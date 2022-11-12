@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Super  Fan
   description: The dart monkey shoots faster to look like a super monkey.
-  upgradeCost: 800
+  upgradeCost: 1000
   UpgradeValueInfo:
   - upgradeType: 2
     upgradeValue: 0.5
+  - upgradeType: 0
+    upgradeValue: 12

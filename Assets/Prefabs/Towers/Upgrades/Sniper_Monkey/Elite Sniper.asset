@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Elite Sniper
   description: The sniper monkey is now an elite sniper. He can shoot twices as fast.
-  upgradeCost: 2000
+  upgradeCost: 2300
   UpgradeValueInfo:
   - upgradeType: 2
-    upgradeValue: 0.3
+    upgradeValue: 0.4

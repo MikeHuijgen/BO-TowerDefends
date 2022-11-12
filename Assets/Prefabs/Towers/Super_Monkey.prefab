@@ -439,7 +439,7 @@ MonoBehaviour:
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
   towerRangeCollider: {fileID: 1176621175878914500}
-  fireRate: 0.4
+  fireRate: 0.1
   dartPoolAmount: 4
   towerType: 0
   targetStyle: 0
