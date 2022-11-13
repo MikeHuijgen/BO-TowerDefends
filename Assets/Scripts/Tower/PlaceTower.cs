@@ -182,13 +182,13 @@ public class PlaceTower : MonoBehaviour
         {
             rangeColor = Color.red;
             rangeColor.a = towerRangeOpacity;
-            rangeMaterial.color = rangeColor;
+            towerRangeTransform.GetComponent<Renderer>().material.color = rangeColor;
         }
         else
         {
             rangeColor = Color.grey;
             rangeColor.a = towerRangeOpacity;
-            rangeMaterial.color = rangeColor;
+            towerRangeTransform.GetComponent<Renderer>().material.color = rangeColor;
         }
     }
 

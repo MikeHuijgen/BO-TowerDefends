@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     private EnemySpawner enemySpawner;
     private EnemyFollowWaypoint followWaypoint;
     private EnemyCounter enemyCounter;
+    private Transform balloonPopeffectTransform;
 
 
     private void Awake()
@@ -39,7 +40,10 @@ public class Enemy : MonoBehaviour
         enemySpawner = FindObjectOfType<EnemySpawner>();
         followWaypoint = FindObjectOfType<EnemyFollowWaypoint>();
         enemyCounter = FindObjectOfType<EnemyCounter>();
+        bank = FindObjectOfType<Bank>();
+        balloonPopeffectTransform = GameObject.FindGameObjectWithTag("BalloonPop").transform;
     }
+
     public void SetUpBalloon(BalloonLayer balloonLayer)
     {
         currentBalloonLayer = balloonLayer;
@@ -64,7 +68,6 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         isDisable = false;
-        bank = FindObjectOfType<Bank>();
     }
 
     private void OnDisable()
@@ -75,6 +78,8 @@ public class Enemy : MonoBehaviour
     public void DecreaseHealth(int amount, Transform tower)
     {
         if (isDisable) { return; }
+        balloonPopeffectTransform.GetComponent<AudioSource>().Stop();
+        balloonPopeffectTransform.GetComponent<AudioSource>().Play();
         lastHealth = balloonHealth;
         balloonHealth -= amount;
         BalloonGotHit();
@@ -87,7 +92,6 @@ public class Enemy : MonoBehaviour
 
         if (balloonHealth <= 0)
         {
-            gameObject.SetActive(false);
             balloonHealth = 0;
             if (lastHealth > 1)
             {
@@ -102,6 +106,7 @@ public class Enemy : MonoBehaviour
             tower.parent.BroadcastMessage("EnemyGotKilledByTower", this.transform);
             enemyCounter.DecreaseEnemyCounter();
             enemySpawner.enemysLeft--;
+            gameObject.SetActive(false);
         }
     }
 

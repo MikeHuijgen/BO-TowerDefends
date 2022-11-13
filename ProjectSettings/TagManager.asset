@@ -18,6 +18,7 @@ TagManager:
   - deathScreen
   - dartPool2
   - dartPool1
+  - BalloonPop
   layers:
   - Default
   - TransparentFX
