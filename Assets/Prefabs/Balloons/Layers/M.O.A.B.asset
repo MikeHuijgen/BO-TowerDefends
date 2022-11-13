@@ -16,7 +16,7 @@ MonoBehaviour:
   balloonMaterial: {fileID: 2100000, guid: b0417aa1a3b03e64fbc2b9a2325dcbf3, type: 2}
   balloonMesh: {fileID: 428866477300906952, guid: 974fa790a33f2084394a19b94aa0635c,
     type: 3}
-  BalloonHealth: 700
+  BalloonHealth: 1000
   BalloonSpeed: 7
   balloonScale: {x: 2.5, y: 2.5, z: 2.5}
   specialBalloon: 1

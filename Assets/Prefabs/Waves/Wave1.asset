@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balloons:
   - balloonLayer: {fileID: 11400000, guid: c0eeed764215adf41994e69fef39f81b, type: 2}
-    amount: 20
+    amount: 25
   timeBetweenSpawn: 0.7

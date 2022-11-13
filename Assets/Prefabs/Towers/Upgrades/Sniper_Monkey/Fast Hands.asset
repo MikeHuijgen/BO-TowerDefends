@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Fast Hands
   m_EditorClassIdentifier: 
   upgradeName: Fast Hands
-  description: The sniper monkey can reaload faster and he shoots faster.
-  upgradeCost: 300
+  description: The sniper monkey can reaload faster and he shoots even faster.
+  upgradeCost: 1210
   UpgradeValueInfo:
   - upgradeType: 2
-    upgradeValue: 0.8
+    upgradeValue: 0.6

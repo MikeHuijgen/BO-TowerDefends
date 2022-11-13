@@ -115,9 +115,6 @@ MonoBehaviour:
   moveSpeed: 10
   decreasePlayerLife: 1
   waypoints: []
-  betweenWaypointTime: 0
-  inGameTime: 0
-  waypointsPassed: 0
   enemySpawnedIn: 0
   currentWaypoint: {fileID: 0}
   totalDistanceTraveled: 0
@@ -151,7 +148,7 @@ MonoBehaviour:
     balloonLayer: {fileID: 11400000, guid: 67cfcd2299fbb0c4eaa5b5773f57c944, type: 2}
   - balloonHealthId: 8
     balloonLayer: {fileID: 11400000, guid: 23e5cbed937ffd84da576013be412b6d, type: 2}
-  - balloonHealthId: 700
+  - balloonHealthId: 1000
     balloonLayer: {fileID: 11400000, guid: 7322496ed47d8e04785471ce62c51c0f, type: 2}
   currentBalloonLayer: {fileID: 0}
 --- !u!54 &6205113706255774680

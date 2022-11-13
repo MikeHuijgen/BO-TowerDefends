@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Super Vision
   description: The super monkey can hit balloon further away
-  upgradeCost: 1500
+  upgradeCost: 1200
   UpgradeValueInfo:
   - upgradeType: 0
     upgradeValue: 16

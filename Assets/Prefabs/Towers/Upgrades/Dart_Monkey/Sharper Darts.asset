@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Sharper Darts
   description: The dart monkey now hits 3 layers at the same time.
-  upgradeCost: 1200
+  upgradeCost: 1670
   UpgradeValueInfo:
   - upgradeType: 1
     upgradeValue: 3

@@ -42,6 +42,7 @@ public class ShowTowerInfo : MonoBehaviour
     private void Update()
     {
         ShowingTowerInfo();
+        PathMaxedOut();
     }
 
     public void GetTowerInfo(Tower tower, SaveTowerPosition towerPos, UpgradeTower upgradeTower)
@@ -106,17 +107,47 @@ public class ShowTowerInfo : MonoBehaviour
             rightUpgradeDescription2.text = _upgradeTower.Path2[_upgradeTower.path2Index].description;
             rightUpgradeCost2.text = $"Cost : {_upgradeTower.Path2[_upgradeTower.path2Index].upgradeCost}";
         }
-        if (_upgradeTower.path1Done)
+        if (_upgradeTower.path1Done && !_upgradeTower.path2Max)
         {
             rightUpgradeName1.text = "";
-            rightUpgradeDescription1.text = "All upgrades from this path are done";
+            rightUpgradeDescription1.text = "Max Upgrade";
             rightUpgradeCost1.text = "";
         }
-        if (_upgradeTower.path2Done)
+        if (_upgradeTower.path2Done && !_upgradeTower.path1Max)
         {
             rightUpgradeName2.text = "";
-            rightUpgradeDescription2.text = "All upgrades from this path are done";
+            rightUpgradeDescription2.text = "Max Upgrade";
             rightUpgradeCost2.text = "";
+        }
+    }
+
+    private void PathMaxedOut()
+    {
+        if (_saveTowerPosition == null) { return; }
+        if (_upgradeTower.path1Max && _upgradeTower.path2Done)
+        {
+            leftUpgradeName2.text = "";
+            leftUpgradeDescription2.text = "Path Closed";
+            leftUpgradeCost2.text = "";
+        }
+        if (_upgradeTower.path2Max && _upgradeTower.path1Done)
+        {
+            leftUpgradeName1.text = "";
+            leftUpgradeDescription1.text = "Path Closed";
+            leftUpgradeCost1.text = "";
+        }
+
+        if (_upgradeTower.path1Max && _upgradeTower.path2Done)
+        {
+            rightUpgradeName2.text = "";
+            rightUpgradeDescription2.text = "Path Closed";
+            rightUpgradeCost2.text = "";
+        }
+        if (_upgradeTower.path2Max && _upgradeTower.path1Done)
+        {
+            rightUpgradeName1.text = "";
+            rightUpgradeDescription1.text = "Path Closed";
+            rightUpgradeCost1.text = "";
         }
     }
 
@@ -135,16 +166,16 @@ public class ShowTowerInfo : MonoBehaviour
             leftUpgradeDescription2.text = _upgradeTower.Path2[_upgradeTower.path2Index].description;
             leftUpgradeCost2.text = $"Cost : {_upgradeTower.Path2[_upgradeTower.path2Index].upgradeCost}";
         }
-        if (_upgradeTower.path1Done)
+        if (_upgradeTower.path1Done && !_upgradeTower.path2Max)
         {
             leftUpgradeName1.text = "";
-            leftUpgradeDescription1.text = "All upgrades from this path are done";
+            leftUpgradeDescription1.text = "Max Upgrade";
             leftUpgradeCost1.text = "";
         }
-        if (_upgradeTower.path2Done)
+        if (_upgradeTower.path2Done && !_upgradeTower.path1Max)
         {
             leftUpgradeName2.text = "";
-            leftUpgradeDescription2.text = "All upgrades from this path are done";
+            leftUpgradeDescription2.text = "Max Upgrade";
             leftUpgradeCost2.text = "";
         }
     }

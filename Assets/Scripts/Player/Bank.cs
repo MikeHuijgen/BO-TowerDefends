@@ -28,7 +28,6 @@ public class Bank : MonoBehaviour
 
     public void DecreaseBankAmount(int amount)
     {
-        Debug.Log(amount);
         bankBalance -= amount;
     }
 }

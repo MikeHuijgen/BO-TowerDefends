@@ -385,6 +385,7 @@ MonoBehaviour:
     m_Bits: 136
   rangeMaterial: {fileID: 2100000, guid: 936ba20cd5638474aba69d0a03d4b5d9, type: 2}
   towerCost: 0
+  towerCollides: []
 --- !u!114 &-4484325802217507847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,12 +404,13 @@ MonoBehaviour:
   rangeOpacity: 0.6
   towerRangeTransform: {fileID: 1248980609916512757}
   towerRangeCollider: {fileID: 5901039571302851449}
-  fireRate: 0.7
+  fireRate: 1
   dartPoolAmount: 3
   towerType: 0
   targetStyle: 0
   dartPrefab: {fileID: 4315885570258830560, guid: 70d5dec22d8967243b02cd8f7b828181,
     type: 3}
+  sniperMuzzleEffect: {fileID: 0}
   balloonsPoped: 0
   currentTarget: {fileID: 0}
   playerCanSelect: 0
@@ -427,10 +429,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path1:
+  - {fileID: 11400000, guid: 6b96b1492018b9448960bbd7951b8493, type: 2}
   - {fileID: 11400000, guid: e301137dff7ba1e47b347d4f36b292f0, type: 2}
   - {fileID: 11400000, guid: 213e31e35a18d2740ba0840a05a28bf8, type: 2}
   Path2:
   - {fileID: 11400000, guid: a809bfa439b9d7e45abf8ccea8e75713, type: 2}
+  - {fileID: 11400000, guid: fb608d854beff1144ba57646104d2f8b, type: 2}
   - {fileID: 11400000, guid: b7ed94737a0c75a4fb587036ffe61863, type: 2}
   path1Index: 0
   path2Index: 0

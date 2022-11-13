@@ -23,7 +23,7 @@ public class PlaceTower : MonoBehaviour
     private bool isInTowerCollider = false;
     private bool mouseIsInUI = false;
 
-    private List<Collider> towerCollides = new List<Collider>();
+    public List<Collider> towerCollides = new List<Collider>();
     private Bank bank;
     private TowerShop towerShop;
     private GameObject towerRangeTransform;

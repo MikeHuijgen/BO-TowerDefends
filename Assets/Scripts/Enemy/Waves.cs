@@ -9,6 +9,7 @@ public class Waves : MonoBehaviour
     [SerializeField] private int wave;
     [SerializeField] private int moneyIncreasePerWave; 
     [SerializeField] private TMP_Text waveCounter;
+    [SerializeField] private GameObject winScreen;
 
     [SerializeField] private List<WaveScriptableObject> waves = new List<WaveScriptableObject>();
     private EnemySpawner EnemySpawner;
@@ -47,6 +48,7 @@ public class Waves : MonoBehaviour
 
     private void PlayerWonTheGame()
     {
+        winScreen.SetActive(true);
         Debug.Log("You won");
     }
 }

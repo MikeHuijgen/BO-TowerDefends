@@ -12,6 +12,8 @@ public class UpgradeTower : MonoBehaviour
 
     public bool path1Done = false;
     public bool path2Done = false;
+    public bool path1Max = false;
+    public bool path2Max = false;
 
     private Tower tower;
     private Bank bank;
@@ -25,15 +27,11 @@ public class UpgradeTower : MonoBehaviour
     private void Update()
     {
         CheckIfAPathIsDone();
-        //is voor debugging
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            UpgradePath1();
-        }
     }
 
     private void CheckIfAPathIsDone()
     {
+        //check if one of the paths are done with upgrades
         if (path1Index >= Path1.Count && !path1Done)
         {
             path1Done = true;
@@ -41,6 +39,17 @@ public class UpgradeTower : MonoBehaviour
         if (path2Index >= Path2.Count && !path2Done)
         {
             path2Done = true;
+        }
+
+        if (path1Done && path2Index == Path2.Count - 1)
+        {
+            path2Done = true;
+            path1Max = true;
+        }
+        if (path2Done && path1Index == Path1.Count - 1)
+        {
+            path1Done = true;
+            path2Max = true;
         }
     }
 
