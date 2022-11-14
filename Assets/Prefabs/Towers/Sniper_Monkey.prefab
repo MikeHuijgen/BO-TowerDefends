@@ -396,6 +396,7 @@ MonoBehaviour:
   dartPrefab: {fileID: 4315885570258830560, guid: 70d5dec22d8967243b02cd8f7b828181,
     type: 3}
   sniperMuzzleEffect: {fileID: 4420750594765620375}
+  canSeeCamo: 0
   balloonsPoped: 0
   currentTarget: {fileID: 0}
   playerCanSelect: 0
@@ -425,6 +426,8 @@ MonoBehaviour:
   path2Index: 0
   path1Done: 0
   path2Done: 0
+  path1Max: 0
+  path2Max: 0
 --- !u!1 &8298592991154685434
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,3 +18,5 @@ MonoBehaviour:
   UpgradeValueInfo:
   - upgradeType: 2
     upgradeValue: 0.8
+  - upgradeType: 3
+    upgradeValue: 0

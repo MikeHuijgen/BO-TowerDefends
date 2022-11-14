@@ -23,6 +23,7 @@ public enum UpgradeType
 {
     Range,
     Damage,
-    AttackSpeed
+    AttackSpeed,
+    CanSeeCamo
 }
 

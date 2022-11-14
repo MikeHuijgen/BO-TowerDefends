@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] public int balloonHealth;
+    [SerializeField] public bool CamoBalloon;
 
 
     [System.Serializable]
@@ -48,7 +49,7 @@ public class Enemy : MonoBehaviour
     {
         currentBalloonLayer = balloonLayer;
         // this set up the balloon when it get activated
-        if (balloonLayer.specialBalloon)
+        if (balloonLayer.MOABBalloon)
         {
             GetComponent<MeshFilter>().mesh = balloonLayer.balloonMesh;
             GetComponent<Renderer>().material = balloonLayer.balloonMaterial;
@@ -60,6 +61,7 @@ public class Enemy : MonoBehaviour
             GetComponent<Renderer>().material.color = balloonLayer.balloonColor;
         }
 
+        CamoBalloon = balloonLayer.camoBalloon;
         this.balloonHealth = balloonLayer.BalloonHealth;
         transform.localScale = balloonLayer.balloonScale;
         followWaypoint.ChangeBalloonSpeed(balloonLayer.BalloonSpeed);
@@ -114,9 +116,10 @@ public class Enemy : MonoBehaviour
     {
         // it change how the balloon work by using a sort preset from the dictionary
         if (!balloonDictionary.ContainsKey(balloonHealth)) { return; }
-        if(currentBalloonLayer.specialBalloon)
+        if(currentBalloonLayer.MOABBalloon)
         {
             GetComponent<MeshFilter>().mesh = balloonDictionary[balloonHealth].balloonMesh;
+            GetComponent<Renderer>().material = balloonDictionary[balloonHealth].balloonMaterial;
         }
         transform.localScale = balloonDictionary[balloonHealth].balloonScale;
         GetComponent<Renderer>().material.color = balloonDictionary[balloonHealth].balloonColor;

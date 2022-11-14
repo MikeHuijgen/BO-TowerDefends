@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Wave34
   m_EditorClassIdentifier: 
   balloons:
-  - balloonLayer: {fileID: 11400000, guid: 61cde158eeee12b4aaa0cd855a84df58, type: 2}
-    amount: 30
-  - balloonLayer: {fileID: 11400000, guid: 67cfcd2299fbb0c4eaa5b5773f57c944, type: 2}
-    amount: 50
-  - balloonLayer: {fileID: 11400000, guid: 7f260a3dcc35a2544ad44d5599d87a67, type: 2}
-    amount: 50
-  - balloonLayer: {fileID: 11400000, guid: 9d93121292396624b969332fcaba401a, type: 2}
-    amount: 130
-  timeBetweenSpawn: 0.8
+  - balloonLayer: {fileID: 11400000, guid: 78867358b8988e148aec0b6d4588f51b, type: 2}
+    amount: 40
+  - balloonLayer: {fileID: 11400000, guid: 690cfce91bc902044bf65faa8e19215f, type: 2}
+    amount: 80
+  - balloonLayer: {fileID: 11400000, guid: 530bedc26efcfc64180c4fbf9ae8d8c0, type: 2}
+    amount: 70
+  - balloonLayer: {fileID: 11400000, guid: 6f7461b64e7c2504ca8264a099bcc842, type: 2}
+    amount: 100
+  timeBetweenSpawn: 0.5

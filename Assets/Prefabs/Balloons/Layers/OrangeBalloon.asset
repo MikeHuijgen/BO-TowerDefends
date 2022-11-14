@@ -17,6 +17,6 @@ MonoBehaviour:
   balloonMesh: {fileID: 3575360789356872316, guid: b17f7ba1d86e27e458c9ddd8ba38ffe2,
     type: 3}
   BalloonHealth: 10
-  BalloonSpeed: 17
+  BalloonSpeed: 30
   balloonScale: {x: 0.8, y: 0.8, z: 0.8}
   specialBalloon: 0

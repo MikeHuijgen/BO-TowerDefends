@@ -15,13 +15,13 @@ MonoBehaviour:
   balloons:
   - balloonLayer: {fileID: 11400000, guid: ec6b9d3d82571aa4a8d24bbd3a9925b5, type: 2}
     amount: 50
-  - balloonLayer: {fileID: 11400000, guid: 7f260a3dcc35a2544ad44d5599d87a67, type: 2}
+  - balloonLayer: {fileID: 11400000, guid: 690cfce91bc902044bf65faa8e19215f, type: 2}
     amount: 70
   - balloonLayer: {fileID: 11400000, guid: 61cde158eeee12b4aaa0cd855a84df58, type: 2}
     amount: 70
   - balloonLayer: {fileID: 11400000, guid: e8e74982b47d416429eb552c31ee8196, type: 2}
     amount: 90
-  - balloonLayer: {fileID: 11400000, guid: 23e5cbed937ffd84da576013be412b6d, type: 2}
+  - balloonLayer: {fileID: 11400000, guid: 6f7461b64e7c2504ca8264a099bcc842, type: 2}
     amount: 90
   - balloonLayer: {fileID: 11400000, guid: 87635f7ed0ed90a4097503f4053fbe64, type: 2}
     amount: 30

@@ -19,6 +19,7 @@ public class Tower : MonoBehaviour
     [SerializeField] public TargetStyle targetStyle;
     [SerializeField] private GameObject dartPrefab;
     [SerializeField] private ParticleSystem sniperMuzzleEffect;
+    [SerializeField] private bool canSeeCamo;
 
     [Header("Tower Check")]
     [SerializeField] private int balloonsPoped;
@@ -118,6 +119,7 @@ public class Tower : MonoBehaviour
         EnemyFollowWaypoint target = balloonList[0];
         for (int i = 0; i < balloonList.Count; i++)
         {
+            if (balloonList[i].GetComponent<Enemy>().CamoBalloon && !canSeeCamo) { return; }
             if (balloonList[i].totalDistanceTraveled > target.totalDistanceTraveled)
             {
                 target = balloonList[i];
@@ -234,6 +236,9 @@ public class Tower : MonoBehaviour
             case UpgradeType.AttackSpeed:
                 towerValue += cost;
                 fireRate = value;
+                break;
+            case UpgradeType.CanSeeCamo:
+                canSeeCamo = true;
                 break;
             default:
                 break;

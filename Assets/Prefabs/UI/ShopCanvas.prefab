@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b122fa9c5fe4b443b1fb0b95ada6d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnFirst: 0
+  isOnLast: 0
 --- !u!1 &404877730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b122fa9c5fe4b443b1fb0b95ada6d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnFirst: 0
+  isOnLast: 0
 --- !u!1 &1713020172
 GameObject:
   m_ObjectHideFlags: 0
@@ -6933,7 +6937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9648b2bcaffbb444822dbec69fb8fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 460
+  towerCost: 520
   imageApacityDisable: 0.2
   towerPrefab: {fileID: 5334317038526400404, guid: ab9e8b9279bfcfa4292b6e84f6c0557a,
     type: 3}

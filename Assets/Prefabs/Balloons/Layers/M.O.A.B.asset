@@ -19,4 +19,5 @@ MonoBehaviour:
   BalloonHealth: 1000
   BalloonSpeed: 7
   balloonScale: {x: 2.5, y: 2.5, z: 2.5}
-  specialBalloon: 1
+  MOABBalloon: 1
+  camoBalloon: 0

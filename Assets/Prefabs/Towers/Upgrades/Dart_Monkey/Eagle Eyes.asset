@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Eagle Eyes
   m_EditorClassIdentifier: 
   upgradeName: Eagle eyes
-  description: You see a balloon?
+  description: You see a camo balloon?
   upgradeCost: 600
   UpgradeValueInfo:
   - upgradeType: 0
     upgradeValue: 10
+  - upgradeType: 3
+    upgradeValue: 0

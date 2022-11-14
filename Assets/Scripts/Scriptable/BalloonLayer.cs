@@ -13,5 +13,6 @@ public class BalloonLayer : ScriptableObject
     public int BalloonHealth;
     [Range(1, 50)] public float BalloonSpeed;
     public Vector3 balloonScale;
-    public bool specialBalloon;
+    public bool MOABBalloon;
+    public bool camoBalloon;
 }
