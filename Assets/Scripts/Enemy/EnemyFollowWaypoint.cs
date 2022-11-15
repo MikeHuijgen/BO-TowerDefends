@@ -157,6 +157,7 @@ public class EnemyFollowWaypoint : MonoBehaviour
             }
             enemyCounter.DecreaseEnemyCounter();
             playerHealth.DecreaseHealth(transform.GetComponent<Enemy>().balloonHealth);
+            totalDistanceTraveled = 0;
             gameObject.SetActive(false);
         }
     }

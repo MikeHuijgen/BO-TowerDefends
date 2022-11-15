@@ -108,6 +108,7 @@ public class Enemy : MonoBehaviour
             tower.parent.BroadcastMessage("EnemyGotKilledByTower", this.transform);
             enemyCounter.DecreaseEnemyCounter();
             enemySpawner.enemysLeft--;
+            GetComponent<EnemyFollowWaypoint>().totalDistanceTraveled = 0;
             gameObject.SetActive(false);
         }
     }

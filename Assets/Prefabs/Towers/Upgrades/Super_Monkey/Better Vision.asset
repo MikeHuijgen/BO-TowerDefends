@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Better Vision
   m_EditorClassIdentifier: 
   upgradeName: Better Vision
-  description: The super monkey can attack further.
-  upgradeCost: 630
+  description: The super monkey can attack further away.
+  upgradeCost: 800
   UpgradeValueInfo:
   - upgradeType: 0
     upgradeValue: 11

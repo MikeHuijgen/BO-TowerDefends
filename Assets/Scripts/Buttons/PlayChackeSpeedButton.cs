@@ -36,7 +36,7 @@ public class PlayChackeSpeedButton : MonoBehaviour
             Time.timeScale = 2f;
             isFast = false;
             isNormale = true;
-            buttonText.text = "Normale Speed";
+            buttonText.text = "Normal Speed";
         }
         else if (isNormale)
         {

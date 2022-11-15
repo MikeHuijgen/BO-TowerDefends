@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Super Darts
   m_EditorClassIdentifier: 
   upgradeName: Super Darts
-  description: Super monkey has arrived.
+  description: The super monkey has arrived.
   upgradeCost: 3000
   UpgradeValueInfo:
   - upgradeType: 1
