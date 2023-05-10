@@ -1,4 +1,4 @@
-# BO-TowerDefense
+# Bloonz
 ![alt-text](https://github.com/MikeHuijgen/BO-TowerDefends/blob/9a0e7a1601c441ae3469bc45c3dc2a9c8d76155a/Gifs/TowerDefenseGifReadme.gif)
 ## My tower defense project
 In this project we need to make a tower defense game. My game was inspired on the famous tower defense Bloons TD 6. This project needed to be done in 7 weeks (19 sep - 11 nov). 
